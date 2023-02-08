@@ -53,7 +53,7 @@ app.get('/apropos', function (req, res) {
 
 app.get('/nousjoindre', function (req, res) {
     result = "Requete SQL"
-    res.render('../Pages/NousJoindre/nousJoindre.ejs', {
+    res.render('../Pages/Client/NousJoindre/nousJoindre.ejs', {
         siteTitle: siteTitle,
         pageTitle: "Event list",
         items: result
