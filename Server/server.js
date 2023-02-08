@@ -33,6 +33,15 @@ app.get('/', function (req, res) {
     });
 });
 
+app.get('/produits', function (req, res) {
+    result = "Requete SQL"
+    res.render('../Pages/Produits/produits.ejs', {
+        siteTitle: siteTitle,
+        pageTitle: "Event list",
+        items: result
+    });
+});
+
 
 const server = app.listen(4000, function () {
     console.log("serveur fonctionne sur 4000... ! ");
