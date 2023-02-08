@@ -26,7 +26,7 @@ const baseURL = "http://localhost:4000/";
 
 app.get('/', function (req, res) {
     result = "Requete SQL"
-    res.render('../Pages/Accueil/accueil.ejs', {
+    res.render('../Pages/Client/Accueil/accueil.ejs', {
         siteTitle: siteTitle,
         pageTitle: "Event list",
         items: result
@@ -35,7 +35,7 @@ app.get('/', function (req, res) {
 
 app.get('/produits', function (req, res) {
     result = "Requete SQL"
-    res.render('../Pages/Produits/produits.ejs', {
+    res.render('../Pages/Client/Produits/produits.ejs', {
         siteTitle: siteTitle,
         pageTitle: "Event list",
         items: result
@@ -44,7 +44,7 @@ app.get('/produits', function (req, res) {
 
 app.get('/apropos', function (req, res) {
     result = "Requete SQL"
-    res.render('../Pages/APropos/aPropos.ejs', {
+    res.render('../Pages/Client/APropos/aPropos.ejs', {
         siteTitle: siteTitle,
         pageTitle: "Event list",
         items: result
