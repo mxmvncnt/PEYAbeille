@@ -26,7 +26,7 @@ const baseURL = "http://localhost:4000/";
 
 app.get('/', function (req, res) {
     result = "Requete SQL"
-    res.render('../Pages/Accueil/index.ejs', {
+    res.render('../Pages/Accueil/accueil.ejs', {
         siteTitle: siteTitle,
         pageTitle: "Event list",
         items: result
