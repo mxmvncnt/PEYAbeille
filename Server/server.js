@@ -42,6 +42,15 @@ app.get('/produits', function (req, res) {
     });
 });
 
+app.get('/apropos', function (req, res) {
+    result = "Requete SQL"
+    res.render('../Pages/APropos/aPropos.ejs', {
+        siteTitle: siteTitle,
+        pageTitle: "Event list",
+        items: result
+    });
+});
+
 
 const server = app.listen(4000, function () {
     console.log("serveur fonctionne sur 4000... ! ");
