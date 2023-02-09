@@ -1,0 +1,36 @@
+.bloc {
+    background-repeat: no-repeat; 
+    background-size: 70%;
+    height: 100vh;
+}
+
+.bloc-contenu {
+    height: auto;
+    width: 40%;
+    backdrop-filter: blur(20px);
+    color: #242424;
+    padding: 15px;
+    border-radius: 10px;
+    border: rgb(255, 230, 0) 1px solid;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.gauche {
+    margin-right: 5vw;
+    margin-left: auto;
+    left: 0;
+    background-position: left 5vw top;
+    
+}
+
+.droite {
+    right: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .bloc-contenu {
+        color: #fff;
+        background-color: #24242488;
+    }
+    
+}
