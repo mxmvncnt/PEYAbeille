@@ -12,7 +12,7 @@
     color: #242424;
     padding: 15px;
     border-radius: 10px;
-    border: #242424 2px solid;
+    border: #dadada 2px solid;
     background-color: rgba(255, 255, 255, 0.5);
     z-index: 10;
     top: 50%;
@@ -23,6 +23,7 @@
 /* === DARK MODE === */
 @media (prefers-color-scheme: dark) {
     .bloc-contenu {
+        border: #242424 2px solid;
         color: #fff;
         background-color: #24242488;
     }
