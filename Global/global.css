@@ -3,6 +3,8 @@ body {
     margin: 0;
     font-family: 'Source Sans Pro';
     transition: 0.3s;
+    color: 242424;
+    background-color: rgb(225, 225, 225);
 }
 
 h1 {
@@ -45,7 +47,7 @@ h2 {
 @media (prefers-color-scheme: dark) {
 	body {
         transition: 0.3s;
-		background-color: black;
-        color: white;
+		background-color: #242424;
+        color: rgb(225, 225, 225);
 	}
 }
