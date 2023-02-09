@@ -7,7 +7,7 @@
 
 .bloc {
     background-size: 70%;
-    height: 80vh;
+    height: 100vh;
 }
 
 .bloc img {
@@ -18,7 +18,7 @@
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
     color: #242424;
-    padding: 15px;
+    padding: 30px;
     border-radius: 10px;
     border: #dadada 2px solid;
     background-color: rgba(255, 255, 255, 0.5);
@@ -42,13 +42,14 @@
     .bloc img {
         position: absolute;
         max-width: 70%;
-        max-height: 70vh;
+        height: 90vh;
     }
 
     .bloc-contenu {
         position: relative;
         height: auto;
-        width: 40%;
+        width: 35%;
+        font-size: 1.2em;
     }
 
     .gauche {
