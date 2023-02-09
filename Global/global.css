@@ -1,6 +1,18 @@
 body {
     /* Pour retirer la bordure autour de la fenetre complete. */
     margin: 0;
+    font-family: 'Source Sans Pro';
+    transition: 0.3s;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 2em;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 1.8;
 }
 
 /* majorité du navigation bar pris d'un ancien TP */
