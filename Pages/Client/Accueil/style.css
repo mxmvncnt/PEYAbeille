@@ -1,3 +1,10 @@
+#titre-page {
+    text-align: center;
+    margin-top: 5vh;
+    margin-bottom: 15vh;
+    font-size: 3em;
+}
+
 .bloc {
     background-size: 70%;
     height: 80vh;
