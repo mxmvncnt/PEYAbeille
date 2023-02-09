@@ -63,5 +63,6 @@ app.get('/nousjoindre', function (req, res) {
 });
 
 const server = app.listen(4000, function () {
-    console.log("serveur fonctionne sur 4000... ! ");
+    console.log("Serveur en marche...");
+    console.log(baseURL);
 });
