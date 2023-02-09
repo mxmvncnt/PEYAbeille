@@ -22,15 +22,13 @@ h2 {
 	top: 0;
   	right: 0;
 	left: 0;
-	background: rgba(255, 230, 0, 0.75);
-	backdrop-filter: blur(25px);
+	background: rgb(255, 230, 0);
 }
 
 .navigation-bar a {	
 	padding: 15px;
 	transition: 0.2s;
 	color: #000000;
-	font-family: 'Source Sans Pro';
 	text-decoration: none;
 	font-weight: bold;
     font-size: 1.4em;
@@ -40,5 +38,14 @@ h2 {
 .navigation-bar a:hover {
 	padding: 15px;
 	transition: 0.2s;
-	background-color: rgba(194, 174, 0, 0.75);
+	background-color: rgb(200, 180, 0);
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+	body {
+        transition: 0.3s;
+		background-color: black;
+        color: white;
+	}
 }
