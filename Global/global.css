@@ -22,7 +22,7 @@ h2 {
     font-weight: 700;
     font-size: 1.8em;
 }
-
+/* ==== NAVIGATION BAR ==== */
 /* majorité du navigation bar pris d'un ancien TP */
 .navigation-bar {
 	overflow: hidden;
@@ -60,4 +60,32 @@ h2 {
 		background-color: #000000;
         color: rgb(225, 225, 225);
 	}
+}
+
+/* ==== FOOTER ==== */
+.footer {
+	overflow: hidden;
+	position: sticky;
+	top: 0;
+  	right: 0;
+	left: 0;
+	background: rgba(0, 0, 0);
+	height: 15vh;
+	border-top: rgb(255, 230, 0) 2px solid;
+}
+
+.footer a {	
+	padding: 15px;
+	transition: 0.2s;
+	color: rgb(255, 230, 0);
+	text-decoration: none;
+	font-weight: bold;
+    font-size: 1.4em;
+	float: left;
+}
+
+.footer a:hover {
+	padding: 15px;
+	transition: 0.2s;
+	color: rgb(200, 180, 0);
 }
