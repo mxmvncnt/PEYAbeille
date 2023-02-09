@@ -4,7 +4,14 @@
     height: 80vh;
 }
 
+.bloc img {
+    position: absolute;
+    z-index: 0;
+    max-width: 70%;
+}
+
 .bloc-contenu {
+    position: relative;
     height: auto;
     width: 40%;
     backdrop-filter: blur(40px) saturate(200%);
@@ -13,21 +20,31 @@
     border-radius: 10px;
     border: #242424 2px solid;
     background-color: rgba(255, 255, 255, 0.5);
-    z-index: 0;
+    z-index: 10;
 }
 
 .gauche {
     margin-right: 5vw;
     margin-left: auto;
     left: 0;
-    background-position: left 5vw top;
+}
+
+.gauche img {
+    margin-left: 5vw;
+    margin-right: auto;
+    left: 0;
 }
 
 .droite {
     margin-left: 5vw;
     margin-right: auto;
     right: 0;
-    background-position: right 5vw top;
+}
+
+.droite img {
+    margin-right: 5vw;
+    margin-left: auto;
+    right: 0;
 }
 
 @media (prefers-color-scheme: dark) {
