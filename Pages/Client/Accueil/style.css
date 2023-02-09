@@ -7,11 +7,11 @@
 .bloc-contenu {
     height: auto;
     width: 40%;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(40px) saturate(200%);
     color: #242424;
     padding: 15px;
     border-radius: 10px;
-    border: rgb(255, 230, 0) 2px solid;
+    border: #242424 2px solid;
     background-color: rgba(255, 255, 255, 0.5);
     z-index: 0;
 }
