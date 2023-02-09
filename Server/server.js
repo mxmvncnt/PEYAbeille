@@ -18,6 +18,7 @@ const dateNow = new Date();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("Global"));
+app.use(express.static("Pages/Client/Accueil/"));
 
 app.set('view engine', 'ejs')
 
