@@ -5,7 +5,7 @@ body {
     margin: 0;
     font-family: 'Source Sans Pro', sans-serif;
     transition: 0.3s;
-    color: 242424;
+    color: #242424;
     background-color: rgb(255, 255, 255);
 }
 
@@ -16,7 +16,7 @@ h1 {
 
 h2 {
     font-weight: 700;
-    font-size: 1.8;
+    font-size: 1.8em;
 }
 
 /* majorité du navigation bar pris d'un ancien TP */
