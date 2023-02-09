@@ -1,21 +1,13 @@
 .bloc {
-    background-repeat: no-repeat;
     background-size: 70%;
     height: 80vh;
 }
 
 .bloc img {
-    position: absolute;
     z-index: 0;
-    max-width: 70%;
-    max-height: 70vh;
-    
 }
 
 .bloc-contenu {
-    position: relative;
-    height: auto;
-    width: 40%;
     backdrop-filter: blur(40px) saturate(200%);
     color: #242424;
     padding: 15px;
@@ -28,33 +20,64 @@
     transform: translateY(-50%);
 }
 
-.gauche {
-    margin-right: 5vw;
-    margin-left: auto;
-    left: 0;
-}
-
-.gauche img {
-    margin-left: 10vw;
-    margin-right: auto;
-    left: 0;
-}
-
-.droite {
-    margin-left: 5vw;
-    margin-right: auto;
-    right: 0;
-}
-
-.droite img {
-    margin-right: 10vw;
-    margin-left: auto;
-    right: 0;
-}
-
+/* === DARK MODE === */
 @media (prefers-color-scheme: dark) {
     .bloc-contenu {
         color: #fff;
         background-color: #24242488;
+    }
+}
+
+/* === VUE SPECIFIQUE ORDINATEUR === */
+@media only screen and (min-width: 601px) {
+    .bloc img {
+        position: absolute;
+        max-width: 70%;
+        max-height: 70vh;
+    }
+
+    .bloc-contenu {
+        position: relative;
+        height: auto;
+        width: 40%;
+    }
+
+    .gauche {
+        margin-right: 5vw;
+        margin-left: auto;
+        left: 0;
+    }
+
+    .gauche img {
+        margin-left: 10vw;
+        margin-right: auto;
+        left: 0;
+    }
+
+    .droite {
+        margin-left: 5vw;
+        margin-right: auto;
+        right: 0;
+    }
+
+    .droite img {
+        margin-right: 10vw;
+        margin-left: auto;
+        right: 0;
+    }
+}
+
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 600px) {
+    .bloc img {
+        position: relative;
+        z-index: 0;
+        width: 100%;
+        /* max-height: 70vh; */
+    }
+
+    .bloc-contenu {
+        width: 90%;
+        margin: auto;
     }
 }
