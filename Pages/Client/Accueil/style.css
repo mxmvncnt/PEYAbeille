@@ -1,7 +1,7 @@
 .bloc {
     background-repeat: no-repeat; 
     background-size: 70%;
-    height: 100vh;
+    height: 80vh;
 }
 
 .bloc-contenu {
@@ -11,8 +11,9 @@
     color: #242424;
     padding: 15px;
     border-radius: 10px;
-    border: rgb(255, 230, 0) 1px solid;
+    border: rgb(255, 230, 0) 2px solid;
     background-color: rgba(255, 255, 255, 0.5);
+    z-index: 0;
 }
 
 .gauche {
@@ -20,11 +21,13 @@
     margin-left: auto;
     left: 0;
     background-position: left 5vw top;
-    
 }
 
 .droite {
+    margin-left: 5vw;
+    margin-right: auto;
     right: 0;
+    background-position: right 5vw top;
 }
 
 @media (prefers-color-scheme: dark) {
