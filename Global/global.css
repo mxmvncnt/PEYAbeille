@@ -1,0 +1,32 @@
+body {
+    /* Pour retirer la bordure autour de la fenetre complete. */
+    margin: 0;
+}
+
+/* majorité du navigation bar pris d'un ancien TP */
+.navigation-bar {
+	overflow: hidden;
+	position: sticky;
+	top: 0;
+  	right: 0;
+	left: 0;
+	background: rgba(255, 230, 0, 0.75);
+	backdrop-filter: blur(25px);
+}
+
+.navigation-bar a {	
+	padding: 15px;
+	transition: 0.2s;
+	color: #000000;
+	font-family: 'Source Sans Pro';
+	text-decoration: none;
+	font-weight: bold;
+    font-size: 1.4em;
+	float: left;
+}
+
+.navigation-bar a:hover {
+	padding: 15px;
+	transition: 0.2s;
+	background-color: rgba(194, 174, 0, 0.75);
+}

@@ -17,6 +17,7 @@ const dateNow = new Date();
 // });
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("Global"));
 
 app.set('view engine', 'ejs')
 
