@@ -54,15 +54,6 @@ h2 {
 	color: rgb(200, 180, 0);
 }
 
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-	body {
-        transition: 0.3s;
-		background-color: #000000;
-        color: rgb(225, 225, 225);
-	}
-}
-
 /* ==== FOOTER ==== */
 .footer {
 	overflow: hidden;
@@ -95,7 +86,14 @@ h2 {
 	color: rgb(200, 180, 0);
 }
 
-
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+	body {
+        transition: 0.3s;
+		background-color: #000000;
+        color: rgb(225, 225, 225);
+	}
+}
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
 @media only screen and (min-width: 601px) {
