@@ -37,6 +37,7 @@ h2 {
 	
 }
 
+/* style des liens/boutons de la navbar */
 .navigation-bar a {	
 	padding: 15px;
 	transition: 0.2s;
@@ -73,11 +74,13 @@ h2 {
 	grid-template-columns: 25% 25% 50%;
 }
 
+/* chaque "categorie" du footer, ex. liens, contacts, etc. */
 .footer-categorie {
     display: flex;
     flex-direction: column;
 }
 
+/* chaque lien du footer */
 .footer a {	
 	transition: 0.2s;
 	color: rgb(255, 230, 0);
