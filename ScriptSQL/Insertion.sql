@@ -1,12 +1,22 @@
+INSERT INTO categorie (
+    id_categorie,
+    type_categorie
+)
+values (
+    0,
+    'Miel'
+);
+
 INSERT INTO produit (
-    id_produit, 
-    nom, 
-    description, 
-    prix_suggere, 
-    prix_fixe, 
-    url_catalog, 
-    inventaire, 
-    quantite
+    id_produit,
+    nom,
+    description,
+    prix_suggere,
+    prix_fixe,
+    url_catalog,
+    inventaire,
+    quantite,
+    categorie_id_categorie
 )
 values( 
     12, 
@@ -16,39 +26,43 @@ values(
     20,
     '.....',
     1000,
-    1000
+    1000,
+    0
 );
 
 INSERT INTO produit (
     id_produit,
-    nom, 
-    description, 
-    prix_suggere, 
-    prix_fixe, 
-    url_catalog, 
-    inventaire, 
-    quantite
+    nom,
+    description,
+    prix_suggere,
+    prix_fixe,
+    url_catalog,
+    inventaire,
+    quantite,
+    categorie_id_categorie
 )
 values( 
     13, 
-    "miel d'eucalyptus", 
+    'miel deucalyptus', 
     'description ici', 
     15, 
     20, 
     '.....', 
     100, 
-    100
+    100,
+    0
 );
 
 INSERT INTO produit (
-    id_produit, 
-    nom, 
-    description, 
-    prix_suggere, 
-    prix_fixe, 
-    url_catalog, 
+    id_produit,
+    nom,
+    description,
+    prix_suggere,
+    prix_fixe,
+    url_catalog,
     inventaire,
-    quantite
+    quantite,
+    categorie_id_categorie
 )
 values (
     14, 
@@ -58,18 +72,20 @@ values (
     20,
     '....',
     100,
-    100
+    100,
+    0
 );
 
 INSERT INTO produit (
-    id_produit, 
-    nom, 
-    description, 
-    prix_suggere, 
-    prix_fixe, 
-    url_catalog, 
-    inventaire, 
-    quantite
+    id_produit,
+    nom,
+    description,
+    prix_suggere,
+    prix_fixe,
+    url_catalog,
+    inventaire,
+    quantite,
+    categorie_id_categorie
 )
 values (
     15, 
@@ -79,7 +95,8 @@ values (
     30,
     '...',
     200,
-    200
+    200,
+    0
 );
 
 commit;
