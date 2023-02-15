@@ -1,9 +1,4 @@
 <style>
-    #titre-page {
-        text-align: center;
-        margin-top: 5vh;
-        font-size: 3em;
-    }
 
     .grid-carte-image {
         display: grid;
@@ -39,6 +34,7 @@
     #iframe-map {
         border: 1px solid black;
         display: block;
+        border-radius: 10px;
     }
 
     /* === VUE SPECIFIQUE ORDINATEUR === */
@@ -53,12 +49,21 @@
             width: 35vw;
             height: 50vh;
         }
+
+        /* arrondir les coins du centre de limage */
+        img {
+            border-radius: 0px 10px 10px 0px;
+        }
     }
 
     /* === VUE SPECIFIQUE MOBILE === */
     @media only screen and (max-width: 600px) {
         .grid-carte-image {
             grid-template-columns: auto;
+        }
+
+        .contact {
+            margin-top: 10vh;
         }
 
         .image {
