@@ -3,7 +3,6 @@
     #titre-page {
         text-align: center;
         margin-top: 5vh;
-        margin-bottom: 15vh;
         font-size: 3em;
     }
 
@@ -11,26 +10,40 @@
         display: grid;
         place-content: center;
         grid-template-columns: 60% 40%;
-        width: 80%;
-        margin: 0 auto;
+        height: 100vh;
     }
 
     .grid-item {
-        height: 70vh;
         display: flex;
         flex-direction: column;
     }
 
-    #iframe-map {
-        border: 1px solid black;
-        width: 100%;
-        height: 100%;
-        display: block;
+    /* Grid pour l'adresse et la carte */
+    .contact {
+        display: grid;
+        place-content: center;
+        grid-template-rows: 30% 70%;
         margin: 0 auto;
     }
 
-    .image {
-        height: 70vh;
+    /* item de la grille contact */
+    .contact-item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* adresse */
+    .adresse {
+        text-align: center;
+        line-height: 0;
+    }
+
+    /* carte */
+    #iframe-map {
+        border: 1px solid black;
+        width: 35vw;
+        height: 100%;
+        display: block;
     }
 
 </style>
