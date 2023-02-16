@@ -49,12 +49,12 @@ async function run (){
     });
     
     app.get('/produits', async function (req, res) {
-        let result = await con.execute("SELECT * FROM produit");
+        let result = await con.execute("SELECT * FROM produit", [],{ outFormat: oracledb.OUT_FORMAT_OBJECT });
         console.log(result)
         res.render('../Pages/Client/Produits/produits.ejs', {
             siteTitle: siteTitle,
             pageTitle: "Produits",
-            items: result
+            items: result["rows"]
         });
     });
     
