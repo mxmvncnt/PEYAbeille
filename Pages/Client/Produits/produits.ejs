@@ -11,15 +11,21 @@
         <div class="grid-produits">
           <% items.forEach(function(item){ %>
             <div class="produit">
-              <h2 class="titre"><%= item.NOM %></h2>
-              <h3 class="prix"><%= item.PRIX_SUGGERE %> $</h3>
-              <button><a href="<%= item.URL_CATALOG %>">Acheter</a></button>
+              <h2 class="titre">
+                <%= item.NOM %>
+              </h2>
+              <h3 class="prix">
+                <%= item.PRIX_SUGGERE %> $
+              </h3>
+              <a href="<%= item.URL_CATALOG %>">
+                <button class="btn-acheter">Acheter</button>
+              </a>
             </div>
             <%}); %>
         </div>
         <% }else {%>
           <p><strong> Non disponible </strong></p>
-        <% } %>
+          <% } %>
     </div>
   </div>
   <br />
