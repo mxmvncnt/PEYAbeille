@@ -7,6 +7,7 @@ const http = require('http');
 const oracledb = require('oracledb');
 const bodyParser = require('body-parser')
 const dateFormat = require('dateformat');
+const { hasSubscribers } = require('diagnostics_channel');
 const dateNow = new Date();
 
 let libPath;
@@ -37,7 +38,8 @@ async function run (){
     
     
     const siteTitle = "Application simple";
-    const baseURL = "http://localhost:4000/";
+    const hostname = "localhost";
+    const port = 4001;
     
     app.get('/', function (req, res) {
         result = "Requete SQL"
@@ -77,9 +79,9 @@ async function run (){
         });
     });
     
-    const server = app.listen(4000, function () {
+    const server = app.listen(4001, function () {
         console.log("Serveur en marche...");
-        console.log(baseURL);
+        console.log("http://" + hostname + ":" + port);
     });
 }
 
