@@ -59,6 +59,16 @@ async function run (){
             items: result["rows"]
         });
     });
+
+    app.get('/produit/:produitID', async function (req, res) {
+        let idProduit = req.params;
+        let result = await con.execute("SELECT * FROM produit", [],{ outFormat: oracledb.OUT_FORMAT_OBJECT });
+        res.render('../Pages/Client/Produit/produit.ejs', {
+            siteTitle: siteTitle,
+            pageTitle: "Produit",
+            items: result["rows"]
+        });
+    });
     
     
     app.get('/apropos', function (req, res) {
