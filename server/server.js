@@ -35,7 +35,7 @@ async function run () {
     
     app.get('/api/produits', async function (req, res) {
         let result = await con.execute("SELECT * FROM produit", [],{ outFormat: oracledb.OUT_FORMAT_OBJECT });
-        
+        res.send(result["rows"])
     });
 
     app.get('/api/produit/:produitID', async function (req, res) {
@@ -44,7 +44,7 @@ async function run () {
         res.send(result["rows"])
     });
     
-    const server = app.listen(4001, function () {
+    const server = app.listen(4002, function () {
         console.log("Serveur en marche...");
         console.log("http://" + hostname + ":" + port);
     });
