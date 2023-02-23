@@ -5,6 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express()
 const oracledb = require('oracledb');
+const fs = require('fs')
 
 let libPath;
 if (process.platform === "win32") {
