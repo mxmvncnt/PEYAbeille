@@ -1,11 +1,24 @@
 import React from "react";
 import './Style.css'
 import { Link } from "react-router-dom";
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getProduits } from "../../../server/Api";
 
+
 export default function Produits() {
-    console.log(getProduits())
+    const produitsJson = getProduits();
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            const json = await getProduits();
+            console.log(json)
+            setData(json);
+        }
+
+        fetchData();
+    }, []);
 
     return (
         <div>

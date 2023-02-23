@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 async function run() {
 
   const con = await oracledb.getConnection({
-    host: "192.169.2.35",
+    host: "localhost",
     user: "scott",
     password: "oracle",
     connectString: "localhost/orcl"

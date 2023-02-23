@@ -10,6 +10,6 @@ export async function getProduits() {
 
 export async function getInfosProduit(idProduit) {
     let response = await fetch(url + "/api/produit/" + idProduit);
-    let jsonData = await response.json();
+    let jsonData = response.json();
     return jsonData;
 }
