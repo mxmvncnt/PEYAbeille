@@ -41,9 +41,10 @@ async function run() {
   });
 
   app.get('/api/produit/:produitID', async function (req, res) {
-    res.set('Access-Control-Allow-Origin', '*');
     let idProduit = req.params;
-    let result = await con.execute("SELECT * FROM produit", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    idProduit = idProduit['produitID'];
+    idProduit = parseInt(idProduit);
+    let result = await con.execute("SELECT * FROM produit WHERE ID_PRODUIT = :idProduit", [idProduit], { outFormat: oracledb.OUT_FORMAT_OBJECT });
     res.send(result["rows"])
   });
 
