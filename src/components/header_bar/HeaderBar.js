@@ -9,7 +9,7 @@ export default function HeaderBar() {
         <div class="navigation-bar">
             <Link
                 to="/">
-                Cartes
+                PEYABEILLE
             </Link>
             <Link
                 to="/">
