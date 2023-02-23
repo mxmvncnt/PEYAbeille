@@ -1,15 +1,15 @@
-.grid-carte-image {
+.page-nousjoindre-grid-carte-image {
     display: grid;
     place-content: center;
 }
 
-.grid-item {
+.page-nousjoindre-grid-item {
     display: flex;
     flex-direction: column;
 }
 
 /* Grid pour l'adresse et la carte */
-.contact {
+.page-nousjoindre-contact {
     display: grid;
     place-content: center;
     grid-template-rows: 30% 70%;
@@ -17,19 +17,19 @@
 }
 
 /* item de la grille contact */
-.contact-item {
+.page-nousjoindre-contact-item {
     display: flex;
     flex-direction: column;
 }
 
 /* adresse */
-.adresse {
+.page-nousjoindre-adresse {
     text-align: center;
     line-height: 0;
 }
 
 /* carte */
-#iframe-map {
+#page-nousjoindre-iframe-map {
     border: 1px solid black;
     display: block;
     border-radius: 10px;
@@ -37,38 +37,38 @@
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
 @media only screen and (min-width: 601px) {
-    .grid-carte-image {
+    .page-nousjoindre-grid-carte-image {
         grid-template-columns: 60% 40%;
         height: 100vh;
     }
 
     /* carte */
-    #iframe-map {
+    #page-nousjoindre-iframe-map {
         width: 35vw;
         height: 50vh;
     }
 
     /* arrondir les coins du centre de limage */
-    img {
+    .page-nousjoindre-image {
         border-radius: 0px 10px 10px 0px;
     }
 }
 
 /* === VUE SPECIFIQUE MOBILE === */
 @media only screen and (max-width: 600px) {
-    .grid-carte-image {
+    .page-nousjoindre-grid-carte-image {
         grid-template-columns: auto;
     }
 
-    .contact {
+    .page-nousjoindre-contact {
         margin-top: 10vh;
     }
 
-    .image {
+    .page-nousjoindre-image {
         width: 100vw;
     }
 
-    #iframe-map {
+    #page-nousjoindre-iframe-map {
         border: 1px solid black;
         width: 90vw;
         height: 70vh;

@@ -21,17 +21,18 @@ export default function Produits() {
     }, []);
 
     return (
-        <div>
+        <div className="page-produits-page-produits">
             <h1>Produits</h1>
 
-            {data.map((item) => (
-                <div key={item["ID_PRODUIT"]}>
-                    <div className="grid-produits">
-                        <div className="produit">
-                            <h2 className="titre">
+            <div className="page-produits-grid-produits">
+                {data.map((item) => (
+                    <div key={item["ID_PRODUIT"]}>
+
+                        <div className="page-produits-produit">
+                            <h2 className="page-produits-titre">
                                 {item["NOM"]}
                             </h2>
-                            <h3 className="prix">
+                            <h3 className="page-produits-prix">
                                 {item["PRIX_SUGGERE"] + " $"}
                             </h3>
                             <Link
@@ -40,10 +41,8 @@ export default function Produits() {
                             </Link>
                         </div>
                     </div>
-                </div>
-
-            ))}
+                ))}
+            </div>
         </div>
-
     );
 }

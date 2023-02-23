@@ -1,11 +1,11 @@
-.grid-produits {
+.page-produits-grid-produits {
     display: grid;
     place-content: center;
     margin: auto;
     text-align: center;
 }
 
-.produit {
+.page-produits-produit {
     display: flex;
     flex-direction: column;
     background-color: #242424;
@@ -17,19 +17,19 @@
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
 @media only screen and (min-width: 601px) {
-    .grid-produits {
+    .page-produits-grid-produits {
         grid-template-columns: 33% 33% 33%;
         width: 80vw;
     }
 
-    .produit {
+    .page-produits-produit {
         max-width: 400px;
     }
 }
 
 /* === VUE SPECIFIQUE MOBILE === */
 @media only screen and (max-width: 600px) {
-    .grid-produits {
+    .page-produits-grid-produits {
         grid-template-columns: auto;
     }
 }
