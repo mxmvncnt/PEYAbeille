@@ -23,18 +23,26 @@ export default function Produits() {
     return (
         <div>
             <h1>Produits</h1>
-            <div className="grid-produits">
-                <div className="produit">
-                    <h2 className="titre">
-                    </h2>
-                    <h3 className="prix">
-                    </h3>
-                    <Link
-                        to="/produit/12">
-                        <button className="btn-acheter">Acheter</button>
-                    </Link>
+
+            {data.map((item) => (
+                <div key={item["ID_PRODUIT"]}>
+                    <div className="grid-produits">
+                        <div className="produit">
+                            <h2 className="titre">
+                                {item["NOM"]}
+                            </h2>
+                            <h3 className="prix">
+                                {item["PRIX_SUGGERE"] + " $"}
+                            </h3>
+                            <Link
+                                to={`produit/${item["ID_PRODUIT"]}`}>
+                                <button className="btn-acheter">Acheter</button>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+            ))}
         </div>
 
     );
