@@ -23,38 +23,6 @@ h2 {
     font-size: 1.8em;
 }
 
-/* ==== FOOTER ==== */
-.footer {
-	overflow: hidden;
-	position: sticky;
-	background: rgba(0, 0, 0);
-	display: grid;
-    place-content: center;
-	border-top: rgb(255, 230, 0) 2px solid;
-	grid-template-columns: 25% 25% 50%;
-}
-
-/* chaque "categorie" du footer, ex. liens, contacts, etc. */
-.footer-categorie {
-    display: flex;
-    flex-direction: column;
-}
-
-/* chaque lien du footer */
-.footer a {	
-	transition: 0.2s;
-	color: rgb(255, 230, 0);
-	text-decoration: none;
-	font-weight: bold;
-    font-size: 1em;
-}
-
-.footer a:hover {
-	padding: 15px;
-	transition: 0.2s;
-	color: rgb(200, 180, 0);
-}
-
 /* === BOUTONS === */
 .btn-acheter {
 	padding: 15px;

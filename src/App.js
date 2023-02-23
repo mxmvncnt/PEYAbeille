@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router";
 import "./components/Global.css";
 
 import HeaderBar from './components/header_bar/HeaderBar';
+import Footer from './components/footer/Footer';
 
 import Accueil from './pages/client/accueil/Accueil';
 import Produits from './pages/client/produits/Produits';
@@ -30,6 +31,7 @@ function App() {
             <Route path="/apropos" element={<APropos />} />
             <Route path="/nousjoindre" element={<NousJoindre />} />
           </Routes>
+          <Footer />
         </HashRouter>
       </React.StrictMode>
     </div>
