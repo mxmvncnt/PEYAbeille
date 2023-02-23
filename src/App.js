@@ -5,6 +5,8 @@ import {
 } from "react-router-dom";
 import { Route, Routes } from "react-router";
 
+import "./components/Global.css";
+
 import HeaderBar from './components/header_bar/HeaderBar';
 
 import Accueil from './pages/client/accueil/Accueil';
