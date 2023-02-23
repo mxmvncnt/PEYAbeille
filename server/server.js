@@ -22,33 +22,35 @@ if (libPath && fs.existsSync(libPath)) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-async function run () {
+async function run() {
 
-    const con = await oracledb.getConnection({
-        host: "192.169.2.35",
-        user: "scott",
-        password: "oracle",
-        connectString: "localhost/orcl"
-    });
-    
-    const hostname = "localhost";
-    const port = 4003;
-    
-    app.get('/api/produits', async function (req, res) {
-        let result = await con.execute("SELECT * FROM produit", [],{ outFormat: oracledb.OUT_FORMAT_OBJECT });
-        res.send(result["rows"])
-    });
+  const con = await oracledb.getConnection({
+    host: "192.169.2.35",
+    user: "scott",
+    password: "oracle",
+    connectString: "localhost/orcl"
+  });
 
-    app.get('/api/produit/:produitID', async function (req, res) {
-        let idProduit = req.params;
-        let result = await con.execute("SELECT * FROM produit", [],{ outFormat: oracledb.OUT_FORMAT_OBJECT });
-        res.send(result["rows"])
-    });
-    
-    const server = app.listen(port, function () {
-        console.log("Serveur en marche...");
-        console.log("http://" + hostname + ":" + port);
-    });
+  const hostname = "localhost";
+  const port = 4003;
+
+  app.get('/api/produits', async function (req, res) {
+    res.set('Access-Control-Allow-Origin', '*');
+    let result = await con.execute("SELECT * FROM produit", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    res.send(result["rows"])
+  });
+
+  app.get('/api/produit/:produitID', async function (req, res) {
+    res.set('Access-Control-Allow-Origin', '*');
+    let idProduit = req.params;
+    let result = await con.execute("SELECT * FROM produit", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    res.send(result["rows"])
+  });
+
+  const server = app.listen(port, function () {
+    console.log("Serveur en marche...");
+    console.log("http://" + hostname + ":" + port);
+  });
 }
 
 run();
