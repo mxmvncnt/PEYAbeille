@@ -1,6 +1,6 @@
 import React from "react";
 import './Style.css'
-import OracleDB from "oracledb";
+import { Link } from "react-router-dom";
 
 export default function Produits() {
     return (
@@ -12,9 +12,10 @@ export default function Produits() {
                     </h2>
                     <h3 class="prix">
                     </h3>
-                    <a href="/produit/<%= item.ID_PRODUIT %>">
+                    <Link
+                        to="/produit/12">
                         <button class="btn-acheter">Acheter</button>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
