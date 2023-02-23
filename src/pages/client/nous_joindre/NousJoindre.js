@@ -3,17 +3,17 @@ import './Style.css'
 
 export default function NousJoindre() {
     return (
-        <div class="">
+        <div className="">
 
-            <div class="grid-carte-image">
+            <div className="grid-carte-image">
 
-                <div class="grid-item image">
+                <div className="grid-item image">
                     <img src="https://static.actu.fr/uploads/2021/03/ruche-miel-adobe-stock.jpeg" alt="" />
                 </div>
 
-                <div class="grid-item contact">
+                <div className="grid-item contact">
 
-                    <div class="contact-item adresse">
+                    <div className="contact-item adresse">
                         <h2>Pour nous joindre</h2>
                         <p>1234 rue des Hustler Bulgariens</p>
                         <p>(514) 555-8547</p>
@@ -21,8 +21,8 @@ export default function NousJoindre() {
 
                     </div>
 
-                    <div class="contact-item div-carte">
-                        <iframe id="iframe-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                    <div className="contact-item div-carte">
+                        <iframe title="OpenStreetMaps" id="iframe-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
                             src="https://www.openstreetmap.org/export/embed.html?bbox=-74.17625931207037%2C45.328975270124204%2C-73.18748978082037%2C45.746440307251355&amp;layer=mapnik">
                         </iframe>
                         <br />

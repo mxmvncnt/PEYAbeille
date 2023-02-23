@@ -4,12 +4,12 @@ import './Style.css'
 export default function Accueil() {
     return (
         <div>
-            <div class="">
-                <div class="">
+            <div className="">
+                <div className="">
                     <h1 id="titre-page">Accueil</h1>
-                    <div class="bloc gauche">
+                    <div className="bloc gauche">
                         <img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/>
-                            <div class="bloc-contenu gauche">
+                            <div className="bloc-contenu gauche">
                                 <h2>Titre de section</h2>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum consequuntur, animi, illum dolorum unde
                                     nobis accusantium expedita commodi consequatur culpa dolores. Aliquam ipsam magni non error cumque sapiente!
@@ -19,9 +19,9 @@ export default function Accueil() {
                             </div>
                     </div>
 
-                    <div class="bloc droite">
+                    <div className="bloc droite">
                         <img src="https://img-3.journaldesfemmes.fr/k41tBopBSPygyctluCE95P7OvqM=/1500x/smart/4f2ff8c8498c429e9498044add191871/ccmcms-jdf/35283088.jpg" alt=""/>
-                            <div class="bloc-contenu droite">
+                            <div className="bloc-contenu droite">
                                 <h2>Titre de section</h2>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum consequuntur, animi, illum dolorum unde
                                     nobis accusantium expedita commodi consequatur culpa dolores. Aliquam ipsam magni non error cumque sapiente!
@@ -31,9 +31,9 @@ export default function Accueil() {
                             </div>
                     </div>
 
-                    <div class="bloc gauche">
+                    <div className="bloc gauche">
                         <img src="https://ici.exploratv.ca/upload/site/post/picture/1629/6288097191b1c.1671116233.jpg" alt=""/>
-                            <div class="bloc-contenu gauche">
+                            <div className="bloc-contenu gauche">
                                 <h2>Titre de section</h2>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum consequuntur, animi, illum dolorum unde
                                     nobis accusantium expedita commodi consequatur culpa dolores. Aliquam ipsam magni non error cumque sapiente!
@@ -44,9 +44,9 @@ export default function Accueil() {
 
                     </div>
 
-                    <div class="bloc droite">
+                    <div className="bloc droite">
                         <img src="https://static.actu.fr/uploads/2021/03/ruche-miel-adobe-stock.jpeg" alt=""/>
-                            <div class="bloc-contenu droite">
+                            <div className="bloc-contenu droite">
                                 <h2>Titre de section</h2>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum consequuntur, animi, illum dolorum unde
                                     nobis accusantium expedita commodi consequatur culpa dolores. Aliquam ipsam magni non error cumque sapiente!

@@ -3,7 +3,7 @@ import './Style.css'
 
 export default function Produit() {
     return (
-        <div class="">
+        <div className="">
 
         </div>
     );
