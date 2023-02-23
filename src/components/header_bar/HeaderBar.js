@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 
 export default function HeaderBar() {
     return (
-        <div class="navigation-bar">
+        <div className="navigation-bar">
             <Link
                 to="/">
                 PEYABEILLE
