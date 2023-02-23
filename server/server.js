@@ -32,7 +32,7 @@ async function run () {
     });
     
     const hostname = "localhost";
-    const port = 4001;
+    const port = 4003;
     
     app.get('/api/produits', async function (req, res) {
         let result = await con.execute("SELECT * FROM produit", [],{ outFormat: oracledb.OUT_FORMAT_OBJECT });
@@ -45,7 +45,7 @@ async function run () {
         res.send(result["rows"])
     });
     
-    const server = app.listen(4002, function () {
+    const server = app.listen(port, function () {
         console.log("Serveur en marche...");
         console.log("http://" + hostname + ":" + port);
     });
