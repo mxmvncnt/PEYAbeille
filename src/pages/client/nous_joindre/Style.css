@@ -1,0 +1,77 @@
+.grid-carte-image {
+    display: grid;
+    place-content: center;
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grid pour l'adresse et la carte */
+.contact {
+    display: grid;
+    place-content: center;
+    grid-template-rows: 30% 70%;
+    margin: 0 auto;
+}
+
+/* item de la grille contact */
+.contact-item {
+    display: flex;
+    flex-direction: column;
+}
+
+/* adresse */
+.adresse {
+    text-align: center;
+    line-height: 0;
+}
+
+/* carte */
+#iframe-map {
+    border: 1px solid black;
+    display: block;
+    border-radius: 10px;
+}
+
+/* === VUE SPECIFIQUE ORDINATEUR === */
+@media only screen and (min-width: 601px) {
+    .grid-carte-image {
+        grid-template-columns: 60% 40%;
+        height: 100vh;
+    }
+
+    /* carte */
+    #iframe-map {
+        width: 35vw;
+        height: 50vh;
+    }
+
+    /* arrondir les coins du centre de limage */
+    img {
+        border-radius: 0px 10px 10px 0px;
+    }
+}
+
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 600px) {
+    .grid-carte-image {
+        grid-template-columns: auto;
+    }
+
+    .contact {
+        margin-top: 10vh;
+    }
+
+    .image {
+        width: 100vw;
+    }
+
+    #iframe-map {
+        border: 1px solid black;
+        width: 90vw;
+        height: 70vh;
+        display: block;
+    }
+}

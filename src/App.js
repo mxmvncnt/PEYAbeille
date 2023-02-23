@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router";
 
 import HeaderBar from './components/header_bar/HeaderBar';
 import Accueil from './pages/client/accueil/Accueil';
+import NousJoindre from './pages/client/nous_joindre/NousJoindre';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <HeaderBar />
           <Routes>
             <Route path="/" element={<Accueil />} />
+            <Route path="/nousjoindre" element={<NousJoindre />} />
           </Routes>
         </HashRouter>
       </React.StrictMode>

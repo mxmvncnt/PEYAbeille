@@ -1,132 +1,31 @@
-/* https://blog.logrocket.com/create-responsive-navbar-react-css/ */
-
-.navigation {
-    background-color: #45005ab5;
-    backdrop-filter: blur(20px);
-    position: fixed;
-    z-index: 100;
-    width: 100%;
-
-    height: 40px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    padding: 0.5rem 0rem;
-    color: #FAEBFF;
-    font-weight: 600;
-
-    /* Deplacer la barre pour quelle soit en haut/touche le haut de l'ecran */
-    transform: translateY(-120px);
+/* ==== NAVIGATION BAR ==== */
+/* majorité du navigation bar pris d'un ancien TP */
+.navigation-bar {
+	overflow: hidden;
+	position: sticky;
+	top: 0;
+  	right: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.75);
+	-webkit-backdrop-filter: blur(40px) saturate(200%);
+	backdrop-filter: blur(40px) saturate(200%);
+	z-index: 1000;
+	
 }
 
-.navigation a:link {
-    color: #FAEBFF;
+/* style des liens/boutons de la navbar */
+.navigation-bar a {	
+	padding: 15px;
+	transition: 0.2s;
+	color: rgb(255, 230, 0);
+	text-decoration: none;
+	font-weight: bold;
+    font-size: 1.4em;
+	float: left;
 }
 
-.navigation a:visited {
-    color: #FAEBFF;
-}
-
-.navigation-menu ul {
-    display: flex;
-    padding: 0;
-}
-
-.navigation-menu li {
-    /* removes default disc bullet for li tags and applies margin to left & right side */
-    list-style-type: none;
-    margin: 0 1rem;
-}
-
-.navigation-menu li a {
-    /* increases the surface area of the anchor tag to span more than just the anchor text */
-    text-decoration: none;
-    display: block;
-    width: 100%;
-}
-
-.hamburger {
-    /* removes default border on button element */
-    border: 0;
-    cursor: pointer;
-    background: transparent;
-    font-size: 2rem;
-    transition: background-color 0.2s ease-in-out;
-    /* positions the icon to the right and center aligns it vertically */
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    display: none;
-    color: #FAEBFF;
-}
-
-.toggle-media {
-    /* removes default border on button element */
-    border: 0;
-    cursor: pointer;
-    background: transparent;
-    transition: background-color 0.2s ease-in-out;
-    /* positions the icon to the right and center aligns it vertically */
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-45%);
-    color: #FAEBFF;
-}
-
-#logo {
-    margin-left: 10px;
-}
-
-@media screen and (max-width: 768px) {
-    .navigation-menu ul {
-        /* navigation menu is positioned to start 42px from the top of the document (which is directly below the navbar) */
-        position: absolute;
-        top: 41px;
-        left: 0;
-        /* stacks the li tags vertically  */
-        flex-direction: column;
-        /* makes menu span full height and width */
-        width: 100%;
-        background-color: #24002fe4;
-        backdrop-filter: blur(20px);
-        z-index: 10;
-        display: none;
-    }
-
-    .navigation-menu.expanded ul {
-        transition: 0.2s;
-        display: block;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .navigation-menu li {
-        text-align: center;
-        margin: 0;
-    }
-
-    .navigation-menu li a {
-        color: #FAEBFF;
-        width: 100%;
-        padding: 1.5rem 0;
-        font-size: 1.2rem;
-    }
-
-    .navigation-menu li:hover {
-        background-color: #5c0078e4;
-    }
-
-    #logo {
-        float: none;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: auto;
-        transform: translate(-50%, -50%);
-    }
+.navigation-bar a:hover {
+	padding: 15px;
+	transition: 0.2s;
+	color: rgb(200, 180, 0);
 }
