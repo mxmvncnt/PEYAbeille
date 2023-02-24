@@ -6,8 +6,6 @@ import { getProduits } from "../../../server/Api";
 
 
 export default function Produits() {
-    const produitsJson = getProduits();
-
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -36,7 +34,7 @@ export default function Produits() {
                                 {item["PRIX_SUGGERE"] + " $"}
                             </h3>
                             <Link
-                                to={`produit/${item["ID_PRODUIT"]}`}>
+                                to={`/produit?id=${item["ID_PRODUIT"]}`}>
                                 <button className="btn-acheter">Acheter</button>
                             </Link>
                         </div>

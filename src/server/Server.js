@@ -35,15 +35,22 @@ async function run() {
   const port = 4003;
 
   app.get('/api/produits', async function (req, res) {
+    // Activer le CORS
     res.set('Access-Control-Allow-Origin', '*');
+
     let result = await con.execute("SELECT * FROM produit", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
     res.send(result["rows"])
   });
 
   app.get('/api/produit/:produitID', async function (req, res) {
+    // Activer le CORS 
+    res.set('Access-Control-Allow-Origin', '*');
+
+    // prendre les parametres de l'url (id du produit)
     let idProduit = req.params;
     idProduit = idProduit['produitID'];
     idProduit = parseInt(idProduit);
+
     let result = await con.execute("SELECT * FROM produit WHERE ID_PRODUIT = :idProduit", [idProduit], { outFormat: oracledb.OUT_FORMAT_OBJECT });
     res.send(result["rows"])
   });
