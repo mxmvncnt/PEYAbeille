@@ -1,0 +1,35 @@
+.page-produits-grid-produits {
+    display: grid;
+    place-content: center;
+    margin: auto;
+    text-align: center;
+}
+
+.page-produits-produit {
+    display: flex;
+    flex-direction: column;
+    background-color: #242424;
+    border-radius: 10px;
+    margin: 15px;
+    padding: 15px;
+}
+
+
+/* === VUE SPECIFIQUE ORDINATEUR === */
+@media only screen and (min-width: 601px) {
+    .page-produits-grid-produits {
+        grid-template-columns: 33% 33% 33%;
+        width: 80vw;
+    }
+
+    .page-produits-produit {
+        max-width: 400px;
+    }
+}
+
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 600px) {
+    .page-produits-grid-produits {
+        grid-template-columns: auto;
+    }
+}
