@@ -49,12 +49,16 @@ export default function Produit() {
                 {/* Section Infos Produit */}
                 <div className="page-produit-grid-item page-produit-grid-item-infos">
                     <h1>{data["NOM"]}</h1>
+                    <h2>{data["PRIX_SUGGERE"]} $</h2>
                     <p>{data["DESCRIPTION"]}</p>
                 </div>
 
                 {/* Section ACHETER */}
                 <div className="page-produit-grid-item page-produit-grid-item-acheter">
-                    ACHETER
+                    <h1>{data["PRIX_SUGGERE"]} $</h1>
+                    <a>
+                        <button class="btn-acheter">ACHETER</button>
+                    </a>
                 </div>
 
             </div>
