@@ -23,9 +23,9 @@ export default function Produit() {
     return (
         <div className="page-produit">
 
-
             <div className="page-produit-grid">
 
+                {/* Section Images */}
                 <div className="page-produit-grid-item page-produit-grid-item-images">
                     {/* Code pris et modifié de: https://css-tricks.com/can-get-pretty-far-making-slider-just-html-css/ */}
                     {/* Remplacer cela par une boucle quand nous avons de vraies images */}
@@ -46,11 +46,13 @@ export default function Produit() {
                     </div>
                 </div>
 
+                {/* Section Infos Produit */}
                 <div className="page-produit-grid-item page-produit-grid-item-infos">
                     <h1>{data["NOM"]}</h1>
                     <p>{data["DESCRIPTION"]}</p>
                 </div>
 
+                {/* Section ACHETER */}
                 <div className="page-produit-grid-item page-produit-grid-item-acheter">
                     ACHETER
                 </div>
