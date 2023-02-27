@@ -21,9 +21,26 @@ export default function Produit() {
     }, []);
 
     return (
-        <div className="">
-            <h1>{data["NOM"]}</h1>
-            <p>{data["DESCRIPTION"]}</p>
+        <div className="page-produit">
+
+
+            <div className="page-produit-grid">
+
+                <div className="page-produit-grid-item page-produit-grid-item-images">
+
+                </div>
+
+                <div className="page-produit-grid-item page-produit-grid-item-infos">
+                    <h1>{data["NOM"]}</h1>
+                    <p>{data["DESCRIPTION"]}</p>
+                </div>
+
+                <div className="page-produit-grid-item page-produit-grid-item-acheter">
+                    ACHETER
+                </div>
+
+            </div>
+
         </div>
     );
 }

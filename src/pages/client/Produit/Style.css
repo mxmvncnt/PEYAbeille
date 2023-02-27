@@ -1,0 +1,40 @@
+.page-produit {
+
+}
+
+.page-produit-grid {
+    display: grid;
+}
+
+.page-produit-grid-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.page-produit-grid-item-images {
+    padding-top: 30px;
+}
+
+.page-produit-grid-item-infos {
+    padding-top: 30px;
+    text-align: left;
+}
+
+.page-produit-grid-item-acheter {
+    place-content: center;
+}
+
+/* === VUE SPECIFIQUE ORDINATEUR === */
+@media only screen and (min-width: 601px) {
+    .page-produit-grid {
+        grid-template-columns: 40% 40% 20%;
+        height: 100vh;
+    }
+}
+
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 600px) {
+    .page-produit-grid {
+        grid-template-columns: auto;
+    }
+}
