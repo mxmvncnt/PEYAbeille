@@ -27,7 +27,23 @@ export default function Produit() {
             <div className="page-produit-grid">
 
                 <div className="page-produit-grid-item page-produit-grid-item-images">
+                    {/* Code pris et modifié de: https://css-tricks.com/can-get-pretty-far-making-slider-just-html-css/ */}
+                    {/* Remplacer cela par une boucle quand nous avons de vraies images */}
 
+                    {/* Boutons pour aller directement a une image */}
+                    {/* <a href="#image-1">1</a>
+                    <a href="#image-2">2</a>
+                    <a href="#image-3">3</a>
+                    <a href="#image-4">4</a>
+                    <a href="#image-5">5</a> */}
+
+                    <div className="page-produit-grid-item-images-slider">
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-1">image 1</div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-2">image 2</div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-3">image 3</div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-4">image 4</div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-5">image 5</div>
+                    </div>
                 </div>
 
                 <div className="page-produit-grid-item page-produit-grid-item-infos">

@@ -1,6 +1,4 @@
-.page-produit {
-
-}
+.page-produit {}
 
 .page-produit-grid {
     display: grid;
@@ -11,15 +9,41 @@
     flex-direction: column;
 }
 
+/* === IMAGE SLIDER === */
+/* code pris et modifie de: https://css-tricks.com/can-get-pretty-far-making-slider-just-html-css/ */
 .page-produit-grid-item-images {
     padding-top: 30px;
+    margin-left: 10%;
 }
 
+.page-produit-grid-item-images-slider {
+    width: 80%;
+    height: 500px;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.page-produit-grid-item-images-slider > div {
+    scroll-snap-align: start;
+}
+
+.page-produit-grid-item-images-slider-item {
+    width: 90%;
+    flex-shrink: 0;
+    height: 98%;
+    border: 2px rgb(51, 255, 0) solid;
+    border-radius: 10px;
+    margin: 0 10px 0 10px;
+}
+
+/* === INFOS PRODUIT === */
 .page-produit-grid-item-infos {
     padding-top: 30px;
     text-align: left;
 }
 
+/* === BOUTON ACHETER === */
 .page-produit-grid-item-acheter {
     place-content: center;
 }
