@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Peyabeille
+Site web fait avec React et OracleDB
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Installation (MacOS et Linux)
+### Dépendances:
+- Oracle Instant Client (Voir: https://www.oracle.com/database/technologies/instant-client/downloads.html)
+- Rsync
+**Le site web requiert une base de données ORACLE**
+1. Cloner le dépot du site web.
+`git clone https://github.com/BdeB-2CW/h2023-4gw-gr2-PEYAbeille.git`
+2. Naviguer à l'emplacement du dépot qui a été cloné et installer les dépendances.
+```
+cd h2023-4gw-gr2-PEYAbeille
+npm install
+```
+3. Transferer les scripts de base de données. Pour cela, nous utiliserons la commande Rsync pour les déplacer de votre ordinateur vers le serveur contenant la base de données. Notez que la partie entre crochets est optionnelles et sert a spécifier un port pour la connexion au serveur.
+```
+rsync -a -e 'ssh [-p 2222]' ScriptSQL/ utilisateur@ip_serveur_bd:~
+```
+4. Connectez vous au serveur de base de données. Encore une fois, la partie entre les crochets est optionnelle et peut varier.
+`ssh [-p 2222] utilisateur@ip_serveur_bd`
+5. Entrer dans le mode d'édition de la base de données. Pour cela, exécutez la commande suivante sur votre connexion ssh:
+`sqlplus`
+Vous  allez vous faire demander vos identifiants de la base de données (ce n'est pas le même nom d'utilisateur que celui du serveur). Inscrivez ceux pour qui vous voulez installer les tables.
+6. Ensuite, il faut exécuter les fichiers de scripts, n'oubliez pas de modifier le nom d'utilisateur entre les accolades!
+    - `@/home/{UTILISATEUR_SERVEUR_BD}/Downloads/CreationTables.sql;`
+    - `@/home/{UTILISATEUR_SERVEUR_BD}/Downloads/Insertion.sql;`
+    - `commit;`
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+7. Vous avez installé la base de données, maintenant, il faut démarrer le serveur web, mais avant cela, il faut modifier les informations que le serveur utilisera pour créer la connexion.
+Pour cela:
+	1. Fermez votre connexion SSH en tapant `exit` deux fois dans la fenêtre de terminal ouverte.
+	2. Ensuite, modifiez le fichier Server.js du site web Peyabeille. Vous pouvez utiliser l'éditeur de votre choix pour cela, nous utiliserons GNU Nano.
+	`nano src/server/Server.js`
+	3. Naviguez le fichier avec les flèches de votre clavier jusqu'à trouver cette section:
+	```js
+    const con = await oracledb.getConnection({
+      host: "localhost",
+      user: "scott",
+      password: "oracle",
+      connectString: "localhost/orcl"
+    });
+	```
+	4. Vous devez ensuite modifier les valeurs "host", "user" ainsi que "password" avec les valeurs appropriées. Voici par quoi vous devez les remplacer:
+	
+		- host: Adresse IP du serveur de la base de données
+		- user: Nom d'utilisateur sur la base de données
+		- password: le mot de passe de l'utilisateur sur la base de données.
+	5.Une fois cela terminé, appuyez sur les touches `CRTL + X` de votre clavier. Ensuite, appuyez sur `y` ou `o` selon la langue de votre ordinateur (y étant en anglais pour "yes").
+8. Une fois la configuration du serveur effectuée, il ne vous reste qu'a lancer le site web!
+`npm start`
