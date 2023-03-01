@@ -40,27 +40,30 @@ export default function Produit() {
                     <a href="#image-5">5</a> */}
 
                     <div className="page-produit-grid-item-images-slider">
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-1">image 1</div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-2">image 2</div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-3">image 3</div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-4">image 4</div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-5">image 5</div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-1"><img className="testclass" src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-2"><img className="testclass" src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-3"><img className="testclass" src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-4"><img className="testclass" src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-5"><img className="testclass" src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
                     </div>
                 </div>
 
                 {/* Section Infos Produit */}
                 <div className="page-produit-grid-item page-produit-grid-item-infos">
                     <h1>{data["NOM"]}</h1>
-                    <h2>{data["PRIX_SUGGERE"]} $</h2>
+                    <IndicateurPrix prix_regulier={data["PRIX_FIXE"]} prix_suggere={data["PRIX_SUGGERE"]} />
                     <p>{data["DESCRIPTION"]}</p>
                 </div>
 
                 {/* Section ACHETER */}
                 <div className="page-produit-grid-item page-produit-grid-item-acheter">
-                    <IndicateurPrix prix_regulier={data["PRIX_FIXE"]} prix_suggere={data["PRIX_SUGGERE"]} />
-                    <a>
-                        <button class="btn-acheter">ACHETER</button>
-                    </a>
+                    <div>
+                        <IndicateurPrix prix_regulier={data["PRIX_FIXE"]} prix_suggere={data["PRIX_SUGGERE"]} />
+                        <a>
+                            <button class="btn-acheter">ACHETER</button>
+                        </a>
+                    </div>
+
                 </div>
 
             </div>

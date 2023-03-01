@@ -16,6 +16,7 @@
     margin-left: 10%;
 }
 
+/* composant slider images */
 .page-produit-grid-item-images-slider {
     width: 80%;
     height: 500px;
@@ -24,17 +25,20 @@
     scroll-snap-type: x mandatory;
 }
 
+/* tous les div dans le slider */
 .page-produit-grid-item-images-slider > div {
     scroll-snap-align: start;
-}
-
-.page-produit-grid-item-images-slider-item {
     width: 90%;
     flex-shrink: 0;
-    height: 98%;
-    border: 2px rgb(51, 255, 0) solid;
-    border-radius: 10px;
     margin: 0 10px 0 10px;
+}
+
+/* images dans le slider */
+.page-produit-grid-item-images-slider > div > img {
+    height: 98%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 /* === INFOS PRODUIT === */
