@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { getProduits } from "../../../server/Api";
 
+import IndicateurPrix from "../../../components/indicateur-prix/IndicateurPrix";
 
 export default function Produits() {
     const [data, setData] = useState([]);
@@ -30,9 +31,7 @@ export default function Produits() {
                             <h2 className="page-produits-titre">
                                 {item["NOM"]}
                             </h2>
-                            <h3 className="page-produits-prix">
-                                {item["PRIX_SUGGERE"] + " $"}
-                            </h3>
+                            <IndicateurPrix prix_regulier={item["PRIX_FIXE"]} prix_suggere={item["PRIX_SUGGERE"]} />
                             <Link
                                 to={`/produit?id=${item["ID_PRODUIT"]}`}>
                                 <button className="btn-acheter">Acheter</button>

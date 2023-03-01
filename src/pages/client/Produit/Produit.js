@@ -4,6 +4,8 @@ import { getInfosProduit } from "../../../server/Api";
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom'
 
+import IndicateurPrix from "../../../components/indicateur-prix/IndicateurPrix";
+
 export default function Produit() {
     let [searchParams] = useSearchParams();
     const idProduit = searchParams.get("id");
@@ -55,7 +57,7 @@ export default function Produit() {
 
                 {/* Section ACHETER */}
                 <div className="page-produit-grid-item page-produit-grid-item-acheter">
-                    <h1>{data["PRIX_SUGGERE"]} $</h1>
+                    <IndicateurPrix prix_regulier={data["PRIX_FIXE"]} prix_suggere={data["PRIX_SUGGERE"]} />
                     <a>
                         <button class="btn-acheter">ACHETER</button>
                     </a>
