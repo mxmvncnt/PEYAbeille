@@ -2,10 +2,13 @@
 Site web fait avec React et OracleDB
 
 ## Installation (MacOS et Linux)
+
+**Le site web requiert une base de données ORACLE**
+
 ### Dépendances:
 - Oracle Instant Client (Voir: https://www.oracle.com/database/technologies/instant-client/downloads.html)
 - Rsync
-**Le site web requiert une base de données ORACLE**
+
 1. Cloner le dépot du site web.
 `git clone https://github.com/BdeB-2CW/h2023-4gw-gr2-PEYAbeille.git`
 2. Naviguer à l'emplacement du dépot qui a été cloné et installer les dépendances.
