@@ -40,11 +40,11 @@ export default function Produit() {
                     <a href="#image-5">5</a> */}
 
                     <div className="page-produit-grid-item-images-slider">
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-1"><img className="testclass" src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-2"><img className="testclass" src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-3"><img className="testclass" src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-4"><img className="testclass" src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-5"><img className="testclass" src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-1"><img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-2"><img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-3"><img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-4"><img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
+                        <div className="page-produit-grid-item-images-slider-item" id="slide-5"><img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
                     </div>
                 </div>
 
