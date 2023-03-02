@@ -51,7 +51,6 @@ export default function Produit() {
                 {/* Section Infos Produit */}
                 <div className="page-produit-grid-item page-produit-grid-item-infos">
                     <h1>{data["NOM"]}</h1>
-                    <IndicateurPrix prix_regulier={data["PRIX_FIXE"]} prix_suggere={data["PRIX_SUGGERE"]} />
                     <p>{data["DESCRIPTION"]}</p>
                 </div>
 
@@ -62,6 +61,7 @@ export default function Produit() {
                         <a>
                             <button className="btn-acheter">ACHETER</button>
                         </a>
+                        <small>En stock: {data["QUANTITE"]}</small>
                     </div>
 
                 </div>
