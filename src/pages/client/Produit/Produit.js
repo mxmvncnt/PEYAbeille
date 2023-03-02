@@ -60,7 +60,7 @@ export default function Produit() {
                     <div>
                         <IndicateurPrix prix_regulier={data["PRIX_FIXE"]} prix_suggere={data["PRIX_SUGGERE"]} />
                         <a>
-                            <button class="btn-acheter">ACHETER</button>
+                            <button className="btn-acheter">ACHETER</button>
                         </a>
                     </div>
 
