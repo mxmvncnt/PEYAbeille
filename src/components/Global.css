@@ -27,8 +27,8 @@ h2 {
 .btn-acheter {
 	padding: 15px;
 	border-radius: 100px;
-	background-color: rgb(200, 180, 0);
-	border: 2px solid black;
+	background-color: rgb(255, 230, 0);
+	border: 1px solid black;
 	font-weight: 900;
 	width: 100%;
 	cursor: pointer;
@@ -49,6 +49,11 @@ h2 {
         transition: 0.3s;
 		background-color: #000000;
         color: rgb(225, 225, 225);
+	}
+
+	.btn-acheter {
+		background-color: rgb(200, 180, 0);
+		border: 2px solid black;
 	}
 }
 
