@@ -37,6 +37,10 @@
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
 @media only screen and (min-width: 601px) {
+	.navigation-bar a {
+		float:left;
+	}
+
 	.navigation-bar a:hover {
 		padding: 15px;
 		transition: 0.2s;
