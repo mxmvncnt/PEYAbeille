@@ -16,6 +16,7 @@
 .bloc img {
     z-index: 0;
     border-radius: 10px;
+    object-fit: cover;
 }
 
 /* la carte de contenu du bloc */
