@@ -1,5 +1,5 @@
 import React from "react";
-import './Style.css'
+import styles from '../../styles'
 import { getInfosProduit } from "../../../server/Api";
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom'
