@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '../../styles/nousjoindre.module.css';
+import styles from '../../styles/nous_joindre.module.css';
 
 export default function NousJoindre() {
     return (
