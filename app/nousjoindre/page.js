@@ -8,7 +8,7 @@ export default function NousJoindre() {
             <div className={styles.page_nousjoindre_grid_carte_image}>
 
                 <div className={styles.page_nousjoindre_grid_item}>
-                    <img class={styles.page_nousjoindre_image} src="https://static.actu.fr/uploads/2021/03/ruche-miel-adobe-stock.jpeg" alt="" />
+                    <img className={styles.page_nousjoindre_image} src="https://static.actu.fr/uploads/2021/03/ruche-miel-adobe-stock.jpeg" alt="" />
                 </div>
 
                 <div className={`${styles.page_nousjoindre_grid_item} ${styles.page_nousjoindre_contact}`}>
