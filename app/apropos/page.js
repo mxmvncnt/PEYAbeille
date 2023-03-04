@@ -1,5 +1,5 @@
 import React from "react";
-import './Style.css'
+// import styles from '../../styles/apropos.module.css';
 
 export default function APropos() {
     return (
