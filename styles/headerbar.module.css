@@ -1,6 +1,6 @@
 /* ==== NAVIGATION BAR ==== */
 /* majorité du navigation bar pris d'un ancien TP */
-.navigation-bar {
+.navigation_bar {
 	overflow: hidden;
 	position: sticky;
 	top: 0;
@@ -13,7 +13,7 @@
 }
 
 /* style des liens/boutons de la navbar */
-.navigation-bar a {
+.navigation_bar a {
 	display: flex;
 	color: rgb(255, 230, 0);
 	text-decoration: none;
@@ -37,11 +37,11 @@
 
 /* === DARK MODE === */
 @media (prefers-color-scheme: light) {
-	.navigation-bar {
+	.navigation_bar {
 		background-color: #ffffff88;
 	}
 
-	.navigation-bar a, .hamburger {
+	.navigation_bar a, .hamburger {
 		color: rgb(0, 0, 0);
 	}
 }
@@ -49,11 +49,11 @@
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
 @media only screen and (min-width: 601px) {
-	.navigation-bar a {
+	.navigation_bar a {
 		float: left;
 	}
 
-	.navigation-bar a:hover {
+	.navigation_bar a:hover {
 		padding: 15px;
 		transition: 0.2s;
 		color: rgb(200, 180, 0);
@@ -70,18 +70,18 @@
 		display: block;
 	}
 
-	.navigation-bar-menu {
+	.navigation_bar_menu {
 		display: none;
 		margin-top: 20px;
 		padding-bottom: 20px;
 		border-bottom: 2px solid rgb(255, 230, 0);
 	}
 
-	.navigation-bar-menu.expanded {
+	.navigation_bar_menu.expanded {
 		display: block;
 	}
 
-	#navigation-bar-logo {
+	#navigation_bar_logo {
 		justify-content: center;
 	}
 }
