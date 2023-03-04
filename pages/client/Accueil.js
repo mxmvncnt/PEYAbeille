@@ -1,5 +1,6 @@
 import React from "react";
 import './Style.css'
+import styles from '../../styles/accueil.module.css';
 
 export default function Accueil() {
     return (
@@ -7,7 +8,7 @@ export default function Accueil() {
             <div className="">
                 <div className="">
                     <h1 id="titre-page">Accueil</h1>
-                    <div className="bloc gauche">
+                    <div className={styles.bloc}>
                         <img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/>
                             <div className="bloc-contenu gauche">
                                 <h2>Titre de section</h2>
