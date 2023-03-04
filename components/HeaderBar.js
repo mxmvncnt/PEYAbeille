@@ -1,8 +1,9 @@
 "use client";
 
-// import { useState } from "react"
+import React from 'react';
 import styles from '../styles/headerbar.module.css';
-import { Link } from "next/link";
+import Link from 'next/link';
+// import { Link } from "next/link";
 import { useState } from "react";
 
 export default function HeaderBar() {
