@@ -23,7 +23,7 @@ export default function HeaderBar() {
                 href="/"
                 id={styles.navigation_bar_logo}
                 onClick={() => {
-                    setIsNavExpanded(!isNavExpanded)
+                    setIsNavExpanded(false)
                 }}>
                 PEYABEILLE
             </Link>
@@ -33,28 +33,28 @@ export default function HeaderBar() {
                 <Link
                     href="/"
                     onClick={() => {
-                        setIsNavExpanded(!isNavExpanded)
+                        setIsNavExpanded(false)
                     }}>
                     Accueil
                 </Link>
                 <Link
                     href="/produits"
                     onClick={() => {
-                        setIsNavExpanded(!isNavExpanded)
+                        setIsNavExpanded(false)
                     }}>
                     Produits
                 </Link>
                 <Link
                     href="/apropos"
                     onClick={() => {
-                        setIsNavExpanded(!isNavExpanded)
+                        setIsNavExpanded(false)
                     }}>
                     À Propos
                 </Link>
                 <Link
                     href="/nousjoindre"
                     onClick={() => {
-                        setIsNavExpanded(!isNavExpanded)
+                        setIsNavExpanded(false)
                     }}>
                     Nous joindre
                 </Link>

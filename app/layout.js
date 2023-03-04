@@ -6,7 +6,9 @@ import './global.css'
 
 export default function RootLayout({ children }) {
   return (
-    <div>
+    <html lang="en">
+
+
       <Head>
         <meta charset="utf-8" />
         <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -20,9 +22,14 @@ export default function RootLayout({ children }) {
 
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
       </Head>
-      <HeaderBar />
-      <body>{children}</body>
-      <Footer />
-    </div>
+
+      <body>
+        <HeaderBar />
+        {children}
+        <Footer />
+      </body>
+
+
+    </html>
   )
 }
