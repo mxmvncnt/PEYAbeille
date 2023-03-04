@@ -38,21 +38,21 @@ export default function HeaderBar() {
                     Accueil
                 </Link>
                 <Link
-                    href="/Produits"
+                    href="/produits"
                     onClick={() => {
                         setIsNavExpanded(!isNavExpanded)
                     }}>
                     Produits
                 </Link>
                 <Link
-                    href="/APropos"
+                    href="/apropos"
                     onClick={() => {
                         setIsNavExpanded(!isNavExpanded)
                     }}>
                     À Propos
                 </Link>
                 <Link
-                    href="/NousJoindre"
+                    href="/nousjoindre"
                     onClick={() => {
                         setIsNavExpanded(!isNavExpanded)
                     }}>
