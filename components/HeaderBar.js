@@ -1,5 +1,5 @@
 // import { useState } from "react"
-import "./HeaderBar.css"
+import styles from '../styles/headerbar.module.css'
 import { Link } from "react-router-dom"
 import { useState } from "react"
 

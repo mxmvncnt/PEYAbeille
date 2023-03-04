@@ -1,5 +1,5 @@
 // import { useState } from "react"
-import "./Footer.css"
+import styles from '../styles/footer.module.css'
 import { Link } from "react-router-dom"
 
 

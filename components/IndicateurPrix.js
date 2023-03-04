@@ -1,5 +1,5 @@
 import React from "react";
-import './IndicateurPrix.css'
+import styles from '../styles/indicateurprix.module.css'
 
 export default function IndicateurPrix({ 
     prix_suggere = 0,
