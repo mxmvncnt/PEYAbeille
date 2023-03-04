@@ -1,5 +1,4 @@
 import React from "react";
-import './Style.css'
 import styles from '../../styles/accueil.module.css';
 
 export default function Accueil() {

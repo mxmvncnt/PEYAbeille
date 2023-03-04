@@ -1,7 +1,9 @@
+"use client";
+
 // import { useState } from "react"
-import styles from '../styles/headerbar.module.css'
+import styles from '../styles/headerbar.module.css';
 import { Link } from "next/link";
-import { useState } from "react"
+import { useState } from "react";
 
 export default function HeaderBar() {
     const [isNavExpanded, setIsNavExpanded] = useState(false)
