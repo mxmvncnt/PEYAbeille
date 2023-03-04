@@ -1,9 +1,7 @@
 // import { useState } from "react"
 import styles from '../styles/headerbar.module.css'
-import { Link } from "react-router-dom"
+import { Link } from "next/link";
 import { useState } from "react"
-
-
 
 export default function HeaderBar() {
     const [isNavExpanded, setIsNavExpanded] = useState(false)
@@ -19,7 +17,7 @@ export default function HeaderBar() {
 
             {/* LOGO A LA PLACE DU TEXTE "PEYABEILLE"*/}
             <Link
-                to="/"
+                href="/"
                 id="navigation-bar-logo"
                 onClick={() => {
                     setIsNavExpanded(!isNavExpanded)
@@ -30,28 +28,28 @@ export default function HeaderBar() {
             {/* inspiré de: https://blog.logrocket.com/create-responsive-navbar-react-css/ */}
             <div className={isNavExpanded ? "navigation-bar-menu expanded" : "navigation-bar-menu"}>
                 <Link
-                    to="/"
+                    href="/"
                     onClick={() => {
                         setIsNavExpanded(!isNavExpanded)
                     }}>
                     Accueil
                 </Link>
                 <Link
-                    to="/produits"
+                    href="/Produits"
                     onClick={() => {
                         setIsNavExpanded(!isNavExpanded)
                     }}>
                     Produits
                 </Link>
                 <Link
-                    to="/apropos"
+                    href="/APropos"
                     onClick={() => {
                         setIsNavExpanded(!isNavExpanded)
                     }}>
                     À Propos
                 </Link>
                 <Link
-                    to="/nousjoindre"
+                    href="/NousJoindre"
                     onClick={() => {
                         setIsNavExpanded(!isNavExpanded)
                     }}>
