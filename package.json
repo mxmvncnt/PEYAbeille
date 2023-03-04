@@ -24,7 +24,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "nodemon src/server/Server.js & next dev",
+    "start": "nodemon server/Server.js & next dev",
     "start-server": "nodemon server/server.js",
     "start-frontend": "next dev",
     "build": "next build",
