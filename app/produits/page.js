@@ -1,13 +1,11 @@
 import React from "react";
-import '../../styles/produit.module.css'
+import '../../styles/produits.module.css'
 import Link from "next/link";
 import { getProduits } from "../../server/Api";
 import IndicateurPrix from "../../components/IndicateurPrix";
 
 export default async function Produits() {
     const data = await getProduits();
-    console.log(data)
-
 
     return (
         <div className="page-produits-page-produits">
@@ -23,7 +21,7 @@ export default async function Produits() {
                             </h2>
                             <IndicateurPrix prix_regulier={item["PRIX_FIXE"]} prix_suggere={item["PRIX_SUGGERE"]} />
                             <Link
-                                href={`/produit?id=${item["ID_PRODUIT"]}`}>
+                                href={`/produits/${item["ID_PRODUIT"]}`}>
                                 <button className="btn-acheter">Acheter</button>
                             </Link>
                         </div>

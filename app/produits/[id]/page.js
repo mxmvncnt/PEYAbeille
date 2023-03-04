@@ -1,26 +1,14 @@
 import React from "react";
-import styles from '../../styles/produit.module.css'
+import '../../../styles/produit.module.css'
+import Link from "next/link";
 import { getInfosProduit } from "../../../server/Api";
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom'
+import IndicateurPrix from "../../../components/IndicateurPrix";
 
-import IndicateurPrix from "../../../components/indicateur-prix/IndicateurPrix";
+export default async function Produit({params}) {
+    // let [searchParams] = useSearchParams();
+    // const idProduit = searchParams.get("id");
 
-export default function Produit() {
-    let [searchParams] = useSearchParams();
-    const idProduit = searchParams.get("id");
-
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        async function fetchData() {
-            const json = await getInfosProduit(idProduit);
-            console.log(json)
-            setData(json[0]);
-        }
-
-        fetchData();
-    }, []);
+    const data = await getInfosProduit(params.id);
 
     return (
         <div className="page-produit">
