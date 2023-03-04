@@ -7,10 +7,7 @@ import IndicateurPrix from "../../../components/IndicateurPrix";
 import styles from '../../../styles/produit.module.css'
 import mtl_bg from '../../../public/Montreal-estival.jpg'
 
-export default async function Produit({params}) {
-    // let [searchParams] = useSearchParams();
-    // const idProduit = searchParams.get("id");
-
+export default async function Produit({ params }) {
     const data = await getInfosProduit(params.id);
 
     return (
@@ -32,31 +29,36 @@ export default async function Produit({params}) {
 
                     <div className={styles.page_produit_grid_item_images_slider}>
                         <div className={styles.page_produit_grid_item_images_slider_item} id="slide_1">
-                            <Image 
+                            <Image
+                                id={styles.img}
                                 src={mtl_bg}
                                 alt={"test"}
                             />
                         </div>
                         <div className={styles.page_produit_grid_item_images_slider_item} id="slide_1">
-                            <Image 
+                            <Image
+                                id={styles.img}
                                 src={mtl_bg}
                                 alt={"test"}
                             />
                         </div>
                         <div className={styles.page_produit_grid_item_images_slider_item} id="slide_1">
-                            <Image 
+                            <Image
+                                id={styles.img}
                                 src={mtl_bg}
                                 alt={"test"}
                             />
                         </div>
                         <div className={styles.page_produit_grid_item_images_slider_item} id="slide_1">
-                            <Image 
+                            <Image
+                                id={styles.img}
                                 src={mtl_bg}
                                 alt={"test"}
                             />
                         </div>
                         <div className={styles.page_produit_grid_item_images_slider_item} id="slide_1">
-                            <Image 
+                            <Image
+                                id={styles.img}
                                 src={mtl_bg}
                                 alt={"test"}
                             />

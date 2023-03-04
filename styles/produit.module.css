@@ -13,13 +13,10 @@
 /* code pris et modifie de: https://css_tricks.com/can_get_pretty_far_making_slider_just_html_css/ */
 .page_produit_grid_item_images {
     padding-top: 30px;
-    margin-left: 10%;
 }
 
 /* composant slider images */
 .page_produit_grid_item_images_slider {
-    width: 80%;
-    height: 500px;
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -34,7 +31,7 @@
 }
 
 /* images dans le slider */
-.page_produit_grid_item_images_slider>div>img {
+.page_produit_grid_item_images_slider>div>#img {
     height: 98%;
     width: 100%;
     object-fit: cover;
@@ -53,10 +50,19 @@
 }
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
-@media only screen and (min_width: 601px) {
+@media only screen and (min-width: 601px) {
     .page_produit_grid {
         grid-template-columns: 40% 40% 20%;
         height: 100vh;
+    }
+
+    .page_produit_grid_item_images {
+        margin-left: 10%;
+    }
+
+    .page_produit_grid_item_images_slider {
+        width: 80%;
+        height: 500px;
     }
 }
 
@@ -75,7 +81,7 @@
     /* composant slider images */
     .page_produit_grid_item_images_slider {
         width: 100%;
-        height: 30vh;
+        height: 40vh;
         text-align: center;
     }
 
@@ -88,7 +94,7 @@
     }
 
     /* images dans le slider */
-    .page_produit_grid_item_images_slider>div>img {
+    .page_produit_grid_item_images_slider>div>#img {
         height: 98%;
         width: 100%;
         object-fit: cover;
