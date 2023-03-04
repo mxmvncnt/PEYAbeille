@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap');
+
+body {
+    /* Pour retirer la bordure autour de la fenetre complete. */
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: 0.3s;
+    color: #242424;
+    background-color: rgb(255, 255, 255);
+}
+
+html {
+	background-color: rgb(255, 230, 0);
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 2em;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 1.8em;
+}
+
+/* === BOUTONS === */
+.btn-acheter {
+	padding: 15px;
+	border-radius: 100px;
+	background-color: rgb(255, 230, 0);
+	border: 1px solid black;
+	font-weight: 900;
+	width: 100%;
+	cursor: pointer;
+}
+
+.btn-acheter a {
+	color:#000000;
+	text-decoration: none;
+}
+
+.btn-acheter a :visited{
+	color:#000000;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+	body {
+        transition: 0.3s;
+		background-color: #000000;
+        color: rgb(225, 225, 225);
+	}
+
+	.btn-acheter {
+		background-color: rgb(200, 180, 0);
+		border: 2px solid black;
+	}
+}
+
+/* === VUE SPECIFIQUE ORDINATEUR === */
+@media only screen and (min-width: 601px) {
+    .footer {
+		grid-template-columns: 25% 25% 50%;
+	}
+}
+
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 600px) {
+	.footer {
+		grid-template-columns: 90%;
+	}
+}
