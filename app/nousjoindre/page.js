@@ -5,15 +5,15 @@ export default function NousJoindre() {
     return (
         <div className="">
 
-            <div className="page-nousjoindre-grid-carte-image">
+            <div className={styles.page_nousjoindre_grid_carte_image}>
 
-                <div className="page-nousjoindre-grid-item">
-                    <img class="page-nousjoindre-image" src="https://static.actu.fr/uploads/2021/03/ruche-miel-adobe-stock.jpeg" alt="" />
+                <div className={styles.page_nousjoindre_grid_item}>
+                    <img class={styles.page_nousjoindre_image} src="https://static.actu.fr/uploads/2021/03/ruche-miel-adobe-stock.jpeg" alt="" />
                 </div>
 
-                <div className="page-nousjoindre-grid-item page-nousjoindre-contact">
+                <div className={`${styles.page_nousjoindre_grid_item} ${styles.page_nousjoindre_contact}`}>
 
-                    <div className="page-nousjoindre-contact-item adresse">
+                    <div className={`${styles.page_nousjoindre_contact_item} ${styles.adresse}`}>
                         <h2>Pour nous joindre</h2>
                         <p>1234 rue des Hustler Bulgariens</p>
                         <p>(514) 555-8547</p>
@@ -21,8 +21,8 @@ export default function NousJoindre() {
 
                     </div>
 
-                    <div className="page-nousjoindre-contact-item">
-                        <iframe title="OpenStreetMaps" id="page-nousjoindre-iframe-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                    <div className={styles.page_nousjoindre_contact_item}>
+                        <iframe title="OpenStreetMaps" id={styles.page_nousjoindre_iframe_map} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
                             src="https://www.openstreetmap.org/export/embed.html?bbox=-74.17625931207037%2C45.328975270124204%2C-73.18748978082037%2C45.746440307251355&amp;layer=mapnik">
                         </iframe>
                         <br />
