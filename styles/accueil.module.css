@@ -1,4 +1,4 @@
-#titre-page {
+#titre_page {
     text-align: center;
     margin-top: 5vh;
     margin-bottom: 15vh;
@@ -20,7 +20,7 @@
 }
 
 /* la carte de contenu du bloc */
-.bloc-contenu {
+.bloc_contenu {
     backdrop-filter: blur(40px) saturate(200%);
     -webkit-backdrop-filter: blur(40px) saturate(200%);
     color: #242424;
@@ -37,7 +37,7 @@
 
 /* === DARK MODE === */
 @media (prefers-color-scheme: dark) {
-    .bloc-contenu {
+    .bloc_contenu {
         border: #242424 2px solid;
         color: #fff;
         background-color: #24242488;
@@ -52,7 +52,7 @@
         height: 90vh;
     }
 
-    .bloc-contenu {
+    .bloc_contenu {
         position: relative;
         height: auto;
         width: 35%;
@@ -93,7 +93,7 @@
         max-height: 70vh;
     }
 
-    .bloc-contenu {
+    .bloc_contenu {
         width: 80%;
         margin: auto;
     }
