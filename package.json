@@ -26,6 +26,7 @@
     "start": "nodemon server/Server.js & next dev",
     "start-server": "nodemon server/server.js",
     "start-frontend": "next dev",
+    "dev": "next dev",
     "build": "next build",
     "test": "next test",
     "eject": "next eject"
