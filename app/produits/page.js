@@ -1,23 +1,13 @@
 import React from "react";
-import './Style.css'
-import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import { getProduits } from "../../../server/Api";
+import '../../styles/produit.module.css'
+import Link from "next/link";
+import { getProduits } from "../../server/Api";
+import IndicateurPrix from "../../components/IndicateurPrix";
 
-import IndicateurPrix from "../../../components/indicateur-prix/IndicateurPrix";
+export default async function Produits() {
+    const data = await getProduits();
+    console.log(data)
 
-export default function Produits() {
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        async function fetchData() {
-            const json = await getProduits();
-            console.log(json)
-            setData(json);
-        }
-
-        fetchData();
-    }, []);
 
     return (
         <div className="page-produits-page-produits">
@@ -33,7 +23,7 @@ export default function Produits() {
                             </h2>
                             <IndicateurPrix prix_regulier={item["PRIX_FIXE"]} prix_suggere={item["PRIX_SUGGERE"]} />
                             <Link
-                                to={`/produit?id=${item["ID_PRODUIT"]}`}>
+                                href={`/produit?id=${item["ID_PRODUIT"]}`}>
                                 <button className="btn-acheter">Acheter</button>
                             </Link>
                         </div>
