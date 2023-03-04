@@ -10,10 +10,10 @@ export default function HeaderBar() {
     const [isNavExpanded, setIsNavExpanded] = useState(false)
 
     return (
-        <div className="navigation_bar">
+        <div className={styles.navigation_bar}>
 
             <button
-                className="hamburger"
+                className={styles.hamburger}
                 onClick={() => {
                     setIsNavExpanded(!isNavExpanded)
                 }}>☰</button>
@@ -21,7 +21,7 @@ export default function HeaderBar() {
             {/* LOGO A LA PLACE DU TEXTE "PEYABEILLE"*/}
             <Link
                 href="/"
-                id="navigation_bar_logo"
+                id={styles.navigation_bar_logo}
                 onClick={() => {
                     setIsNavExpanded(!isNavExpanded)
                 }}>
@@ -29,7 +29,7 @@ export default function HeaderBar() {
             </Link>
 
             {/* inspiré de: https://blog.logrocket.com/create_responsive_navbar_react_css/ */}
-            <div className={isNavExpanded ? "navigation_bar_menu expanded" : "navigation_bar_menu"}>
+            <div className={isNavExpanded ? `${styles.navigation_bar_menu} ${styles.expanded}` : styles.navigation_bar_menu}>
                 <Link
                     href="/"
                     onClick={() => {
