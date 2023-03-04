@@ -3,6 +3,7 @@ import '../../../styles/produit.module.css'
 import Link from "next/link";
 import { getInfosProduit } from "../../../server/Api";
 import IndicateurPrix from "../../../components/IndicateurPrix";
+import styles from '../../../styles/produit.module.css'
 
 export default async function Produit({params}) {
     // let [searchParams] = useSearchParams();
@@ -11,43 +12,43 @@ export default async function Produit({params}) {
     const data = await getInfosProduit(params.id);
 
     return (
-        <div className="page-produit">
+        <div className={styles.page_produit_grid_item_images_slider}>
 
-            <div className="page-produit-grid">
+            <div className="page_produit_grid">
 
                 {/* Section Images */}
-                <div className="page-produit-grid-item page-produit-grid-item-images">
-                    {/* Code pris et modifié de: https://css-tricks.com/can-get-pretty-far-making-slider-just-html-css/ */}
+                <div className="page_produit_grid_item page_produit_grid_item_images">
+                    {/* Code pris et modifié de: https://css_tricks.com/can_get_pretty_far_making_slider_just_html_css/ */}
                     {/* Remplacer cela par une boucle quand nous avons de vraies images */}
 
                     {/* Boutons pour aller directement a une image */}
-                    {/* <a href="#image-1">1</a>
-                    <a href="#image-2">2</a>
-                    <a href="#image-3">3</a>
-                    <a href="#image-4">4</a>
-                    <a href="#image-5">5</a> */}
+                    {/* <a href="#image_1">1</a>
+                    <a href="#image_2">2</a>
+                    <a href="#image_3">3</a>
+                    <a href="#image_4">4</a>
+                    <a href="#image_5">5</a> */}
 
-                    <div className="page-produit-grid-item-images-slider">
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-1"><img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-2"><img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-3"><img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-4"><img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
-                        <div className="page-produit-grid-item-images-slider-item" id="slide-5"><img src="https://www.airtransat.com/getmedia/cafc7e6e-d0ff-497e-9998-e708f41aa191/Montreal-estival.aspx" alt=""/></div>
+                    <div className="page_produit_grid_item_images_slider">
+                        <div className="page_produit_grid_item_images_slider_item" id="slide_1"><img src="https://www.airtransat.com/getmedia/cafc7e6e_d0ff_497e_9998_e708f41aa191/Montreal_estival.aspx" alt=""/></div>
+                        <div className="page_produit_grid_item_images_slider_item" id="slide_2"><img src="https://www.airtransat.com/getmedia/cafc7e6e_d0ff_497e_9998_e708f41aa191/Montreal_estival.aspx" alt=""/></div>
+                        <div className="page_produit_grid_item_images_slider_item" id="slide_3"><img src="https://www.airtransat.com/getmedia/cafc7e6e_d0ff_497e_9998_e708f41aa191/Montreal_estival.aspx" alt=""/></div>
+                        <div className="page_produit_grid_item_images_slider_item" id="slide_4"><img src="https://www.airtransat.com/getmedia/cafc7e6e_d0ff_497e_9998_e708f41aa191/Montreal_estival.aspx" alt=""/></div>
+                        <div className="page_produit_grid_item_images_slider_item" id="slide_5"><img src="https://www.airtransat.com/getmedia/cafc7e6e_d0ff_497e_9998_e708f41aa191/Montreal_estival.aspx" alt=""/></div>
                     </div>
                 </div>
 
                 {/* Section Infos Produit */}
-                <div className="page-produit-grid-item page-produit-grid-item-infos">
+                <div className="page_produit_grid_item page_produit_grid_item_infos">
                     <h1>{data["NOM"]}</h1>
                     <p>{data["DESCRIPTION"]}</p>
                 </div>
 
                 {/* Section ACHETER */}
-                <div className="page-produit-grid-item page-produit-grid-item-acheter">
+                <div className="page_produit_grid_item page_produit_grid_item_acheter">
                     <div>
                         <IndicateurPrix prix_regulier={data["PRIX_FIXE"]} prix_suggere={data["PRIX_SUGGERE"]} />
                         <a>
-                            <button className="btn-acheter">ACHETER</button>
+                            <button className="btn_acheter">ACHETER</button>
                         </a>
                         <small>En stock: {data["QUANTITE"]}</small>
                     </div>
