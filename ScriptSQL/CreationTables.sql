@@ -27,7 +27,8 @@ CREATE TABLE item__commande (
     id_item_comm          NUMBER NOT NULL,
     quantite              NUMBER NOT NULL,
     prix                  NUMBER NOT NULL,
-    commande_id_commande  NUMBER NOT NULL
+    commande_id_commande  NUMBER NOT NULL,
+    id_produit            NUMBER NOT NULL --fk key
 );
 
 ALTER TABLE item__commande ADD CONSTRAINT item__commande_pk PRIMARY KEY ( id_item_comm );
@@ -38,23 +39,20 @@ CREATE TABLE paiement (
     type_paiement_id_type_paiement  NUMBER NOT NULL
 );
 
-CREATE UNIQUE INDEX paiement__idx ON
-    paiement (
-        type_paiement_id_type_paiement
-    ASC );
+
+
 
 ALTER TABLE paiement ADD CONSTRAINT paiement_pk PRIMARY KEY ( id_paiement );
 
 CREATE TABLE produit (
     id_produit                   NUMBER NOT NULL,
     nom                          VARCHAR2(30) NOT NULL,
-    description                  VARCHAR2(50),
-    prix_suggere                 NUMBER,
+    description                  VARCHAR2(200),
+    prix_suggere                 NUMBER, --peut etre null, puisque l'attribut est optionnel
     prix_fixe                    NUMBER NOT NULL,
     url_catalog                  VARCHAR2(30),
     inventaire                   VARCHAR2(30) NOT NULL,
     quantite                     NUMBER NOT NULL,
-    item__commande_id_item_comm  NUMBER,
     categorie_id_categorie       NUMBER NOT NULL
 );
 
@@ -63,36 +61,35 @@ ALTER TABLE produit ADD CONSTRAINT produit_pk PRIMARY KEY ( id_produit );
 CREATE TABLE table_session (
     id_table_session            NUMBER NOT NULL,
     jettons                     VARCHAR2(30) NOT NULL,
-    utilisateur_id_utilisateur  NUMBER NOT NULL
+    utilisateur_id		        NUMBER NOT NULL
 );
 
-CREATE UNIQUE INDEX table_session__idx ON
-    table_session (
-        utilisateur_id_utilisateur
-    ASC );
+
 
 ALTER TABLE table_session ADD CONSTRAINT table_session_pk PRIMARY KEY ( id_table_session );
 
+CREATE UNIQUE INDEX table_session__idx ON
+    table_session (
+        utilisateur_id
+    ASC );
+
 CREATE TABLE type_paiement (
     id_type_paiement      NUMBER NOT NULL,
-    modalite_paimt        VARCHAR2(30) NOT NULL,
-    fournisseur_paimt     VARCHAR2(30) NOT NULL,
-    paiement_id_paiement  NUMBER NOT NULL
+    modalite_paiement        VARCHAR2(30) NOT NULL,
+    fournisseur_paiement     VARCHAR2(30) NOT NULL
+    
 );
 
-CREATE UNIQUE INDEX type_paiement__idx ON
-    type_paiement (
-        paiement_id_paiement
-    ASC );
+
 
 ALTER TABLE type_paiement ADD CONSTRAINT type_paiement_pk PRIMARY KEY ( id_type_paiement );
 
-CREATE TABLE type_utilisateure (
+CREATE TABLE type_utilisateur (
     id_type_utilisateur  NUMBER NOT NULL,
     droit                VARCHAR2(30) NOT NULL
 );
 
-ALTER TABLE type_utilisateure ADD CONSTRAINT type_utilisateure_pk PRIMARY KEY ( id_type_utilisateur );
+ALTER TABLE type_utilisateur ADD CONSTRAINT type_utilisateur_pk PRIMARY KEY ( id_type_utilisateur );
 
 CREATE TABLE utilisateur (
     id_utilisateur                         NUMBER NOT NULL,
@@ -100,17 +97,15 @@ CREATE TABLE utilisateur (
     prenom                                 VARCHAR2(30) NOT NULL,
     email                                  VARCHAR2(30) NOT NULL,
     mot_de_passe                           VARCHAR2(30) NOT NULL, 
- 
-    type_utilisateure_id_type_utilisateur  NUMBER NOT NULL,
-    table_session_id_table_session         NUMBER NOT NULL
+    type_utilisateur                       NUMBER NOT NULL
+    
 );
 
-CREATE UNIQUE INDEX utilisateur__idx ON
-    utilisateur (
-        table_session_id_table_session
-    ASC );
+
 
 ALTER TABLE utilisateur ADD CONSTRAINT utilisateur_pk PRIMARY KEY ( id_utilisateur );
+
+-- CRÉATION DES CLÉS ÉTRANGÈRES.
 
 ALTER TABLE commande
     ADD CONSTRAINT commande_paiement_fk FOREIGN KEY ( paiement_id_paiement )
@@ -125,33 +120,26 @@ ALTER TABLE item__commande
         REFERENCES commande ( id_commande );
 
 ALTER TABLE paiement
-    ADD CONSTRAINT paiement_type_paiement_fk FOREIGN KEY ( type_paiement_id_type_paiement )
+    ADD CONSTRAINT paiement_type_paiement_fk FOREIGN KEY ( type_paiement_id_type_paiement)
         REFERENCES type_paiement ( id_type_paiement );
 
 ALTER TABLE produit
     ADD CONSTRAINT produit_categorie_fk FOREIGN KEY ( categorie_id_categorie )
         REFERENCES categorie ( id_categorie );
 
-ALTER TABLE produit
-    ADD CONSTRAINT produit_item__commande_fk FOREIGN KEY ( item__commande_id_item_comm )
-        REFERENCES item__commande ( id_item_comm );
+ALTER TABLE item__commande ADD CONSTRAINT id_produit_produit_fk FOREIGN KEY ( id_produit )
+        REFERENCES produit ( id_produit  );
 
 ALTER TABLE table_session
-    ADD CONSTRAINT table_session_utilisateur_fk FOREIGN KEY ( utilisateur_id_utilisateur )
+    ADD CONSTRAINT table_session_utilisateur_fk FOREIGN KEY ( utilisateur_id )
         REFERENCES utilisateur ( id_utilisateur );
 
-ALTER TABLE type_paiement
-    ADD CONSTRAINT type_paiement_paiement_fk FOREIGN KEY ( paiement_id_paiement )
-        REFERENCES paiement ( id_paiement );
 
-ALTER TABLE utilisateur
-    ADD CONSTRAINT utilisateur_table_session_fk FOREIGN KEY ( table_session_id_table_session )
-        REFERENCES table_session ( id_table_session );
 
 
 ALTER TABLE utilisateur
-    ADD CONSTRAINT utilisateur_type_utilisateure_fk FOREIGN KEY ( type_utilisateure_id_type_utilisateur )
-        REFERENCES type_utilisateure ( id_type_utilisateur );
+    ADD CONSTRAINT utilisateur_type_utilisateur_fk FOREIGN KEY ( type_utilisateur )
+        REFERENCES type_utilisateur ( id_type_utilisateur );
 
 
 
