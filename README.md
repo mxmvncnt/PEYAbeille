@@ -28,7 +28,7 @@ Vous  allez vous faire demander vos identifiants de la base de données (ce n'es
 6. Ensuite, il faut exécuter les fichiers de scripts, n'oubliez pas de modifier le nom d'utilisateur entre les accolades!
     - `@/home/{UTILISATEUR_SERVEUR_BD}/Downloads/creerutilisateur.sql;`
     - `exit`
-    - `sqlplus` **Ici, connectez vous avec le nom d'utilisateur PEY et le mot de passe "oracle".
+    - `sqlplus` **Ici, connectez vous avec le nom d'utilisateur PEY et le mot de passe "oracle".**
     - `@/home/{UTILISATEUR_SERVEUR_BD}/Downloads/CreationTables.sql;`
     - `@/home/{UTILISATEUR_SERVEUR_BD}/Downloads/Insertion.sql;`
     - `commit;`
