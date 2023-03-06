@@ -17,6 +17,13 @@
     z-index: 0;
     border-radius: 10px;
     object-fit: cover;
+    box-shadow:
+        0px 1.3px 2.2px rgba(0, 0, 0, 0),
+        0px 3.1px 5.3px rgba(0, 0, 0, 0.004),
+        0px 5.8px 9.9px rgba(0, 0, 0, 0.013),
+        0px 10.3px 17.6px rgba(0, 0, 0, 0.029),
+        0px 19.2px 33px rgba(0, 0, 0, 0.058),
+        0px 46px 79px rgba(0, 0, 0, 0.16);
 }
 
 /* la carte de contenu du bloc */
@@ -33,6 +40,13 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     transition: 0.3s;
+    box-shadow:
+        0px 1.3px 2.2px rgba(0, 0, 0, 0),
+        0px 3.1px 5.3px rgba(0, 0, 0, 0.002),
+        0px 5.8px 9.9px rgba(0, 0, 0, 0.005),
+        0px 10.3px 17.6px rgba(0, 0, 0, 0.013),
+        0px 19.2px 33px rgba(0, 0, 0, 0.025),
+        0px 46px 79px rgba(0, 0, 0, 0.07);
 }
 
 /* === DARK MODE === */
