@@ -10,6 +10,8 @@
 	-webkit-backdrop-filter: blur(40px) saturate(200%);
 	backdrop-filter: blur(40px) saturate(200%);
 	z-index: 1000;
+	box-shadow:
+		0px 9px 17px rgba(0, 0, 0, 0.07);
 }
 
 /* style des liens/boutons de la navbar */
@@ -41,7 +43,8 @@
 		background-color: #ffffff88;
 	}
 
-	.navigation_bar a, .hamburger {
+	.navigation_bar a,
+	.hamburger {
 		color: rgb(0, 0, 0);
 	}
 }
