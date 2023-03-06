@@ -1,0 +1,115 @@
+DESCRIPTION
+
+
+Petite résume :
+Ceci est une document notepade afin de mieux comprendre les entitées ainsi que les relations entre les tables.
+Les relations sont très importantes pour avoir une base de données cohérente. Les liaisons permettront d'effectuer des requêtes SQL pour 
+accèder à toutes les informations nécessaires.
+
+
+
+
+
+Table Catégorie :
+
+Cette table habite le type de produit accessible dans la base de données.
+Comme entité elle contient
+
+- id_categorie : Ceci est une clé primaire, c'est l'identifiant 
+- type_catégore : Ceci est le nom du type d'un produit
+
+
+Table Commande :
+
+Cette table représente les commandes passées par un quelqu'un.
+
+- id_commande : Ceci est une clé primaire, c'est l'identifiant.
+- adresse : Adresse où le client veut recevoir sa commande.
+- date_commande : Date de la commande effectuée.
+- statut_envoye : Permet de savoir à l'aide d'un caractère F/V si la commande est envoyé ou pas encore.
+- utilisateur_id_utilisateur : CLÉ ÉTRANGÈRE(FK), Référence de la table utilisateur. Cette clé permet de savoir quel client a effectué la commande.
+- paiement_id_paiement : CLÉ ÉTRANGÈRE(FK), Référence de la table paiement. Cette clé permet de lier une commande à un paiement.
+
+
+Table item__commande :
+
+Cette table représente combien de fois un meme produit a été choisi dans une commande.
+
+- id_item_comm : Ceci est clé primaire. Ceci est un identifiant.
+- quantité : La quantité choisie d'un item précis.
+- prix : Va multiplier le prix du produit choisi a la quantité demandée de ce même produit­. 
+- commande_id_commande : CLÉ ÉTRANGÈRE(FK) Référence à la table commande. Permet de trouver de quelle commande il choisit.
+- id_produit : CLÉ ÉTRANGÈRE(FK) Référence à la table produit. Permet de trouver de quel produit il choisit.
+
+
+Table paiement :
+
+Cette table enregistre le paiement d'un client.
+
+- id_paiement : Ceci est clé primaire. Ceci est un identifiant.
+- frais_paimt : Frais ajouté pour la livraison.
+- type_paiement_id_type_paiement : CLÉ ÉTRANGÈRE(FK) Référence à la table type_paiement. Ce lien avec la table type_paiement permet de savoir des informations
+sur le paiement utilisé par l'utilisateur.
+
+
+Table Produit :
+
+Cette table représente en précision un produit précis.
+
+- id_produit :  Ceci est une clé primaire, c'est l'identifiant.
+- nom : Nom du produit
+- description : Une description, elle peut être null puisque cette entité est optionnelle
+- prix_suggere : Ceci est le prix a rabais qui est sujet au changement. Elle peut être null car il peut ne pas y avoir de rabais.
+- prix_fixe : Le prix fixe 
+- url_catalog : Le lien du site web du produit.
+- inventaire : information sur l'emplacement et analyse des stockages pour un controle de qualité.
+- quantite : La quantité numérique disponible.
+- categorie_id_categorie : CLÉ ÉTRANGÈRE(FK), c'est une clé qui référencie la table catégorie. Elle permet de savoir la catégorie du produit.
+
+
+Table table_session :
+
+Cette table enregistre les activités d'une session d'un utilisateur.
+
+- id_table_session : Ceci est une clé primaire, c'est l'identifiant.
+- jettons : Un jetton(TOKE) est unique et permet de sécuriser un compte ainsi que de  retracer les activités de l'utilisateur.
+- utilisateur_id : CLÉ ÉTRANGÈRE(FK), c'est une clé qui référencie la table utilisateur. Grâce à cette liaison, on peut savoir à qui un jetton appartient.
+
+
+Table type_paiement : 
+
+Cette table enregistre des informations sur un paiement.
+
+- id_type_paiement : Ceci est une clé primaire, c'est l'identifiant.
+- modalité_paiement : ceci représente La carte de crédit utilisé lors du paiement.
+- fournisseur_paiement : la société qui reçoit, traite et authentifie les paiement électronique pour les commerçants.
+
+
+Table type_utilisateur :
+
+Cette table représente la hiérarchie des comptes dans la base de données. Certains ne sont que des utilisateurs et n'ont pas accès à toutes les fonctionnalités 
+disponibles sur le site. D'autres sont des admins et ont accès à toutes les actions du site web pour faire la gestion des ventes et modifier certains aspects.
+
+- id_utilisateur : Ceci est une clé primaire, c'est l'identifiant.
+- droit : Ceci représente le rôle/titre d'un compte et à partir de ce rôle, il sera possible de savoir qu'elles sont les droits qui lui seront attribués.   
+
+
+Table utilisateur :
+
+Cette table permet d'enregistrer les informations d'un client.
+
+- id_utilisateur : Ceci est une clé primaire, c'est l'identifiant.
+- nom : Nom de l'utilisateur.
+- prenom : Prenom de l'utilisateur.
+- email : son email ou le rejoindre.
+- mot_de_passe : le mot de passe
+- type_utilisateur : CLÉ ÉTRANGÈRE(FK), c'est une clé qui référencie la table type_utilisateur. Ceci permet une liaison entre la table type_utilisateur pour trouver le 
+type d'un utilisateur précis.
+
+
+
+
+
+
+
+
