@@ -1,5 +1,5 @@
 // import { useState } from "react"
-import styles from '../styles/accueil.module.css'
+import styles from '../styles/titre_accueil.module.css'
 
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 
