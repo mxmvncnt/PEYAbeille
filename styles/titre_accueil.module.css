@@ -5,3 +5,18 @@
     word-wrap: break-word;
     font-weight: 900;
 }
+
+.container {
+    display: flex;
+    position: sticky;
+    top: 40px;
+}
+
+.partie_droite {
+    flex: 1;
+}
+
+.partie_gauche {
+    flex: 2;
+}
+
