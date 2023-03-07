@@ -5,13 +5,13 @@ import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 
 export default function TitreAccueil() {
     return (
-        <div className="">
+        <div className={styles.container}>
             <ParallaxProvider>
-                <Parallax scale={[1, 0.5, 'easeInOutQuad']} translateX={[50, 0]}>
-                    <p className={styles.nom_site}>Pey</p>
+                <Parallax scale={[1.5, 0.4, 'easeInOutQuad']} translateX={[50, -20]}>
+                    <p className={`${styles.nom_site} ${styles.partie_droite}`}>Pey</p>
                 </Parallax>
-                <Parallax scale={[1, 0.2, 'easeInOutQuad']}>
-                    <p className={styles.nom_site}>abeille</p>
+                <Parallax scale={[1, 0.4, 'easeInOutQuad']} translateX={[70, -57]}>
+                    <p className={`${styles.nom_site} ${styles.partie_gauche}`}>abeille</p>
                 </Parallax>
             </ParallaxProvider>
         </div>
