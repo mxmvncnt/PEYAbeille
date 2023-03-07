@@ -4,6 +4,7 @@ import React from "react";
 import styles from '../../styles/accueil.module.css';
 import Image from "next/image";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
+import TitreAccueil from "../../components/titreAccueil";
 
 
 import mtl_temp_img from '../../public/Montreal-estival.jpg'
@@ -13,7 +14,11 @@ export default function Accueil() {
         <div>
             <div className="">
                 <div className="">
-                    <h1 id={styles.titre_page}>Accueil</h1>
+                    {/* <h1 id={styles.titre_page}>Accueil</h1> */}
+                    
+                    <div className={`${styles.bloc} ${styles.gauche}`}>
+                        <TitreAccueil/>
+                    </div>
 
                     <ParallaxProvider>
                         <div className={`${styles.bloc} ${styles.gauche}`}>
