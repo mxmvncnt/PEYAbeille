@@ -5,11 +5,11 @@
     font-size: 3em;
 }
 
-
 /* Un bloc est une image + une carte de texte */
 .bloc {
     background-size: 70%;
     height: 100vh;
+    top: 100vh;
 }
 
 /* L'image du bloc */
@@ -35,17 +35,20 @@
     transition: 0.3s;
 }
 
-/* === DARK MODE === */
-@media (prefers-color-scheme: dark) {
-    .bloc_contenu {
-        border: #242424 2px solid;
-        color: #fff;
-        background-color: #24242488;
-    }
-}
-
 /* === VUE SPECIFIQUE ORDINATEUR === */
 @media only screen and (min-width: 601px) {
+    .animation_nom_site {
+        position: sticky;
+
+    }
+    
+    .barriere_titre_sticky {
+        margin-top: 100vh;
+        position: sticky;
+        top: 0;
+        background-color: rgb(255, 255, 255);
+    }
+
     .bloc img {
         position: absolute;
         max-width: 70%;
@@ -100,5 +103,18 @@
         margin: auto;
         -ms-transform: translateY(-100%);
         transform: translateY(-100%);
+    }
+}
+
+/* === DARK MODE === */
+@media (prefers-color-scheme: dark) {
+    .bloc_contenu {
+        border: #242424 2px solid;
+        color: #fff;
+        background-color: #24242488;
+    }
+
+    .barriere_titre_sticky {
+        background-color: black;
     }
 }
