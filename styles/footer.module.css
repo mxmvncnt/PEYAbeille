@@ -2,7 +2,7 @@
 .footer {
 	overflow: hidden;
 	position: sticky;
-	background: rgba(0, 0, 0);
+	/* background: rgba(0, 0, 0); */
 	display: grid;
     place-content: center;
 	border-top: rgb(255, 230, 0) 2px solid;
@@ -10,7 +10,7 @@
 }
 
 /* chaque "categorie" du footer, ex. liens, contacts, etc. */
-.footer-categorie {
+.footer_categorie {
     display: flex;
     flex-direction: column;
 }
