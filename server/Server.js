@@ -55,6 +55,31 @@ async function run() {
     res.send(result["rows"])
   });
 
+  app.post('/api/login/', async function (req, res) {
+    // Activer le CORS 
+    res.set('Access-Control-Allow-Origin', '*');
+
+    /**
+     * Le body de la requete post doit contenir le champ email et le champ password
+     */
+
+    let email = req.body.email;
+    let password = req.body.password;
+
+    console.log(`${email} ${password}`)
+
+    // TODO: utiliser des parametres pour contrer injection sql
+    let userID = await con.execute("SELECT ID_UTILISATEUR FROM utilisateur WHERE EMAIL = :email AND MOT_DE_PASSE = :password", [email, password], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+
+    console.log(userID["rows"][0])
+
+    if (userID["rows"][0] != undefined) {
+      res.send("utilisateur exite: ID=" + userID["rows"][0]["ID_UTILISATEUR"])
+    } else {
+      res.send("utilisateur inexistant")
+    }
+  });
+
   const server = app.listen(port, function () {
     console.log("Serveur en marche...");
     console.log("http://" + hostname + ":" + port);
