@@ -1,4 +1,4 @@
-const hostname = "192.168.2.35";
+const hostname = "localhost";
 const port = 4003;
 const url = `http://${hostname}:${port}`
 

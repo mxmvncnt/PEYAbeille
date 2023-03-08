@@ -26,7 +26,7 @@ async function run() {
 
   const con = await oracledb.getConnection({
     host: "localhost",
-    user: "scott",
+    user: "pey",
     password: "oracle",
     connectString: "localhost/orcl"
   });
