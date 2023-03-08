@@ -66,15 +66,12 @@ async function run() {
     let email = req.body.email;
     let password = req.body.password;
 
-    console.log(`${email} ${password}`)
-
     // TODO: utiliser des parametres pour contrer injection sql
     let userID = await con.execute("SELECT ID_UTILISATEUR FROM utilisateur WHERE EMAIL = :email AND MOT_DE_PASSE = :password", [email, password], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    userID = userID["rows"][0];
 
-    console.log(userID["rows"][0])
-
-    if (userID["rows"][0] != undefined) {
-      res.send("utilisateur exite: ID=" + userID["rows"][0]["ID_UTILISATEUR"])
+    if (userID != undefined) {
+      res.send("utilisateur exite: ID=" + userID["ID_UTILISATEUR"])
     } else {
       res.send("utilisateur inexistant")
     }
