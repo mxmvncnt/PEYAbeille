@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useEffect } from "react";
 import styles from '../../styles/accueil.module.css';
 import Image from "next/image";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
