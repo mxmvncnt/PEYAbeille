@@ -1,15 +1,8 @@
-.nom_site {
-    margin: 0;
-    line-height: 1;
-    font-size: 45vw;
-    word-wrap: break-word;
-    font-weight: 900;
-}
-
 .container {
     display: flex;
     position: sticky;
-    top: 40px;
+    top: 0;
+    bottom: 0;
 }
 
 .partie_droite {
@@ -20,3 +13,19 @@
     flex: 2;
 }
 
+/* === VUE SPECIFIQUE ORDINATEUR === */
+@media only screen and (min-width: 601px) {
+    .nom_site {
+        margin: 0;
+        line-height: 1;
+        font-size: 45vw;
+        word-wrap: break-word;
+        font-weight: 900;
+    }
+}
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 600px) {
+    .nom_site {
+        visibility: hidden;
+    }
+}

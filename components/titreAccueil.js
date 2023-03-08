@@ -1,9 +1,11 @@
-// import { useState } from "react"
+"use client";
+
 import styles from '../styles/titre_accueil.module.css'
 
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 
 export default function TitreAccueil() {
+
     return (
         <div className={styles.container}>
             <ParallaxProvider>

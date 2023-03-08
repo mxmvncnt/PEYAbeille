@@ -9,6 +9,7 @@
 .bloc {
     background-size: 70%;
     height: 100vh;
+    top: 100vh;
 }
 
 /* L'image du bloc */
@@ -45,6 +46,15 @@
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
 @media only screen and (min-width: 601px) {
+    .animation_nom_site {
+        position: sticky;
+    }
+    
+    .barriere_titre_sticky {
+        margin-top: 100vh;
+        position: sticky;
+    }
+
     .bloc img {
         position: absolute;
         max-width: 70%;
