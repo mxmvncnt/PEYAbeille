@@ -7,6 +7,7 @@ const app = express()
 const oracledb = require('oracledb');
 const fs = require('fs')
 const crypto = require('crypto')
+require('dotenv').config();
 
 let libPath;
 if (process.platform === "win32") {
@@ -26,14 +27,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 async function run() {
 
   const con = await oracledb.getConnection({
-    host: "localhost",
-    user: "pey2",
-    password: "oracle",
-    connectString: "localhost/XEPDB1"
+    host: process.env.ORACLE_HOSTNAME,
+    user: process.env.ORACLE_USER,
+    password: process.env.ORACLE_PASSWORD,
+    connectString: process.env.ORACLE_CONNECTSTRING
   });
-
-  const hostname = "localhost";
-  const port = 4003;
 
   app.get('/api/produits', async function (req, res) {
     // Activer le CORS
@@ -98,9 +96,9 @@ async function run() {
     }
   });
 
-  const server = app.listen(port, function () {
+  const server = app.listen(process.env.SERVER_PORT, function () {
     console.log("Serveur en marche...");
-    console.log("http://" + hostname + ":" + port);
+    console.log("http://" + process.env.SERVER_HOSTNAME + ":" + process.env.SERVER_PORT);
   });
 }
 

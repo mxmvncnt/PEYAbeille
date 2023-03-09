@@ -1,5 +1,8 @@
-const hostname = "localhost";
-const port = 4003;
+import * as dotenv from 'dotenv'
+dotenv.config();
+
+const hostname = process.env.SERVER_HOSTNAME;
+const port = process.env.SERVER_PORT;
 const url = `http://${hostname}:${port}`
 
 export async function getProduits() {
