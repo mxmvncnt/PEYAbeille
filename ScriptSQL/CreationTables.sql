@@ -96,7 +96,7 @@ CREATE TABLE utilisateur (
     nom                                    VARCHAR2(100) NOT NULL,
     prenom                                 VARCHAR2(100) NOT NULL,
     email                                  VARCHAR2(250) NOT NULL,
-    mot_de_passe                           VARCHAR2(250) NOT NULL, 
+    mot_de_passe                           VARCHAR2(8168) NOT NULL, 
     type_utilisateur                       NUMBER NOT NULL
     
 );
