@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const app = express()
 const oracledb = require('oracledb');
 const fs = require('fs')
+const crypto = require('crypto')
 
 let libPath;
 if (process.platform === "win32") {
@@ -26,9 +27,9 @@ async function run() {
 
   const con = await oracledb.getConnection({
     host: "localhost",
-    user: "pey",
+    user: "pey2",
     password: "oracle",
-    connectString: "localhost/orcl"
+    connectString: "localhost/XEPDB1"
   });
 
   const hostname = "localhost";
@@ -66,12 +67,32 @@ async function run() {
     let email = req.body.email;
     let password = req.body.password;
 
-    // TODO: utiliser des parametres pour contrer injection sql
     let userID = await con.execute("SELECT ID_UTILISATEUR FROM utilisateur WHERE EMAIL = :email AND MOT_DE_PASSE = :password", [email, password], { outFormat: oracledb.OUT_FORMAT_OBJECT });
     userID = userID["rows"][0];
 
     if (userID != undefined) {
-      res.send("utilisateur exite: ID=" + userID["ID_UTILISATEUR"])
+      console.log("user existe")
+
+      let token = crypto.randomBytes(64).toString('hex');
+      console.log(token)
+
+      let insertToken = await con.execute(
+        `INSERT INTO 
+            table_session ( 
+                id_table_session, 
+                jettons, 
+                utilisateur_id)
+            VALUES (
+                (SELECT COUNT(*) FROM table_session) +1, 
+                :token, 
+                :userID)`,
+        [token, parseInt(userID["ID_UTILISATEUR"])],
+        { autoCommit: true }
+      );
+
+      console.log(insertToken)
+
+      res.send("utilisateur existe: ID=" + token)
     } else {
       res.send("utilisateur inexistant")
     }

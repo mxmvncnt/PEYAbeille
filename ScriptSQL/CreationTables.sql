@@ -47,7 +47,7 @@ ALTER TABLE paiement ADD CONSTRAINT paiement_pk PRIMARY KEY ( id_paiement );
 CREATE TABLE produit (
     id_produit                   NUMBER NOT NULL,
     nom                          VARCHAR2(250) NOT NULL,
-    description                  VARCHAR2(2000),
+    description                  VARCHAR2(1999),
     prix_suggere                 NUMBER, --peut etre null, puisque l'attribut est optionnel
     prix_fixe                    NUMBER NOT NULL,
     url_catalog                  VARCHAR2(30),
@@ -68,10 +68,6 @@ CREATE TABLE table_session (
 
 ALTER TABLE table_session ADD CONSTRAINT table_session_pk PRIMARY KEY ( id_table_session );
 
-CREATE UNIQUE INDEX table_session__idx ON
-    table_session (
-        utilisateur_id
-    ASC );
 
 CREATE TABLE type_paiement (
     id_type_paiement      NUMBER NOT NULL,
@@ -96,7 +92,7 @@ CREATE TABLE utilisateur (
     nom                                    VARCHAR2(100) NOT NULL,
     prenom                                 VARCHAR2(100) NOT NULL,
     email                                  VARCHAR2(250) NOT NULL,
-    mot_de_passe                           VARCHAR2(8168) NOT NULL, 
+    mot_de_passe                           VARCHAR2(1999) NOT NULL, 
     type_utilisateur                       NUMBER NOT NULL
     
 );
