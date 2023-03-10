@@ -65,16 +65,16 @@ async function run() {
     let email = req.body.email;
     let password = req.body.password;
 
+    // TODO: Creer un hash du mdp
+
     let userID = await con.execute("SELECT ID_UTILISATEUR FROM utilisateur WHERE EMAIL = :email AND MOT_DE_PASSE = :password", [email, password], { outFormat: oracledb.OUT_FORMAT_OBJECT });
     userID = userID["rows"][0];
 
     if (userID != undefined) {
-      console.log("user existe")
 
       let token = crypto.randomBytes(64).toString('hex');
-      console.log(token)
 
-      let insertToken = await con.execute(
+      await con.execute(
         `INSERT INTO 
             table_session ( 
                 id_table_session, 
@@ -88,10 +88,10 @@ async function run() {
         { autoCommit: true }
       );
 
-      console.log(insertToken)
-
+      // TODO: retourner un json avec un code 200 et le token
       res.send("utilisateur existe: ID=" + token)
     } else {
+      // TODO: retourner du json avec un code 403 et un message
       res.send("utilisateur inexistant")
     }
   });
