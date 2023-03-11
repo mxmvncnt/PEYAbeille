@@ -8,6 +8,7 @@ const oracledb = require('oracledb');
 const fs = require('fs')
 const crypto = require('crypto')
 require('dotenv').config();
+const bcrypt = require('bcrypt')
 
 let libPath;
 if (process.platform === "win32") {
@@ -65,34 +66,47 @@ async function run() {
     let email = req.body.email;
     let password = req.body.password;
 
-    // TODO: Creer un hash du mdp
 
-    let userID = await con.execute("SELECT ID_UTILISATEUR FROM utilisateur WHERE EMAIL = :email AND MOT_DE_PASSE = :password", [email, password], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    // prendre le ID de l'utilisateur pour vérifier s'il existe
+    let userID = await con.execute("SELECT ID_UTILISATEUR FROM utilisateur WHERE EMAIL = :email", [email], { outFormat: oracledb.OUT_FORMAT_OBJECT });
     userID = userID["rows"][0];
+
 
     if (userID != undefined) {
 
-      let token = crypto.randomBytes(64).toString('hex');
+      // prendre le hash du mdp de la BD
+      let passwordHash = await con.execute("SELECT MOT_DE_PASSE FROM utilisateur WHERE EMAIL = :email", [email], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+      passwordHash = passwordHash["rows"][0]["MOT_DE_PASSE"];
 
-      await con.execute(
-        `INSERT INTO 
-            table_session ( 
-                id_table_session, 
-                jettons, 
-                utilisateur_id)
-            VALUES (
-                seq_table_session.NEXTVAL, 
-                :token, 
-                :userID)`,
-        [token, parseInt(userID["ID_UTILISATEUR"])],
-        { autoCommit: true }
-      );
+      // boolean qui retourne true si le mdp est valide
+      let mdpValide = await bcrypt.compare(password, passwordHash)
 
-      // TODO: retourner un json avec un code 200 et le token
-      res.send("utilisateur existe: ID=" + token)
+      if (mdpValide) {
+        let token = crypto.randomBytes(64).toString('hex');
+
+        // ajouter une ligne a la table_session avec le token
+        await con.execute(
+          `INSERT INTO 
+              table_session ( 
+                  id_table_session, 
+                  jettons, 
+                  utilisateur_id)
+              VALUES (
+                  seq_table_session.NEXTVAL, 
+                  :token, 
+                  :userID)`,
+          [token, parseInt(userID["ID_UTILISATEUR"])],
+          { autoCommit: true }
+        );
+
+        // TODO: retourner un json avec un code 200 et le token
+        res.send("Utilisateur existant: TOKEN=" + token)
+      } else {
+          res.send("Mot de passe invalide...")
+        }
     } else {
       // TODO: retourner du json avec un code 403 et un message
-      res.send("utilisateur inexistant")
+      res.send("Utilisateur inexistant...")
     }
   });
 
@@ -108,6 +122,14 @@ async function run() {
     let prenom = req.body.prenom;
     let email = req.body.email;
     let password = req.body.password;
+
+
+
+    salt = crypto.randomBytes(16).toString('hex');
+
+    //  hash = crypto.pbkdf2Sync(password, salt,  1000, 64, `sha512`).toString(`hex`); 
+    hash = await bcrypt.hash(password, 16);
+    console.log(hash)
 
     // TODO: Creer un hash du mdp
 
@@ -131,7 +153,7 @@ async function run() {
             :email,
             :password,
             3)`, // Niveau de l'utilisateur est 3 par defaut (utilisateur regulier)
-        [nom, prenom, email, password],
+        [nom, prenom, email, hash],
         { autoCommit: true }
       );
 
