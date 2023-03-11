@@ -46,7 +46,7 @@ INSERT INTO utilisateur
 VALUES      ( seq_utilisateur.NEXTVAL,
              'Peychev',
              'Monsieur',
-             'agriculteur@gmail.com',
+             'agriculteur@gmail.com', 
              'bulgarie4life',
              2);
 
@@ -94,7 +94,7 @@ INSERT INTO table_session
              utilisateur_id)
 VALUES      (seq_table_session.NEXTVAL,
              'fdskjLKJIU9867KJH',
-             6);
+             1);
 
 INSERT INTO table_session
             (id_table_session,
@@ -102,7 +102,7 @@ INSERT INTO table_session
              utilisateur_id)
 VALUES      (seq_table_session.NEXTVAL,
              'fdklsjfdsIOUH8866',
-             7);
+             2);
 
 -- vérification // select * from table_session;
 -------------------------------------------------------------------------------
@@ -267,7 +267,7 @@ VALUES      (seq_commande.NEXTVAL,
              '914 rue Gouin Ste-do',
              To_date('2023/01/01', 'yyyy/mm/dd'),
              'F',
-             6,
+             2,
              1); --user Mohamed
 
 INSERT INTO commande
@@ -281,7 +281,7 @@ VALUES      (seq_commande.NEXTVAL,
              '500 blv Samson Ste-do',
              To_date('2023/02/01', 'yyyy/mm/dd'),
              'F',
-             7,
+             3,
              2); --user kenza
 
 -- vérification // select * from commande;
@@ -302,7 +302,7 @@ VALUES      (seq_item_commande.NEXTVAL,
              1,
              20,
              1,
-             12); --commande du client mohamed, produit 1 voulu Miel de Manuka (20$)
+             1); --commande du client mohamed, produit 1 voulu Miel de Manuka (20$)
 INSERT INTO item__commande
             (id_item_comm,
              quantite,
@@ -313,7 +313,7 @@ VALUES      (seq_item_commande.NEXTVAL,
              2,
              40,
              1,
-             13); --commande du client mohamed, produit 2 voulu Miel de Tournesol commandé 2 fois (40$)
+             2); --commande du client mohamed, produit 2 voulu Miel de Tournesol commandé 2 fois (40$)
 INSERT INTO item__commande
             (id_item_comm,
              quantite,
@@ -324,13 +324,15 @@ VALUES      (seq_item_commande.NEXTVAL,
              1,
              30,
              2,
-             14); --commande cliente kenza, Miel de Fleurs Sauvages 1 fois (30$)
+             3); --commande cliente kenza, Miel de Fleurs Sauvages 1 fois (30$)
 
 -- vérification // select * from item__commande;
+
+
 -- Testons une jointure pour verifier la cohérence de notre database.
 -- select u.nom, u.prenom, t.droit, p.nom, p.description, i.quantite from utilisateur u inner join
 -- commande c on u.id_utilisateur= c.utilisateur_id_utilisateur inner join item__commande
 -- i on i.commande_id_commande= c.id_commande inner join produit p on i.id_produit= p.id_produit
--- inner join  type_utilisateur t on t.id_type_utilisateur= u.type_utilisateur where c.utilisateur_id_utilisateur= 7;
+-- inner join  type_utilisateur t on t.id_type_utilisateur= u.type_utilisateur where c.utilisateur_id_utilisateur= 3;
 -- Ça marche ! Ceci prouve que les liens sont bons.
 COMMIT;  
