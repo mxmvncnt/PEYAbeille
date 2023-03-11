@@ -96,6 +96,53 @@ async function run() {
     }
   });
 
+  app.put('/api/register/', async function (req, res) {
+    // Activer le CORS 
+    res.set('Access-Control-Allow-Origin', '*');
+
+    /**
+     * Le body de la requete post doit contenir le champ email et le champ password
+     */
+
+    let nom = req.body.nom;
+    let prenom = req.body.prenom;
+    let email = req.body.email;
+    let password = req.body.password;
+
+    // TODO: Creer un hash du mdp
+
+    let emailDansBd = await con.execute("SELECT ID_UTILISATEUR FROM utilisateur WHERE EMAIL = :email", [email], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    emailDansBd = emailDansBd["rows"][0];
+
+    // si l'email n"existe pas dans la BD
+    if (emailDansBd == undefined) {
+      await con.execute(
+        `INSERT INTO utilisateur (
+            id_utilisateur, 
+            nom, 
+            prenom, 
+            email, 
+            mot_de_passe, 
+            type_utilisateur) 
+        VALUES ( 
+            (SELECT COUNT(*) FROM utilisateur) +1,
+            :nom,
+            :prenom,
+            :email,
+            :password,
+            3)`, // Niveau de l'utilisateur est 3 par defaut (utilisateur regulier)
+        [nom, prenom, email, password],
+        { autoCommit: true }
+      );
+
+      // TODO: retourner un json avec un code 200 et le token
+      res.send('compte cree avec succes')
+    } else {
+      // TODO: retourner du json avec un code 403 et un message
+      res.send("Utilisateur existe deja")
+    }
+  });
+
   const server = app.listen(process.env.SERVER_PORT, function () {
     console.log("Serveur en marche...");
     console.log("http://" + process.env.SERVER_HOSTNAME + ":" + process.env.SERVER_PORT);
