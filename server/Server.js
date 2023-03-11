@@ -81,7 +81,7 @@ async function run() {
                 jettons, 
                 utilisateur_id)
             VALUES (
-                (SELECT COUNT(*) FROM table_session) +1, 
+                seq_table_session.NEXTVAL, 
                 :token, 
                 :userID)`,
         [token, parseInt(userID["ID_UTILISATEUR"])],
@@ -125,7 +125,7 @@ async function run() {
             mot_de_passe, 
             type_utilisateur) 
         VALUES ( 
-            (SELECT COUNT(*) FROM utilisateur) +1,
+            seq_utilisateur.NEXTVAL,
             :nom,
             :prenom,
             :email,
