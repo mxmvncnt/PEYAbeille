@@ -178,14 +178,13 @@ INSERT INTO produit
              categorie_id_categorie)
 VALUES      (seq_produit.NEXTVAL,
              'Miel de Manuka',
-'Ce miel est excellent pour combattre la pigmentation de la peau et les cicatrices. Le goût est corsé'
-             ,
-15,
-20,
-'....',
-1000,
-1000,
-1);
+             'Ce miel est excellent pour combattre la pigmentation de la peau et les cicatrices. Le goût est corsé',
+             15,
+             20,
+             '....',
+             1000,
+             1000,
+             1);
 
 INSERT INTO produit
             (id_produit,
@@ -199,14 +198,14 @@ INSERT INTO produit
              categorie_id_categorie)
 VALUES      (seq_produit.NEXTVAL,
              'Miel de Tournesol',
-'Un miel riche en flavonoïde. Ces substances ont des vertus anti-inflammatoires et antioxydantes'
+             'Un miel riche en flavonoïde. Ces substances ont des vertus anti-inflammatoires et antioxydantes'
              ,
-16,
-20,
-'....',
-100,
-100,
-1);
+             16,
+             20,
+             '....',
+             100,
+             100,
+             1);
 
 INSERT INTO produit
             (id_produit,
@@ -240,14 +239,14 @@ INSERT INTO produit
              categorie_id_categorie)
 VALUES      (seq_produit.NEXTVAL,
              'Miel d''Eucalyptus',
-'Un remède! Calme la toux, lutte les infections respiratoires(bronchite, tuberculose..),  soigne les infections des voies urinaires, diminue les sympôtes de certaines migraines et bien plus !'
+             'Un remède! Calme la toux, lutte les infections respiratoires(bronchite, tuberculose..),  soigne les infections des voies urinaires, diminue les sympôtes de certaines migraines et bien plus !'
              ,
-15,
-20,
-'....',
-100,
-100,
-1);
+             15,
+             20,
+             '....',
+             100,
+             100,
+             1);
 
 -- vérification // select * from produit;
 -------------------------------------------------------------------------------
