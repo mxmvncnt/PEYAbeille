@@ -99,16 +99,20 @@ async function run() {
           { autoCommit: true }
         );
 
-        // TODO: retourner un json avec un code 200 et le token
-        res.cookie('token_session', token)
+        res.status(200).json({
+          "succes" : "Connecté avec succès.",
+          "token" : token
+        }).end();
 
-        res.send("Utilisateur existant: TOKEN=" + token)
       } else {
-          res.send("Mot de passe invalide...")
+          res.status(401).json({
+            "erreur" : "Mot de passe invalide."
+          }).end();
         }
     } else {
-      // TODO: retourner du json avec un code 403 et un message
-      res.send("Utilisateur inexistant...")
+      res.status(401).json({
+        "erreur" : "L'utilisateur n'existe pas."
+      }).end();
     }
   });
 
@@ -130,8 +134,9 @@ async function run() {
 
     // si l'email n"existe pas dans la BD
     if (emailDansBd == undefined) {
-      
-      hash = await bcrypt.hash(password, 16);
+
+      let hash = await bcrypt.hash(password, 16);
+      let token = crypto.randomBytes(64).toString('hex');
 
       await con.execute(
         `INSERT INTO utilisateur (
@@ -152,11 +157,14 @@ async function run() {
         { autoCommit: true }
       );
 
-      // TODO: retourner un json avec un code 200 et le token
-      res.send('compte cree avec succes')
+      res.status(201).json({
+        "succes" : "Compte créé avec succès.",
+        "token" : token
+      }).end();
     } else {
-      // TODO: retourner du json avec un code 403 et un message
-      res.send("Utilisateur existe deja")
+      res.status(409).json({
+        "erreur" : "Le courriel existe déjà dans la base de données."
+      }).end();
     }
   });
 
