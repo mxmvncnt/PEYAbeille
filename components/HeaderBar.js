@@ -60,7 +60,7 @@ export default function HeaderBar() {
                 </Link>
 
                 <Link
-                    href="/auth/login"
+                    href="/auth/connexion"
                     id={styles.lien_connexion}
                     onClick={() => {
                         setIsNavExpanded(false)
