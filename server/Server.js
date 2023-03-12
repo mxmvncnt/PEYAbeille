@@ -100,6 +100,8 @@ async function run() {
         );
 
         // TODO: retourner un json avec un code 200 et le token
+        res.cookie('token_session', token)
+
         res.send("Utilisateur existant: TOKEN=" + token)
       } else {
           res.send("Mot de passe invalide...")
@@ -123,21 +125,14 @@ async function run() {
     let email = req.body.email;
     let password = req.body.password;
 
-
-
-    salt = crypto.randomBytes(16).toString('hex');
-
-    //  hash = crypto.pbkdf2Sync(password, salt,  1000, 64, `sha512`).toString(`hex`); 
-    hash = await bcrypt.hash(password, 16);
-    console.log(hash)
-
-    // TODO: Creer un hash du mdp
-
     let emailDansBd = await con.execute("SELECT ID_UTILISATEUR FROM utilisateur WHERE EMAIL = :email", [email], { outFormat: oracledb.OUT_FORMAT_OBJECT });
     emailDansBd = emailDansBd["rows"][0];
 
     // si l'email n"existe pas dans la BD
     if (emailDansBd == undefined) {
+      
+      hash = await bcrypt.hash(password, 16);
+
       await con.execute(
         `INSERT INTO utilisateur (
             id_utilisateur, 
