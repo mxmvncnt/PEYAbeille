@@ -13,5 +13,6 @@ export default function RedirectClient(token) {
     const [cookies, setCookie] = useCookies(['token'])
     setCookie('token', token, {sameSite: true})
 
+    // TODO: Rediriger vers la page de profil ou mieux la page precedente.
     redirect('/')
 }
