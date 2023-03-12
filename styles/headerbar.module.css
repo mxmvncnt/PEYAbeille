@@ -62,7 +62,7 @@
 
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
-@media only screen and (min-width: 601px) {
+@media only screen and (min-width: 930px) {
 	.navigation_bar a {
 		float: left;
 	}
@@ -98,7 +98,7 @@
 }
 
 /* === VUE SPECIFIQUE MOBILE === */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 929px) {
 	.hamburger {
 		display: block;
 	}
