@@ -58,7 +58,26 @@ export default function HeaderBar() {
                     }}>
                     Nous joindre
                 </Link>
+
+                <Link
+                    href="/auth/login"
+                    id={styles.lien_connexion}
+                    onClick={() => {
+                        setIsNavExpanded(false)
+                    }}>
+                    Connexion
+                </Link>
+                <Link
+                    href="/auth/inscription"
+                    id={styles.lien_inscription}
+                    onClick={() => {
+                        setIsNavExpanded(false)
+                    }}>
+                    Inscription
+                </Link>
+
             </div>
+
         </div>
     );
 }

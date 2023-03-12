@@ -37,6 +37,17 @@
 	color: rgb(255, 230, 0);
 }
 
+#lien_connexion {
+	font-weight: normal !important;
+}
+
+#lien_inscription {
+	background-color: rgb(255, 230, 0);
+	color: black;
+	margin: 10px;
+	border-radius: 10px;
+}
+
 /* === DARK MODE === */
 @media (prefers-color-scheme: light) {
 	.navigation_bar {
@@ -65,6 +76,25 @@
 	.hamburger {
 		display: none;
 	}
+
+	.navigation_bar_menu {
+		width: 100%;
+	}
+
+	#lien_connexion {
+		font-weight: normal !important;
+		justify-content: right !important;
+		position: absolute;
+		right: 170px;
+	}
+
+	#lien_inscription {
+		line-height: 0px;
+		padding: 20px;
+		text-align: center;
+		position: absolute;
+		right: 5px;	
+	}
 }
 
 /* === VUE SPECIFIQUE MOBILE === */
@@ -80,11 +110,19 @@
 		border-bottom: 2px solid rgb(255, 230, 0);
 	}
 
+	.navigation_bar_menu a {
+		justify-content: center;
+	}
+
 	.navigation_bar_menu.expanded {
 		display: block;
 	}
 
 	#navigation_bar_logo {
 		justify-content: center;
+	}
+
+	#lien_connexion {
+		margin-top: 30px;
 	}
 }
