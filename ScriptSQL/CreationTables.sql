@@ -14,7 +14,7 @@ ALTER TABLE categorie ADD CONSTRAINT categorie_pk PRIMARY KEY ( id_categorie );
 
 CREATE TABLE commande (
     id_commande                 NUMBER NOT NULL,
-    adresse                     VARCHAR2(30) NOT NULL,
+    adresse                     VARCHAR2(100) NOT NULL,
     date_commande               DATE NOT NULL,
     statut_envoye               CHAR(1) NOT NULL,
     utilisateur_id_utilisateur  NUMBER NOT NULL,
@@ -46,8 +46,8 @@ ALTER TABLE paiement ADD CONSTRAINT paiement_pk PRIMARY KEY ( id_paiement );
 
 CREATE TABLE produit (
     id_produit                   NUMBER NOT NULL,
-    nom                          VARCHAR2(30) NOT NULL,
-    description                  VARCHAR2(200),
+    nom                          VARCHAR2(250) NOT NULL,
+    description                  VARCHAR2(1999),
     prix_suggere                 NUMBER, --peut etre null, puisque l'attribut est optionnel
     prix_fixe                    NUMBER NOT NULL,
     url_catalog                  VARCHAR2(30),
@@ -60,7 +60,7 @@ ALTER TABLE produit ADD CONSTRAINT produit_pk PRIMARY KEY ( id_produit );
 
 CREATE TABLE table_session (
     id_table_session            NUMBER NOT NULL,
-    jettons                     VARCHAR2(30) NOT NULL,
+    jettons                     VARCHAR2(128) NOT NULL,
     utilisateur_id		        NUMBER NOT NULL
 );
 
@@ -68,10 +68,6 @@ CREATE TABLE table_session (
 
 ALTER TABLE table_session ADD CONSTRAINT table_session_pk PRIMARY KEY ( id_table_session );
 
-CREATE UNIQUE INDEX table_session__idx ON
-    table_session (
-        utilisateur_id
-    ASC );
 
 CREATE TABLE type_paiement (
     id_type_paiement      NUMBER NOT NULL,
@@ -93,10 +89,10 @@ ALTER TABLE type_utilisateur ADD CONSTRAINT type_utilisateur_pk PRIMARY KEY ( id
 
 CREATE TABLE utilisateur (
     id_utilisateur                         NUMBER NOT NULL,
-    nom                                    VARCHAR2(30) NOT NULL,
-    prenom                                 VARCHAR2(30) NOT NULL,
-    email                                  VARCHAR2(30) NOT NULL,
-    mot_de_passe                           VARCHAR2(30) NOT NULL, 
+    nom                                    VARCHAR2(100) NOT NULL,
+    prenom                                 VARCHAR2(100) NOT NULL,
+    email                                  VARCHAR2(250) NOT NULL,
+    mot_de_passe                           VARCHAR2(1999) NOT NULL, 
     type_utilisateur                       NUMBER NOT NULL
     
 );

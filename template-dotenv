@@ -1,0 +1,31 @@
+# !!! IMPORTANT !!!
+#
+# COPIER CE FICHIER SOUS LE NOM '.env' ET MODIFIER LES VALEURS APPROPRIÉES DANS LA COPIE
+#
+# !!! IMPORTANT !!!
+
+
+
+# === Base de données Oracle ===
+
+# Utilisateur sur la BD, par défaut avec le script de création: pey
+ORACLE_USER="pey"
+
+# Mot de passe de l'utilisateur sur la BD, par défaut: oracle
+ORACLE_PASSWORD="oracle"
+
+# Hostname de la BD, pour une machine locale: localhost, pour une externe: adresse IP
+ORACLE_HOSTNAME="localhost"
+
+# Connect string oracle, pour la VM Developer Day: localhost/orcl
+ORACLE_CONNECTSTRING="localhost/orcl"
+
+
+
+# === Serveur d'API ExpressJS ===
+
+# Hostname que le serveur d'API Express va utiliser, par défaut: localhost
+SERVER_HOSTNAME="localhost"
+
+# Port que le serveur d'API Express va utiliser, par défaut: 4003
+SERVER_PORT="4003"
