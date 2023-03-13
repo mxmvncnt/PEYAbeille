@@ -1,0 +1,29 @@
+.dashboard_container{
+    background-color: lightgray;
+    width: 90vh;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+
+.AllerCommande{
+    background-color: lightgray;
+    width: 50vh;
+    border-radius: 10px;
+    text-align: center;
+}
+.AllerInventaire{
+    background-color: lightgray;
+    width: 50vh;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.button{
+    background-color: yellow;
+    border-radius: 10px;
+    width: 20vh;
+    height: 8vh;
+    font-size: large;
+}
