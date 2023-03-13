@@ -173,7 +173,7 @@ async function run() {
    * =========================== *
    *  PUT ADMIN AJOUTER PRODUIT  *
    * =========================== *
-  \*****************************/ 
+  \*****************************/
   app.put('/api/admin/ajouter_produit', async function (req, res) {
     // Activer le CORS
     res.set('Access-Control-Allow-Origin', '*');
@@ -188,17 +188,7 @@ async function run() {
     let quantite = req.body.quantite;
     let categorie = req.body.categorie; // REMPLACER DROP DOWN PAR LE NOMBRE!!!!
 
-    // get le user id selon le token et verifier si lutilisateur a acces aux options admin
-
-    let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
-    userID = userID["rows"][0]["UTILISATEUR_ID"];
-
-    let permissionUser = await con.execute("SELECT type_utilisateur FROM utilisateur WHERE id_utilisateur = :userID", [userID], { outFormat: oracledb.OUT_FORMAT_OBJECT });
-    permissionUser = permissionUser["rows"][0]["TYPE_UTILISATEUR"];
-
-    // Permission niveau 2 = administrateur
-    if (permissionUser == 2) {
-      
+    if (verifierPermsAdmin(token)) {
       await con.execute(
         `INSERT INTO produit (
             id_produit,
@@ -219,7 +209,7 @@ async function run() {
             '',
             :inventaire,
             :quantite,
-            :categorie)`, 
+            :categorie)`,
         [nom, description, prixSuggere, prixFixe, inventaire, quantite, categorie],
         { autoCommit: true }
       );
@@ -235,8 +225,22 @@ async function run() {
     }
   });
 
+  /**
+   * Retourne TRUE ou FALSE selon le rang de l'utilisateur
+   */
+  async function verifierPermsAdmin(token) {
+    let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    userID = userID["rows"][0]["UTILISATEUR_ID"];
 
+    let permissionUser = await con.execute("SELECT type_utilisateur FROM utilisateur WHERE id_utilisateur = :userID", [userID], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    permissionUser = permissionUser["rows"][0]["TYPE_UTILISATEUR"];
 
+    // Permission niveau 2 = administrateur
+    if (permissionUser == 2) {
+      return true;
+    }
+    else return false;
+  }
 
 
   const server = app.listen(process.env.SERVER_PORT, function () {
@@ -245,8 +249,5 @@ async function run() {
   });
 }
 
-async function verifierPermsAdmin() {
-  
-}
 
 run();
