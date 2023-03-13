@@ -6,13 +6,13 @@ const port = process.env.SERVER_PORT;
 const url = `http://${hostname}:${port}`
 
 export async function getProduits() {
-    let response = await fetch(url + "/api/produits", {cache: "reload"});
+    let response = await fetch(url + "/api/produits", {cache: "no-cache"});
     let jsonData = await response.json();
     return jsonData;
 }
 
 export async function getInfosProduit(idProduit) {
-    let response = await fetch(url + "/api/produit/" + idProduit, {cache: "reload"});
+    let response = await fetch(url + "/api/produit/" + idProduit, {cache: "no-cache"});
     let jsonData = await response.json();
     return jsonData[0];
 }

@@ -100,18 +100,18 @@ async function run() {
         );
 
         res.status(200).json({
-          "succes" : "Connecté avec succès.",
-          "token" : token
+          "succes": "Connecté avec succès.",
+          "token": token
         }).end();
 
       } else {
-          res.status(401).json({
-            "erreur" : "Mot de passe invalide."
-          }).end();
-        }
+        res.status(401).json({
+          "erreur": "Mot de passe invalide."
+        }).end();
+      }
     } else {
       res.status(401).json({
-        "erreur" : "L'utilisateur n'existe pas."
+        "erreur": "L'utilisateur n'existe pas."
       }).end();
     }
   });
@@ -158,20 +158,95 @@ async function run() {
       );
 
       res.status(201).json({
-        "succes" : "Compte créé avec succès.",
-        "token" : token
+        "succes": "Compte créé avec succès.",
+        "token": token
       }).end();
     } else {
       res.status(409).json({
-        "erreur" : "Le courriel existe déjà dans la base de données."
+        "erreur": "Le courriel existe déjà dans la base de données."
       }).end();
     }
   });
+
+
+  /*****************************\
+   * =========================== *
+   *  PUT ADMIN AJOUTER PRODUIT  *
+   * =========================== *
+  \*****************************/ 
+  app.put('/api/admin/ajouter_produit', async function (req, res) {
+    // Activer le CORS
+    res.set('Access-Control-Allow-Origin', '*');
+
+    let token = req.body.token;
+
+    let nom = req.body.nom;
+    let description = req.body.description;
+    let prixSuggere = req.body.prix_suggere;
+    let prixFixe = req.body.prix_fixe;
+    let inventaire = req.body.inventaire;
+    let quantite = req.body.quantite;
+    let categorie = req.body.categorie; // REMPLACER DROP DOWN PAR LE NOMBRE!!!!
+
+    // get le user id selon le token et verifier si lutilisateur a acces aux options admin
+
+    let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    userID = userID["rows"][0]["UTILISATEUR_ID"];
+
+    let permissionUser = await con.execute("SELECT type_utilisateur FROM utilisateur WHERE id_utilisateur = :userID", [userID], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    permissionUser = permissionUser["rows"][0]["TYPE_UTILISATEUR"];
+
+    // Permission niveau 2 = administrateur
+    if (permissionUser == 2) {
+      
+      await con.execute(
+        `INSERT INTO produit (
+            id_produit,
+            nom,
+            description,
+            prix_suggere,
+            prix_fixe,
+            url_catalog,
+            inventaire,
+            quantite,
+            categorie_id_categorie)
+        VALUES ( 
+            seq_produit.NEXTVAL,
+            :nomProduit,
+            :description,
+            :prixSuggere,
+            :prixFixe,
+            '',
+            :inventaire,
+            :quantite,
+            :categorie)`, 
+        [nom, description, prixSuggere, prixFixe, inventaire, quantite, categorie],
+        { autoCommit: true }
+      );
+
+      res.status(201).json({
+        "succes": "Produit ajouté avec succès."
+      }).end();
+
+    } else {
+      res.status(403).json({
+        "erreur": "Vous n'avez pas les permissions requises."
+      }).end();
+    }
+  });
+
+
+
+
 
   const server = app.listen(process.env.SERVER_PORT, function () {
     console.log("Serveur en marche...");
     console.log("http://" + process.env.SERVER_HOSTNAME + ":" + process.env.SERVER_PORT);
   });
+}
+
+async function verifierPermsAdmin() {
+  
 }
 
 run();
