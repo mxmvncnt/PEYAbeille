@@ -188,9 +188,13 @@ async function run() {
     let quantite = req.body.quantite;
     let categorie = req.body.categorie; // REMPLACER DROP DOWN PAR LE NOMBRE!!!!
 
-    if (verifierPermsAdmin(token)) {
-      await con.execute(
-        `INSERT INTO produit (
+
+    if (await isSessionOuverte(token)) {
+
+      if (await verifierPermsAdmin(token)) {
+
+        await con.execute(
+          `INSERT INTO produit (
             id_produit,
             nom,
             description,
@@ -210,20 +214,46 @@ async function run() {
             :inventaire,
             :quantite,
             :categorie)`,
-        [nom, description, prixSuggere, prixFixe, inventaire, quantite, categorie],
-        { autoCommit: true }
-      );
+          [nom, description, prixSuggere, prixFixe, inventaire, quantite, categorie],
+          { autoCommit: true }
+        );
 
-      res.status(201).json({
-        "succes": "Produit ajouté avec succès."
-      }).end();
+        res.status(201).json({
+          "succes": "Produit ajouté avec succès."
+        }).end();
 
+      } else {
+
+        res.status(403).json({
+          "erreur": "Vous n'avez pas les permissions requises."
+        }).end();
+
+      }
     } else {
+
       res.status(403).json({
-        "erreur": "Vous n'avez pas les permissions requises."
+        "erreur": "Vous devez être connecté pour faire cette action"
       }).end();
+
     }
   });
+
+  /**
+   * Retourne TRUE ou FALSE selon le statut de connexion de lutilisateur. (true = connecte)
+   */
+  async function isSessionOuverte(token) {
+    let tokenExiste = await con.execute("SELECT count(*) FROM DUAL WHERE EXISTS (SELECT 1 FROM table_session WHERE jettons = :token)", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT })
+    // retourne 1 si le token existe, 0 s'il n'existe pas
+    tokenExiste = tokenExiste["rows"][0]["COUNT(*)"];
+
+    if (token == 0 || token == undefined || token == "") {
+      return false;
+    }
+    if (tokenExiste == 1) {
+      return true;
+    }
+    else return false;
+  }
 
   /**
    * Retourne TRUE ou FALSE selon le rang de l'utilisateur
