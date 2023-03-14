@@ -365,6 +365,95 @@ async function run() {
     }
   });
 
+  /**************************************\
+   * ================================== *
+   *  GET ADMIN DASHBOARD STATISTIQUES  *
+   * ================================== *
+  \**************************************/
+  app.get('/api/admin/infos_ventes', async function (req, res) {
+    // Activer le CORS
+    res.set('Access-Control-Allow-Origin', '*');
+
+    let token = req.body.token;
+
+    if (await isSessionOuverte(token)) {
+
+      if (await verifierPermsAdmin(token)) {
+
+        let nbCommandes = await con.execute("SELECT count(*) FROM commande", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+
+        let nbVentes = await con.execute("SELECT SUM(quantite) from item__commande", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+
+        let infosProduitPlusPopulaire = await con.execute(`
+        SELECT * FROM (
+            SELECT
+                id_produit,
+                COUNT(*) occurences,
+                RANK()
+                OVER( ORDER BY COUNT(*) DESC ) AS position
+            FROM
+                item__commande
+            GROUP BY
+                id_produit
+            ) produitspopulaires
+        WHERE
+            produitspopulaires.position = 1
+            AND ROWNUM = 1`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        infosProduitPlusPopulaire = infosProduitPlusPopulaire["rows"][0]
+
+        let produitPlusPopulaire = await con.execute("SELECT * FROM produit WHERE id_produit = :idProduit", [infosProduitPlusPopulaire["ID_PRODUIT"]], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+
+
+        let infosProduitMoinsPopulaire = await con.execute(`
+        SELECT * FROM (
+            SELECT
+                id_produit,
+                COUNT(*) occurences,
+                RANK()
+                OVER( ORDER BY COUNT(*) ASC ) AS position
+            FROM
+                item__commande
+            GROUP BY
+                id_produit
+            ) produitspopulaires
+        WHERE
+            produitspopulaires.position = 1
+            AND ROWNUM = 1`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        infosProduitMoinsPopulaire = infosProduitMoinsPopulaire["rows"][0]
+        
+        let produitMoinsPopulaire = await con.execute("SELECT * FROM produit WHERE id_produit = :idProduit", [infosProduitMoinsPopulaire["ID_PRODUIT"]], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+
+        res.status(201).json({
+          "commandes": nbCommandes["rows"][0]["COUNT(*)"],
+          "ventes" : nbVentes["rows"][0]["SUM(QUANTITE)"],
+          "produits": {
+            "plus_populaire": {
+              "produit": produitPlusPopulaire["rows"][0],
+              "ventes": infosProduitPlusPopulaire["OCCURENCES"],
+            },
+            "moins_populaire": {
+              "produit": produitMoinsPopulaire["rows"][0],
+              "ventes": infosProduitMoinsPopulaire["OCCURENCES"],
+            },
+          }
+        }).end();
+
+      } else {
+
+        res.status(403).json({
+          "erreur": "Vous n'avez pas les permissions requises."
+        }).end();
+
+      }
+    } else {
+
+      res.status(403).json({
+        "erreur": "Vous devez être connecté pour faire cela."
+      }).end();
+
+    }
+  });
+
   /**
    * Retourne TRUE ou FALSE selon le statut de connexion de lutilisateur. (true = connecte)
    */
