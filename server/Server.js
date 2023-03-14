@@ -43,7 +43,8 @@ async function run() {
     // Activer le CORS
     res.set('Access-Control-Allow-Origin', '*');
 
-    let result = await con.execute("SELECT * FROM produit", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    // selectioner les produits qui ne sont pas cachés (categorie id = 0)
+    let result = await con.execute("SELECT * FROM produit WHERE categorie_id_categorie != 0", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
     res.send(result["rows"])
   });
 
