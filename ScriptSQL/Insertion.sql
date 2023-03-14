@@ -4,6 +4,12 @@ CREATE SEQUENCE seq_categorie;
 INSERT INTO categorie
             (id_categorie,
              type_categorie)
+VALUES      (0,
+             'invisible');
+
+INSERT INTO categorie
+            (id_categorie,
+             type_categorie)
 VALUES      (seq_categorie.NEXTVAL,
              'Miel');
 
