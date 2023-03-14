@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 export default function RedirectClient(params) {   
 
     const [cookies, setCookie] = useCookies(['token'])
-    setCookie('token', params["searchParams"]["token"], {sameSite: true})
+    setCookie('token', params["searchParams"]["token"], {sameSite: true, path: "/"})
 
     // TODO: Rediriger vers la page de profil ou mieux la page precedente.
     redirect('/')
