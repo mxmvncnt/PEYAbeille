@@ -36,3 +36,9 @@ export async function register(nom, prenom, email, password) {
     let jsonData = await response.json();
     return jsonData[0];
 }
+
+export async function getAdminStats(token) {
+    let response = await fetch(url + '/api/admin/infos_ventes/' + token, {cache: "no-cache"});
+    let jsonData = await response.json();
+    return jsonData;
+}
