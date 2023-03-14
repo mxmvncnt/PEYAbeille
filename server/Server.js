@@ -34,6 +34,11 @@ async function run() {
     connectString: process.env.ORACLE_CONNECTSTRING
   });
 
+  /***************************\
+   * ======================= *
+   *    GET LES PRODUITs     *
+   * ======================= *
+  \***************************/
   app.get('/api/produits', async function (req, res) {
     // Activer le CORS
     res.set('Access-Control-Allow-Origin', '*');
@@ -42,6 +47,12 @@ async function run() {
     res.send(result["rows"])
   });
 
+
+  /***************************\
+   * ======================= *
+   *     GET UN PRODUIT      *
+   * ======================= *
+  \***************************/
   app.get('/api/produit/:produitID', async function (req, res) {
     // Activer le CORS 
     res.set('Access-Control-Allow-Origin', '*');
@@ -55,6 +66,11 @@ async function run() {
     res.send(result["rows"])
   });
 
+  /***************************\
+   * ======================= *
+   *     POST CONNEXION      *
+   * ======================= *
+  \***************************/
   app.post('/api/login/', async function (req, res) {
     // Activer le CORS 
     res.set('Access-Control-Allow-Origin', '*');
@@ -116,6 +132,11 @@ async function run() {
     }
   });
 
+  /****************************\
+   * ======================== *
+   *      PUT INSCRIPTION     *
+   * ======================== *
+  \****************************/
   app.put('/api/register/', async function (req, res) {
     // Activer le CORS 
     res.set('Access-Control-Allow-Origin', '*');
@@ -169,11 +190,11 @@ async function run() {
   });
 
 
-  /*****************************\
+  /*******************************\
    * =========================== *
    *  PUT ADMIN AJOUTER PRODUIT  *
    * =========================== *
-  \*****************************/
+  \*******************************/
   app.put('/api/admin/ajouter_produit', async function (req, res) {
     // Activer le CORS
     res.set('Access-Control-Allow-Origin', '*');
