@@ -1,0 +1,23 @@
+.commande{
+    border-bottom: 2px solid;
+    border-color: black;
+    background-color: lightgray;
+    display: flex;
+    padding:5px;
+    text-align: center;
+}
+.bttnCompleter{
+    border-radius: 20px;
+    background-color: green;
+    font-size:large;
+    width: 10vh;
+    height: 5vh;
+}
+
+.bttnAnnuler{
+    border-radius: 20px;
+    background-color: red;
+    font-size:large;
+    width: 10vh;
+    height: 5vh;
+}
