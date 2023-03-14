@@ -260,6 +260,51 @@ async function run() {
     }
   });
 
+  /************************************\
+   * ================================ *
+   *  DELETE ADMIN SUPPRIMER PRODUIT  *
+   * ================================ *
+  \************************************/
+  app.delete('/api/admin/supprimer_produit', async function (req, res) {
+    // Activer le CORS
+    res.set('Access-Control-Allow-Origin', '*');
+
+    let token = req.body.token;
+
+    let idProduit = req.body.id_produit;
+
+
+    if (await isSessionOuverte(token)) {
+
+      if (await verifierPermsAdmin(token)) {
+
+        // Ne supprime pas reellement le produit. A la place, on set la categorie a 0 dans la BD.
+        await con.execute(
+          `UPDATE produit SET categorie_id_categorie = 0 WHERE ID_PRODUIT = :idProduit`,
+          [idProduit],
+          { autoCommit: true }
+        );
+
+        res.status(201).json({
+          "succes": "Produit retiré avec succès."
+        }).end();
+
+      } else {
+
+        res.status(403).json({
+          "erreur": "Vous n'avez pas les permissions requises."
+        }).end();
+
+      }
+    } else {
+
+      res.status(403).json({
+        "erreur": "Vous devez être connecté pour faire cela."
+      }).end();
+
+    }
+  });
+
   /**
    * Retourne TRUE ou FALSE selon le statut de connexion de lutilisateur. (true = connecte)
    */
