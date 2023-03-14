@@ -365,6 +365,9 @@ async function run() {
     }
   });
 
+  /**************************************\
+   * ================================== *
+   *  GET ADMIN DASHBOARD STATISTIQUES  *
    * ================================== *
   \**************************************/
   app.get('/api/admin/infos_ventes', async function (req, res) {
