@@ -260,6 +260,66 @@ async function run() {
     }
   });
 
+  /*********************************\
+   * ============================= *
+   *  POST ADMIN MODIFIER PRODUIT  *
+   * ============================+ *
+  \*********************************/
+  app.post('/api/admin/modifier_produit', async function (req, res) {
+    // Activer le CORS
+    res.set('Access-Control-Allow-Origin', '*');
+
+    let token = req.body.token;
+
+    let idProduit = req.body.id_produit;
+
+    let nom = req.body.nom;
+    let description = req.body.description;
+    let prixSuggere = req.body.prix_suggere;
+    let prixFixe = req.body.prix_fixe;
+    let inventaire = req.body.inventaire;
+    let quantite = req.body.quantite;
+    let categorie = req.body.categorie; // REMPLACER DROP DOWN PAR LE NOMBRE DANS LE FRONT-END!!!!
+
+
+    if (await isSessionOuverte(token)) {
+
+      if (await verifierPermsAdmin(token)) {
+
+        await con.execute(
+          `UPDATE produit SET 
+              nom = :nom,
+              description = :description,
+              prix_suggere = :prixSuggere,
+              prix_fixe = :prixFixe,
+              inventaire = :inventaire,
+              quantite = :quantite,
+              categorie_id_categorie = :categorie
+            WHERE ID_PRODUIT = :idProduit`,
+          [nom, description, prixSuggere, prixFixe, inventaire, quantite, categorie, idProduit],
+          { autoCommit: true }
+        );
+
+        res.status(201).json({
+          "succes": "Produit modifié avec succès."
+        }).end();
+
+      } else {
+
+        res.status(403).json({
+          "erreur": "Vous n'avez pas les permissions requises."
+        }).end();
+
+      }
+    } else {
+
+      res.status(403).json({
+        "erreur": "Vous devez être connecté pour faire cette action"
+      }).end();
+
+    }
+  });
+
   /************************************\
    * ================================ *
    *  DELETE ADMIN SUPPRIMER PRODUIT  *
