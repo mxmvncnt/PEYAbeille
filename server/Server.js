@@ -426,23 +426,39 @@ async function run() {
             AND ROWNUM = 1`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
         infosProduitMoinsPopulaire = infosProduitMoinsPopulaire["rows"][0]
 
-        res.status(201).json({
-          "commandes": nbCommandes["rows"][0]["COUNT(*)"],
-          "ventes" : nbVentes["rows"][0]["SUM(QUANTITE)"],
-          "produits": {
-            "plus_populaire": {
-              "produit": produitPlusPopulaire["rows"][0],
-              "ventes": infosProduitPlusPopulaire["OCCURENCES"],
-            },
-            "moins_populaire": {
-              "produit": produitMoinsPopulaire["rows"][0],
-              "ventes": infosProduitMoinsPopulaire["OCCURENCES"],
-            },
         //  ======== Infos du produit le moins populaire
         let produitMoinsPopulaire = await con.execute("SELECT * FROM produit WHERE id_produit = :idProduit", [infosProduitMoinsPopulaire["ID_PRODUIT"]], { outFormat: oracledb.OUT_FORMAT_OBJECT });
         produitMoinsPopulaire = produitMoinsPopulaire["rows"][0]
+
+
+        res.status(201).json(
+          {
+            "commandes": nbCommandes["rows"][0]["COUNT(*)"],
+            "ventes": nbVentes["rows"][0]["SUM(QUANTITE)"],
+            "produits": {
+              "plus_populaire": {
+                "ventes": infosProduitPlusPopulaire["OCCURENCES"],
+                "produit": {
+                  "id" : produitPlusPopulaire["ID_PRODUIT"],
+                  "nom": produitPlusPopulaire["NOM"],
+                  "prix": produitPlusPopulaire["PRIX_SUGGERE"],
+                  "prix_fixe": produitPlusPopulaire["PRIX_FIXE"],
+                  "en_stock": produitPlusPopulaire["QUANTITE"]
+                }
+              },
+              "moins_populaire": {
+                "ventes": infosProduitMoinsPopulaire["OCCURENCES"],
+                "produit": {
+                  "id" : produitMoinsPopulaire["ID_PRODUIT"],
+                  "nom": produitMoinsPopulaire["NOM"],
+                  "prix": produitMoinsPopulaire["PRIX_SUGGERE"],
+                  "prix_fixe": produitMoinsPopulaire["PRIX_FIXE"],
+                  "en_stock": produitMoinsPopulaire["QUANTITE"]
+                }
+              }
+            }
           }
-        }).end();
+        ).end();
 
       } else {
 
