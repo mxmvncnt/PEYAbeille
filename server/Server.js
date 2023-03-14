@@ -384,6 +384,7 @@ async function run() {
 
         let nbVentes = await con.execute("SELECT SUM(quantite) from item__commande", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
 
+        // ======== ID Du produit le plus populaire
         let infosProduitPlusPopulaire = await con.execute(`
         SELECT * FROM (
             SELECT
@@ -401,9 +402,11 @@ async function run() {
             AND ROWNUM = 1`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
         infosProduitPlusPopulaire = infosProduitPlusPopulaire["rows"][0]
 
+        // ======== Infos du produit le plus populaire
         let produitPlusPopulaire = await con.execute("SELECT * FROM produit WHERE id_produit = :idProduit", [infosProduitPlusPopulaire["ID_PRODUIT"]], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        produitPlusPopulaire = produitPlusPopulaire["rows"][0]
 
-
+        // ======= ID du Produit moins populaire
         let infosProduitMoinsPopulaire = await con.execute(`
         SELECT * FROM (
             SELECT
@@ -420,8 +423,6 @@ async function run() {
             produitspopulaires.position = 1
             AND ROWNUM = 1`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
         infosProduitMoinsPopulaire = infosProduitMoinsPopulaire["rows"][0]
-        
-        let produitMoinsPopulaire = await con.execute("SELECT * FROM produit WHERE id_produit = :idProduit", [infosProduitMoinsPopulaire["ID_PRODUIT"]], { outFormat: oracledb.OUT_FORMAT_OBJECT });
 
         res.status(201).json({
           "commandes": nbCommandes["rows"][0]["COUNT(*)"],
@@ -435,6 +436,9 @@ async function run() {
               "produit": produitMoinsPopulaire["rows"][0],
               "ventes": infosProduitMoinsPopulaire["OCCURENCES"],
             },
+        //  ======== Infos du produit le moins populaire
+        let produitMoinsPopulaire = await con.execute("SELECT * FROM produit WHERE id_produit = :idProduit", [infosProduitMoinsPopulaire["ID_PRODUIT"]], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        produitMoinsPopulaire = produitMoinsPopulaire["rows"][0]
           }
         }).end();
 
