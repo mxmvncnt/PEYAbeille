@@ -370,11 +370,13 @@ async function run() {
    *  GET ADMIN DASHBOARD STATISTIQUES  *
    * ================================== *
   \**************************************/
-  app.get('/api/admin/infos_ventes', async function (req, res) {
+  app.get('/api/admin/infos_ventes/:token', async function (req, res) {
     // Activer le CORS
     res.set('Access-Control-Allow-Origin', '*');
 
-    let token = req.body.token;
+    // prendre les parametres de l'url (token)
+    let params = req.params;
+    let token = params['token'];
 
     if (await isSessionOuverte(token)) {
 
