@@ -13,6 +13,7 @@
     "fs": "^0.0.1-security",
     "link": "^1.5.1",
     "next": "^13.2.3",
+    "nodemon": "^2.0.21",
     "oracledb": "^5.5.0",
     "path": "^0.12.7",
     "path-browserify": "^1.0.1",
