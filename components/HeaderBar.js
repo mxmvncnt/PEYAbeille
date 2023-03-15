@@ -35,7 +35,7 @@ let BtnCompte = () => {
     if (statusConnexion === 200) {
         return <Link
             href="/compte"
-            id={styles.lien_connexion}>
+            id={styles.lien_monCompte}>
             Mon compte
         </Link>
     } else {

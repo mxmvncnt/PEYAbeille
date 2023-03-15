@@ -95,6 +95,13 @@
 		position: absolute;
 		right: 5px;	
 	}
+
+	#lien_monCompte {
+		text-align: center;
+		position: absolute;
+		right: 5px;	
+		font-weight: normal;
+	}
 }
 
 /* === VUE SPECIFIQUE MOBILE === */
