@@ -5,6 +5,18 @@ const hostname = process.env.SERVER_HOSTNAME;
 const port = process.env.SERVER_PORT;
 const url = `http://${hostname}:${port}`
 
+export async function verifierSession(token) {
+    let response = await fetch(url + '/api/verifier_session', {
+        method: 'POST',
+        body: JSON.stringify({ token }),
+    });
+
+    console.log(response.status)
+    
+    let jsonData = await response.json();
+    return jsonData;
+}
+
 export async function getProduits() {
     let response = await fetch(url + "/api/produits", {cache: "no-cache"});
     let jsonData = await response.json();

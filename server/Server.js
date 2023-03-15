@@ -36,6 +36,35 @@ async function run() {
 
   /***************************\
    * ======================= *
+   *  GET VERIFIER SESSION   *
+   * ======================= *
+  \***************************/
+  app.get('/api/verifier_session/:token', async function (req, res) {
+    // Activer le CORS
+    res.set('Access-Control-Allow-Origin', '*');
+
+    // prendre les parametres de l'url (token)
+    let params = req.params;
+    let token = params['token'];
+
+    if (await isSessionOuverte(token)) {
+
+      res.status(200).json({
+        "succes": "Le jeton de session est valide."
+      }).end();
+
+    }
+    else {
+
+      res.status(403).json({
+        "erreur": "Vous devez être connecté pour faire cette action."
+      }).end();
+
+    }
+  });
+
+  /***************************\
+   * ======================= *
    *    GET LES PRODUITs     *
    * ======================= *
   \***************************/
@@ -439,7 +468,7 @@ async function run() {
               "plus_populaire": {
                 "ventes": infosProduitPlusPopulaire["OCCURENCES"],
                 "produit": {
-                  "id" : produitPlusPopulaire["ID_PRODUIT"],
+                  "id": produitPlusPopulaire["ID_PRODUIT"],
                   "nom": produitPlusPopulaire["NOM"],
                   "prix": produitPlusPopulaire["PRIX_SUGGERE"],
                   "prix_fixe": produitPlusPopulaire["PRIX_FIXE"],
@@ -449,7 +478,7 @@ async function run() {
               "moins_populaire": {
                 "ventes": infosProduitMoinsPopulaire["OCCURENCES"],
                 "produit": {
-                  "id" : produitMoinsPopulaire["ID_PRODUIT"],
+                  "id": produitMoinsPopulaire["ID_PRODUIT"],
                   "nom": produitMoinsPopulaire["NOM"],
                   "prix": produitMoinsPopulaire["PRIX_SUGGERE"],
                   "prix_fixe": produitMoinsPopulaire["PRIX_FIXE"],
