@@ -1,10 +1,61 @@
 "use client";
 
 import React from 'react';
+import { useState, useEffect } from "react";
 import styles from '../styles/headerbar.module.css';
 import Link from 'next/link';
-// import { Link } from "next/link";
-import { useState } from "react";
+import { useCookies } from "react-cookie";
+
+const hostname = 'localhost';
+const port = '4003';
+const url = 'http://' + hostname + ':' + port;
+
+let BtnCompte = () => {
+
+    const [cookies, setCookie] = useCookies(['token'])
+    const [statusConnexion, setStatusConnexion] = useState()
+
+    useEffect(() => {
+        const verifierSession = async (token) => {
+            let response = await fetch(url + '/api/verifier_session/' + token, {
+                method: 'GET',
+                cache: "no-cache"
+            });
+
+            setStatusConnexion(response.status);
+        }
+
+        verifierSession(cookies.token);
+    }, []);
+
+
+    console.log(statusConnexion)
+
+    // si la session est valide, l'utilisateur est connecté
+    if (statusConnexion === 200) {
+        return <Link
+            href="/compte"
+            id={styles.lien_connexion}>
+            Mon compte
+        </Link>
+    } else {
+        return <div>
+            <Link
+                href="/auth/connexion"
+                id={styles.lien_connexion}
+                onClick={() => {
+                    setIsNavExpanded(false)
+                }}>
+                Connexion
+            </Link>
+            <Link
+                href="/auth/inscription"
+                id={styles.lien_inscription}>
+                Inscription
+            </Link>
+        </div>
+    }
+}
 
 export default function HeaderBar() {
     const [isNavExpanded, setIsNavExpanded] = useState(false)
@@ -59,22 +110,7 @@ export default function HeaderBar() {
                     Nous joindre
                 </Link>
 
-                <Link
-                    href="/auth/connexion"
-                    id={styles.lien_connexion}
-                    onClick={() => {
-                        setIsNavExpanded(false)
-                    }}>
-                    Connexion
-                </Link>
-                <Link
-                    href="/auth/inscription"
-                    id={styles.lien_inscription}
-                    onClick={() => {
-                        setIsNavExpanded(false)
-                    }}>
-                    Inscription
-                </Link>
+                <BtnCompte />
 
             </div>
 
