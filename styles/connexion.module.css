@@ -1,0 +1,24 @@
+.body{
+    height: 100vh;
+}
+
+.container{
+    font-size: 30px;
+    color: #070706;
+    align: center;
+    border-radius: 10px;
+    background-color: coral;
+    width: 400px;
+    height: 400px;
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.input{ 
+    border-radius: 10px;
+    border: none;
+    padding: 10px 15px;
+}
+
