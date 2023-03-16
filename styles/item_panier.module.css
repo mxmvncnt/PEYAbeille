@@ -1,0 +1,15 @@
+.item_panier {
+    margin: 30px 20px;
+    background-color: #efefef;
+    border: rgb(200, 200, 200) 1px solid;
+    border-radius: 10px;
+    padding: 0px 15px;
+}
+
+.input_quantite {
+    width: 50px;
+    box-sizing: border-box;
+    border-radius: 10px;
+	padding: 10px 0px 10px 10px;
+    border:none;
+}
