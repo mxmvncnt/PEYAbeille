@@ -1,8 +1,26 @@
 import React from "react";
 import { cookies } from 'next/headers';
 import styles from '../../styles/panier.module.css';
+import ItemPanier from "../../components/ItemPanier";
 
 export default async function Panier() {
+
+    let dataJson = `{
+        "items_panier": [
+          {
+            "id": 2,
+            "nom_produit": "Miel de printemps",
+            "prix_suggere_unite": 3.99,
+            "quantite": 7
+          },
+          {
+            "id": 4,
+            "nom_produit": "Miel de jsp",
+            "prix_suggere_unite": 7.99,
+            "quantite": 1
+          }
+        ]
+      }`
 
     return (
         <div className={styles.body}>
@@ -36,7 +54,7 @@ export default async function Panier() {
                 <div>
                     <h2 className={styles.titre_section}>Items</h2>
                     <div className={styles.items_commande}>
-
+                        <ItemPanier data={JSON.parse(dataJson)} />
                     </div>
                 </div>
 
