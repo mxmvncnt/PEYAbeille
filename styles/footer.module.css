@@ -1,31 +1,66 @@
 /* ==== FOOTER ==== */
 .footer {
+	height: auto;
 	overflow: hidden;
 	position: sticky;
 	/* background: rgba(0, 0, 0); */
 	display: grid;
-    place-content: center;
 	border-top: rgb(255, 230, 0) 2px solid;
-	grid-template-columns: 25% 25% 50%;
+}
+.footer_ul{
+	list-style: none;
+}
+
+.footer_li{
+	font-size: auto;
+	text-transform: capitalize;
+	display: block;
+	transition: all 0.2s ease;
 }
 
 /* chaque "categorie" du footer, ex. liens, contacts, etc. */
 .footer_categorie {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 /* chaque lien du footer */
-.footer a {	
+.footer a {
 	transition: 0.2s;
-	color: rgb(255, 230, 0);
+	color: rgb(46, 46, 43);
+	text-decoration-color: gray;
 	text-decoration: none;
 	font-weight: bold;
-    font-size: 1em;
+	font-size: 1em;
 }
 
 .footer a:hover {
-	padding: 15px;
+	padding: 5px;
 	transition: 0.2s;
 	color: rgb(200, 180, 0);
+}
+
+.footer_liens {
+	padding: 15px;
+	margin: auto;
+}
+
+/* === VUE SPECIFIQUE ORDINATEUR === */
+@media only screen and (min-width: 601px) {
+	.footer {
+		margin:auto;
+		padding: auto;
+		grid-template-columns: 15% 15% 15% 15%;
+		place-content: center;
+	}
+}
+
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 600px) {
+	.footer {
+		margin:auto;
+		padding: auto;
+		grid-template-columns: auto;
+		place-content: left;
+	}
 }
