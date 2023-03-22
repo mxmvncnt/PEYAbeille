@@ -3,24 +3,24 @@ import { cookies } from 'next/headers';
 import styles from '../../styles/panier.module.css';
 import ItemPanier from "../../components/ItemPanier";
 
+const getItemsPanier = () => {
+    const nextCookies = cookies();
+    let arrayPanier = nextCookies.get('panier');
+
+    console.log("ARRAY PANIER COOKIE");
+    console.log(arrayPanier);
+    
+    if (arrayPanier == undefined) {
+        return "Aucune donnee";
+    } else {
+        // arrayPanier = JSON.stringify(arrayPanier);
+        return arrayPanier;  
+    }   
+}
+
 export default async function Panier() {
 
-    let dataJson = `{
-        "items_panier": [
-          {
-            "id": 2,
-            "nom_produit": "Miel de printemps",
-            "prix_suggere_unite": 3.99,
-            "quantite": 7
-          },
-          {
-            "id": 4,
-            "nom_produit": "Miel de jsp",
-            "prix_suggere_unite": 7.99,
-            "quantite": 1
-          }
-        ]
-      }`
+    const data = getItemsPanier();
 
     return (
         <div className={styles.body}>
@@ -54,7 +54,7 @@ export default async function Panier() {
                 <div>
                     <h2 className={styles.titre_section}>Items</h2>
                     <div className={styles.items_commande}>
-                        <ItemPanier data={JSON.parse(dataJson)} />
+                        <ItemPanier data={data} />
                     </div>
                 </div>
 
