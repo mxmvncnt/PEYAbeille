@@ -39,7 +39,7 @@ export default function Footer() {
                     <li className={`${styles.footer_li}`}> <label> 123-456-7891 </label></li>
                 </ul>
             </div>
-            <h7> Copy right</h7>
+            <h7> Copy right © 2023 All rights Reserved</h7>
         </div>
        
     );
