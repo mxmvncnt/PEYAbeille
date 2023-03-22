@@ -6,6 +6,7 @@ import { getInfosProduit } from "../../../server/Api";
 import IndicateurPrix from "../../../components/IndicateurPrix";
 import styles from '../../../styles/produit.module.css'
 import mtl_bg from '../../../public/Montreal-estival.jpg'
+import AjouterAuPanier from "../../../components/AjouterAuPanier";
 
 export default async function Produit({ params }) {
     const data = await getInfosProduit(params.id);
@@ -76,9 +77,9 @@ export default async function Produit({ params }) {
                 <div className={`${styles.page_produit_grid_item} ${styles.page_produit_grid_item_acheter}`}>
                     <div>
                         <IndicateurPrix prix_regulier={data["PRIX_FIXE"]} prix_suggere={data["PRIX_SUGGERE"]} />
-                        <a>
-                            <button className="btn-acheter">ACHETER</button>
-                        </a>
+                        
+                        <AjouterAuPanier item={await data["ID_PRODUIT"]} nom_produit={await data["NOM"]} prix_suggere_unite={await data["PRIX_SUGGERE"]} quantite={1} />
+                        
                         <small>En stock: {data["QUANTITE"]}</small>
                     </div>
 
