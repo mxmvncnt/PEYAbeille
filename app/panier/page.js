@@ -6,14 +6,10 @@ import ItemPanier from "../../components/ItemPanier";
 const getItemsPanier = () => {
     const nextCookies = cookies();
     let arrayPanier = nextCookies.get('panier');
-
-    console.log("ARRAY PANIER COOKIE");
-    console.log(arrayPanier);
     
     if (arrayPanier == undefined) {
         return "Aucune donnee";
     } else {
-        // arrayPanier = JSON.stringify(arrayPanier);
         return arrayPanier;  
     }   
 }

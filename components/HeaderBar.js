@@ -29,7 +29,7 @@ let BtnCompte = () => {
     }, []);
 
 
-    console.log(statusConnexion)
+    // console.log(statusConnexion)
 
     // si la session est valide, l'utilisateur est connecté
     if (statusConnexion === 200) {

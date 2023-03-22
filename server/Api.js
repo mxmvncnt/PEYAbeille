@@ -11,7 +11,7 @@ export async function verifierSession(token) {
         body: JSON.stringify({ token }),
     });
 
-    console.log(response.status)
+    // console.log(response.status)
     
     let jsonData = await response.json();
     return jsonData;
