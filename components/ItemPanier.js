@@ -3,19 +3,23 @@
 import styles from '../styles/item_panier.module.css'
 
 export default function ItemPanier(
-    data = "Aucune donnée"
+    data = "Aucune donnee"
 ) {
-    if (data === "Aucune donnée") {
+    if (data["data"] == "Aucune donnee") {
         return (
             <div className={styles.container}>
                 <h2>Aucune donnée</h2>
             </div>
         );
     } else {
-        data = data["data"]["items_panier"];
+        let dataJson = data["data"]["value"];
+
+        dataJson = JSON.parse(dataJson)
+        dataJson = dataJson["items_panier"]
+
         return (
             <div>
-                {data.map((item) => (
+                {dataJson.map((item) => (
                     <div className={styles.item_panier}>
                         <h2 key={item.nom_produit}>{item.nom_produit}</h2>
                         <input className={styles.input_quantite} key={item.quantite} type="number" defaultValue={item.quantite}></input>
