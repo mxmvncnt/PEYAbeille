@@ -1,5 +1,4 @@
-'use client'
-import React,{useState} from "react";
+import React from "react";
 import styles from '../../../styles/commande.module.css';
 
 
@@ -23,34 +22,40 @@ function Commande() {
         <div className={styles.commande}>
             <h2> Nom du client (# numero de commande)</h2>
             <div className={styles.bouttons}>
-            <button className={styles.bttnCompleter}> Completer </button>
-            <button className={styles.bttnAnnuler}> Annuler </button>
+                <button className={styles.bttnCompleter}> Completer </button>
+                <button className={styles.bttnAnnuler}> Annuler </button>
             </div>
-
             <p>Paul Nord <br />1234 rue des mirabels
-            <br />514 514 5140 </p>
-            <Details/>
+                <br />514 514 5140 </p>
+            <details>
+                <summary>Voir plus</summary>
+                <Details />
+            </details>
 
         </div>
     )
 }
 
-const Details = () => {
-    const [toggle, setToggle] = useState(false)
-    return (
-        <div>
-            <button onClick={() => setToggle(!toggle)}>Voir detail</button>
-            {toggle && (
-                <AfficherDetails/>
-            )}
-        </div>
-    )
-}
+// const Details = () => {
+//     const [toggle, setToggle] = useState(false)
+//     return (
+//         <div>
+//             <button onClick={() => setToggle(!toggle)}>Voir detail</button>
+//             {toggle && (
+//                 <AfficherDetails/>
+//             )}
+//         </div>
+//     )
+// }
 
-function AfficherDetails() {
+function Details() {
     return(
-        <div>
-            <h3>test</h3>
+        <div className={styles.detailCommande}>
+            <ul>
+                <li>un produit</li>
+                <li>un autre produit</li>
+                <li>total: 54$</li>
+            </ul>
         </div>
 
     )
