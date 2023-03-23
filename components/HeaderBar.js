@@ -11,16 +11,14 @@ const port = '4003';
 const url = 'http://' + hostname + ':' + port;
 
 let BtnCompte = () => {
+    
 
     const [cookies, setCookie] = useCookies(['token'])
     const [statusConnexion, setStatusConnexion] = useState()
 
     useEffect(() => {
         const verifierSession = async (token) => {
-            let response = await fetch(url + '/api/verifier_session/' + token, {
-                method: 'GET',
-                cache: "no-cache"
-            });
+            let response = await fetch(url + '/api/verifier_session/' + token, {cache: "no-cache"});
 
             setStatusConnexion(response.status);
         }
