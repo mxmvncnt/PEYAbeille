@@ -10,14 +10,11 @@ export default function AjouterAuPanier(item) {
 
     function ajouterItemAuPanier(item) {
         let produitPanierJson = JSON.stringify(item)
-    
-        console.log("ARRAY ITEMS")
-        console.log(cookies["panier"])
-    
-        if (cookies["panier"] != undefined && cookies["panier"]["items_panier"] != undefined) {
+
+        if (cookies["panier"] != undefined) {
             let arrayItems = cookies["panier"]["items_panier"]
             arrayItems.push(JSON.parse(produitPanierJson))
-            setCookie('panier', arrayItems, { sameSite: true, path: "/" })
+            setCookie('panier', {"items_panier" : arrayItems}, { sameSite: true, path: "/" })
         }
         else {
             let squeletteJson = { "items_panier": [JSON.parse(produitPanierJson)] }
@@ -27,7 +24,7 @@ export default function AjouterAuPanier(item) {
 
     return (
         <div>
-            <Link href="/panier" onClick={()=>ajouterItemAuPanier(item)}>
+            <Link href="/panier" onClick={() => ajouterItemAuPanier(item)}>
                 <button>Ajouter au panier</button>
             </Link>
         </div>

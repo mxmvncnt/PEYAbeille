@@ -5,6 +5,7 @@ import styles from '../styles/item_panier.module.css'
 export default function ItemPanier(
     data = "Aucune donnee"
 ) {
+    // console.log(data)
     if (data["data"] == "Aucune donnee") {
         return (
             <div className={styles.container}>
@@ -13,7 +14,7 @@ export default function ItemPanier(
         );
     } else {
         let dataJson = data["data"]["value"];
-
+        
         dataJson = JSON.parse(dataJson)
         dataJson = dataJson["items_panier"]
 
