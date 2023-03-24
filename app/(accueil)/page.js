@@ -1,6 +1,6 @@
 import React from "react";
-import styles from '../../styles/page_acceuil.module.css'
-import image_acceuil from '../../public/acc_pot.jpg'
+import styles from '../../styles/accueil.module.css'
+import image_accueil from '../../public/acc_pot.jpg'
 import abeille from '../../public/abb1.png'
 import Image from "next/image";
 
@@ -9,7 +9,7 @@ export default function Accueil() {
         <div>
             <div className={`${styles.background}`}>
                 <Image className={`${styles.img_acc}`}
-                    src={image_acceuil}
+                    src={image_accueil}
                     alt={"image temporaire"}
                 />
                 <div className={`${styles.overlay}`}>
