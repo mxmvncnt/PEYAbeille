@@ -3,7 +3,7 @@
     /* display points next to each other */
     flex-wrap: wrap;
     /* allow points to wrap to next line if necessary */
-    justify-content: space-between ;
+    justify-content: space-between;
     /* add space between points */
     max-width: auto;
     /* set maximum width for container */
@@ -12,25 +12,69 @@
 }
 
 /* Style each point section */
-.point {
-    width: 25%;
+.section {
+    width: 30%;
     margin: 20px;
-    padding: 20px;
+    padding: 2px;
     background-color: #f2f2f2;
     border-radius: 5px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-/* Style the heading for each point section */
-.point h3 {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 10px;
+.flexContainer{
+    display: flex;
+    align-items: flex-start;
+}
+.imgContainer{
+    flex: 1;
+
 }
 
-/* Style the text for each point section */
-.point p {
-    font-size: 1em;
-    line-height: 1.5;
-    margin-bottom: 0;
+.textContainer{
+    flex:1;
+    padding-left: 20px ;
+    overflow: hidden;
+}
+
+.background {
+    margin: auto;
+}
+
+.background h3 {
+    margin-top: 10px;
+}
+
+.img_acc {
+    width: 100%;
+    object-fit: cover;
+    opacity: 80%;
+}
+
+.overlay {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: black;
+    z-index: 1;
+}
+
+.overlay h3 {
+    font-size: 3rem;
+}
+
+.overlay p {
+    font-size: 1.5rem;
+}
+
+.overlay button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 230, 0);
+    color: black;
+    cursor: pointer;
 }
