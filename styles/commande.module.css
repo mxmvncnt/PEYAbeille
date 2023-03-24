@@ -1,5 +1,4 @@
 .commande{
-    border-bottom: 2px solid;
     border-color: black;
     border-radius:10px;
     background-color: lightgray;
@@ -8,23 +7,42 @@
     margin: 15px;
     text-align: center;
     justify-content: space-around;
+    align-items: center;
     
+}
+.ContainerCommande{
+    padding:8px;
+    margin: 15px;
+    background-color: lightgray;
+    border-radius:10px;
+    
+}
+.bouttons{
+    margin:5px;
+    display: flex;
+    justify-content: space-around;
+    width:35vh;
+    /* min-width:15px;*/
 }
 .bttnCompleter{
     border-radius: 20px;
-    background-color: green;
+    background-color: #20E55F;
     font-size:large;
-    width: 10vh;
+    width: 15vh;
     height: 5vh;
 }
 
 .bttnAnnuler{
     border-radius: 20px;
-    background-color: red;
+    background-color: #E82C0F;
     font-size:large;
-    width: 10vh;
+    width: 15vh;
     height: 5vh;
 }
 .detailCommande {
     text-align: left;
+}
+.detailCommande[open]{
+    background-color: white;
+    border-radius: 10px;
 }

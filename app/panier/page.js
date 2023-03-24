@@ -6,12 +6,12 @@ import ItemPanier from "../../components/ItemPanier";
 const getItemsPanier = () => {
     const nextCookies = cookies();
     let arrayPanier = nextCookies.get('panier');
-    
+
     if (arrayPanier == undefined) {
         return "Aucune donnee";
     } else {
-        return arrayPanier;  
-    }   
+        return arrayPanier;
+    }
 }
 
 export default async function Panier() {
@@ -49,8 +49,38 @@ export default async function Panier() {
 
                 <div>
                     <h2 className={styles.titre_section}>Items</h2>
-                    <div className={styles.items_commande}>
-                        <ItemPanier data={data} />
+                    <div className={styles.carte_items_commande}>
+                        <div className={styles.items_commande}>
+                            <div className={styles.data_items}>
+                                <ItemPanier data={data} />
+                            </div>
+                        </div>
+                        <div className={styles.infos_total}>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><b>Sous-total: </b></td>
+                                        <td>30,00 $</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Taxes: </b></td>
+                                        <td>7,49 $</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TPS: </td>
+                                        <td>2,50 $</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TVQ: </td>
+                                        <td>4,99 $</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Taxes: </b></td>
+                                        <td>57,49 $</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 

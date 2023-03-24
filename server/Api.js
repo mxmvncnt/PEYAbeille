@@ -6,25 +6,20 @@ const port = process.env.SERVER_PORT;
 const url = `http://${hostname}:${port}`
 
 export async function verifierSession(token) {
-    let response = await fetch(url + '/api/verifier_session', {
-        method: 'POST',
-        body: JSON.stringify({ token }),
-    });
+    let response = await fetch(url + '/api/verifier_session/' + token, {cache: "no-cache"});
 
-    // console.log(response.status)
-    
     let jsonData = await response.json();
     return jsonData;
 }
 
 export async function getProduits() {
-    let response = await fetch(url + "/api/produits", {cache: "no-cache"});
+    let response = await fetch(url + "/api/produits", { cache: "no-cache" });
     let jsonData = await response.json();
     return jsonData;
 }
 
 export async function getInfosProduit(idProduit) {
-    let response = await fetch(url + "/api/produit/" + idProduit, {cache: "no-cache"});
+    let response = await fetch(url + "/api/produit/" + idProduit, { cache: "no-cache" });
     let jsonData = await response.json();
     return jsonData[0];
 }
@@ -50,7 +45,7 @@ export async function register(nom, prenom, email, password) {
 }
 
 export async function getAdminStats(token) {
-    let response = await fetch(url + '/api/admin/infos_ventes/' + token, {cache: "no-cache"});
+    let response = await fetch(url + '/api/admin/infos_ventes/' + token, { cache: "no-cache" });
     let jsonData = await response.json();
     return jsonData;
 }

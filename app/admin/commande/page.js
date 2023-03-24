@@ -19,6 +19,7 @@ export default function commandes() {
 
 function Commande() {
     return (
+        <div className={styles.ContainerCommande}>
         <div className={styles.commande}>
             <h2> Nom du client (# numero de commande)</h2>
             <div className={styles.bouttons}>
@@ -27,11 +28,18 @@ function Commande() {
             </div>
             <p>Paul Nord <br />1234 rue des mirabels
                 <br />514 514 5140 </p>
-            <details>
+           
+        </div>
+        <details className={styles.detailCommande}>
                 <summary>Voir plus</summary>
-                <Details />
+                <div>
+                    <ul>
+                        <li>un produit</li>
+                        <li>un autre produit</li>
+                        <li>total: 54$</li>
+                    </ul>
+                </div>
             </details>
-
         </div>
     )
 }

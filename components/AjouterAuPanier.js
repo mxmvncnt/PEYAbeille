@@ -5,31 +5,45 @@ import { useCookies } from "react-cookie";
 import Link from 'next/link';
 
 
-function ajouterItemAuPanier(item) {
+export default function AjouterAuPanier(item) {
     const [cookies, setCookie] = useCookies(['panier'])
 
-    let produitPanierJson = JSON.stringify(item)
+    function ajouterItemAuPanier(item) {
+        let produitPanierJson = JSON.stringify(item)
 
-    console.log("ARRAY ITEMS")
-    console.log(cookies["panier"])
+        if (cookies["panier"] != undefined) {
+            let arrayItems = cookies["panier"]["items_panier"]
 
-    if (cookies["panier"] != undefined && cookies["panier"]["items_panier"] != undefined) {
-        let arrayItems = cookies["panier"]["items_panier"]
-        arrayItems.push(JSON.parse(produitPanierJson))
-        setCookie('panier', arrayItems, { sameSite: true, path: "/" })
+            let produitPanier = JSON.parse(produitPanierJson)
+
+            let isItemIncremente;
+            
+            // Incrementer la quantite si l'item est deja dans le panier/quand il est ajouté plus d'une fois
+            for (let i = 0; i < arrayItems.length; i++) {
+                if (arrayItems[i]["item"] == produitPanier["item"]) {
+                    arrayItems[i]["quantite"]++;
+                    setCookie('panier', { "items_panier": arrayItems }, { sameSite: true, path: "/" })
+                    isItemIncremente = true;
+                    break;
+                }
+            }
+
+            if (!isItemIncremente) {
+                arrayItems.push(produitPanier)
+                setCookie('panier', { "items_panier": arrayItems }, { sameSite: true, path: "/" })
+                isItemIncremente = false;  
+            }
+
+        }
+        else {
+            let squeletteJson = { "items_panier": [JSON.parse(produitPanierJson)] }
+            setCookie('panier', squeletteJson, { sameSite: true, path: "/" })
+        }
     }
-    else {
-        let squeletteJson = { "items_panier": [JSON.parse(produitPanierJson)] }
-        setCookie('panier', squeletteJson, { sameSite: true, path: "/" })
-    }
-}
-
-
-export default function AjouterAuPanier(item) {
 
     return (
         <div>
-            <Link href="/panier" onClick={()=>ajouterItemAuPanier(item)}>
+            <Link href="/panier" onClick={() => ajouterItemAuPanier(item)}>
                 <button>Ajouter au panier</button>
             </Link>
         </div>
