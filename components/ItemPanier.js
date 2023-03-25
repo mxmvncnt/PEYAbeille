@@ -13,10 +13,7 @@ export default function ItemPanier(
             </div>
         );
     } else {
-        let dataJson = data["data"]["value"];
-        
-        dataJson = JSON.parse(dataJson)
-        dataJson = dataJson["items_panier"]
+        data = data["data"]
 
         return (
             <div>

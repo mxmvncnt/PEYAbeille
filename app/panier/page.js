@@ -15,16 +15,10 @@ const getItemsPanier = () => {
 }
 
 export default async function Panier() {
-
     const data = getItemsPanier();
-
-    console.log(data)
 
     let dataTotal = data["value"];
     dataTotal = JSON.parse(dataTotal)
-
-    console.log(dataTotal)
-
     let sousTotal = 0;
 
     for (let i = 0; i < dataTotal["items_panier"].length; i++) {
@@ -36,6 +30,8 @@ export default async function Panier() {
     let taxesTPS = (sousTotal * 0.05).toFixed(2);
     let taxesTotal = parseFloat(taxesTPS) + parseFloat(taxesTVQ);
     let prixTotal = parseFloat(sousTotal) + parseFloat(taxesTotal);
+
+    let itemsPanierJson = dataTotal["items_panier"]
 
     return (
         <div className={styles.body}>
@@ -71,7 +67,11 @@ export default async function Panier() {
                     <div className={styles.carte_items_commande}>
                         <div className={styles.items_commande}>
                             <div className={styles.data_items}>
-                                <ItemPanier data={data} />
+
+                                {itemsPanierJson.map((item) => (
+                                    <ItemPanier data={item} />
+                                ))}
+
                             </div>
                         </div>
                         <div className={styles.infos_total}>
