@@ -59,24 +59,24 @@ export default async function Panier() {
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td><b>Sous-total: </b></td>
-                                        <td>30,00 $</td>
+                                        <td className={styles.total_label}><b>Sous-total: </b></td>
+                                        <td className={styles.total_prix}>30,00 $</td>
                                     </tr>
                                     <tr>
-                                        <td><b>Taxes: </b></td>
-                                        <td>7,49 $</td>
+                                        <td className={styles.total_label}><b>Taxes: </b></td>
+                                        <td className={styles.total_prix}>7,49 $</td>
                                     </tr>
                                     <tr>
-                                        <td>TPS: </td>
-                                        <td>2,50 $</td>
+                                        <td className={`${styles.total_label} ${styles.details_taxes}`}>TPS: </td>
+                                        <td className={styles.total_prix}>2,50 $</td>
                                     </tr>
                                     <tr>
-                                        <td>TVQ: </td>
-                                        <td>4,99 $</td>
+                                        <td className={`${styles.total_label} ${styles.details_taxes}`}>TVQ: </td>
+                                        <td className={styles.total_prix}>4,99 $</td>
                                     </tr>
                                     <tr>
-                                        <td><b>Taxes: </b></td>
-                                        <td>57,49 $</td>
+                                        <td className={styles.total_label}><b>Total: </b></td>
+                                        <td className={styles.total_prix}>57,49 $</td>
                                     </tr>
                                 </tbody>
                             </table>

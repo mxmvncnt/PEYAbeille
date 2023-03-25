@@ -47,6 +47,15 @@
     width: 100%;
 }
 
+.total_prix {
+    padding-left: 50px;
+    text-align: right;
+}
+
+.details_taxes {
+    padding-left: 20px;
+}
+
 .data_items{
     margin-bottom: 175px;
 }
