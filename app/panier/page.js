@@ -18,6 +18,25 @@ export default async function Panier() {
 
     const data = getItemsPanier();
 
+    console.log(data)
+
+    let dataTotal = data["value"];
+    dataTotal = JSON.parse(dataTotal)
+
+    console.log(dataTotal)
+
+    let sousTotal = 0;
+
+    for (let i = 0; i < dataTotal["items_panier"].length; i++) {
+        sousTotal += dataTotal["items_panier"][i]["prix_suggere_unite"] * dataTotal["items_panier"][i]["quantite"];
+    }
+
+    sousTotal = sousTotal.toFixed(2)
+    let taxesTVQ = (sousTotal * 0.09975).toFixed(2);
+    let taxesTPS = (sousTotal * 0.05).toFixed(2);
+    let taxesTotal = parseFloat(taxesTPS) + parseFloat(taxesTVQ);
+    let prixTotal = parseFloat(sousTotal) + parseFloat(taxesTotal);
+
     return (
         <div className={styles.body}>
             {/* <h1>Panier</h1> */}
@@ -60,33 +79,30 @@ export default async function Panier() {
                                 <tbody>
                                     <tr>
                                         <td className={styles.total_label}><b>Sous-total: </b></td>
-                                        <td className={styles.total_prix}>30,00 $</td>
+                                        <td className={styles.total_prix}>{sousTotal} $</td>
                                     </tr>
                                     <tr>
                                         <td className={styles.total_label}><b>Taxes: </b></td>
-                                        <td className={styles.total_prix}>7,49 $</td>
+                                        <td className={styles.total_prix}>{taxesTotal} $</td>
                                     </tr>
                                     <tr>
                                         <td className={`${styles.total_label} ${styles.details_taxes}`}>TPS: </td>
-                                        <td className={styles.total_prix}>2,50 $</td>
+                                        <td className={styles.total_prix}>{taxesTPS} $</td>
                                     </tr>
                                     <tr>
                                         <td className={`${styles.total_label} ${styles.details_taxes}`}>TVQ: </td>
-                                        <td className={styles.total_prix}>4,99 $</td>
+                                        <td className={styles.total_prix}>{taxesTVQ} $</td>
                                     </tr>
                                     <tr>
                                         <td className={styles.total_label}><b>Total: </b></td>
-                                        <td className={styles.total_prix}>57,49 $</td>
+                                        <td className={styles.total_prix}>{prixTotal} $</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
     );
 }
