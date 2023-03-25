@@ -20,14 +20,10 @@ export default function ItemPanier(
         data = data["data"]
 
         return (
-            <div>
-                {dataJson.map((item) => (
-                    <div className={styles.item_panier}>
-                        <h2 key={item.nom_produit}>{item.nom_produit}</h2>
-                        <input className={styles.input_quantite} key={item.quantite} type="number" defaultValue={item.quantite}></input>
-                        <p key={item.prix_suggere_unite}>{item.prix_suggere_unite * item.quantite}</p>
-                    </div>
-                ))}
+            <div key={data.item} className={styles.item_panier}>
+                <h2 key={data.nom_produit}>{data.nom_produit}</h2>
+                <input key={data.quantite} className={styles.input_quantite} type="number" defaultValue={data.quantite}></input>
+                <p key={data.prix_suggere_unite}>{data.prix_suggere_unite * data.quantite}</p>
             </div>
         );
     }
