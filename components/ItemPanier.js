@@ -20,10 +20,10 @@ export default function ItemPanier(
         data = data["data"]
 
         return (
-            <div key={data.item} className={styles.item_panier}>
-                <h2 key={data.nom_produit}>{data.nom_produit}</h2>
-                <input key={data.quantite} className={styles.input_quantite} type="number" defaultValue={data.quantite}></input>
-                <p key={data.prix_suggere_unite}>{data.prix_suggere_unite * data.quantite}</p>
+            <div className={styles.item_panier}>
+                <h2>{data.nom_produit}</h2>
+                <input className={styles.input_quantite} type="number" defaultValue={data.quantite}></input>
+                <p>{data.prix_suggere_unite * data.quantite}</p>
             </div>
         );
     }

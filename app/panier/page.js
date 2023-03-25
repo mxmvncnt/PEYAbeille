@@ -69,7 +69,7 @@ export default async function Panier() {
                             <div className={styles.data_items}>
 
                                 {itemsPanierJson.map((item) => (
-                                    <ItemPanier data={item} />
+                                    <ItemPanier key={item.item} data={item} />
                                 ))}
 
                             </div>
