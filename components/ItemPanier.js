@@ -1,13 +1,13 @@
 "use client";
 
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import styles from '../styles/item_panier.module.css'
 
 export default function ItemPanier(
     data = "Aucune donnee"
 ) {
-    // const router = useRouter();
-    // router.refresh();
+    const router = useRouter();
+    router.refresh();
 
     // console.log(data)
     if (data["data"] == "Aucune donnee") {
