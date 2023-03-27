@@ -29,8 +29,8 @@ export default async function Panier() {
         sousTotal = sousTotal.toFixed(2)
         let taxesTVQ = (sousTotal * 0.09975).toFixed(2);
         let taxesTPS = (sousTotal * 0.05).toFixed(2);
-        let taxesTotal = parseFloat(taxesTPS) + parseFloat(taxesTVQ);
-        let prixTotal = parseFloat(sousTotal) + parseFloat(taxesTotal);
+        let taxesTotal = (parseFloat(taxesTPS) + parseFloat(taxesTVQ)).toFixed(2);
+        let prixTotal = (parseFloat(sousTotal) + parseFloat(taxesTotal)).toFixed(2);
 
         let itemsPanierJson = dataTotal["items_panier"]
 
