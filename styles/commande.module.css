@@ -1,7 +1,6 @@
 .commande{
     border-color: black;
     border-radius:10px;
-    background-color: lightgray;
     display: flex;
     padding:8px;
     margin: 15px;
@@ -13,7 +12,6 @@
 .ContainerCommande{
     padding:8px;
     margin: 15px;
-    background-color: lightgray;
     border-radius:10px;
     
 }
@@ -26,7 +24,6 @@
 }
 .bttnCompleter{
     border-radius: 20px;
-    background-color: #20E55F;
     font-size:large;
     width: 15vh;
     height: 5vh;
@@ -34,7 +31,6 @@
 
 .bttnAnnuler{
     border-radius: 20px;
-    background-color: #E82C0F;
     font-size:large;
     width: 15vh;
     height: 5vh;
@@ -45,4 +41,53 @@
 .detailCommande[open]{
     background-color: white;
     border-radius: 10px;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .commande {
+        border-color: black;
+        background-color: #141414;
+    }
+
+    .ContainerCommande {
+        background-color: #141414;
+    }
+
+    .bttnCompleter {
+        background-color: #26a269;
+    }
+
+    .bttnAnnuler {
+        background-color: #c01c28;
+
+    }
+
+    .detailCommande[open] {
+        background-color: #202020;
+    }
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+    .commande {
+        border-color: black;
+        background-color: lightgray;
+    }
+
+    .ContainerCommande {
+        background-color: lightgray;
+    }
+
+    .bttnCompleter {
+        background-color: #2ec27e;
+    }
+
+    .bttnAnnuler {
+        background-color: #e01b24;
+    }
+
+    .detailCommande[open] {
+        background-color: white;
+    }
 }
