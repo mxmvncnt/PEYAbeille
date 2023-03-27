@@ -1,45 +1,61 @@
-.commande{
+.commande {
     border-color: black;
-    border-radius:10px;
+    border-radius: 10px;
     display: flex;
-    padding:8px;
+    padding: 8px;
     margin: 15px;
     text-align: center;
     justify-content: space-around;
     align-items: center;
-    
-}
-.ContainerCommande{
-    padding:8px;
-    margin: 15px;
-    border-radius:10px;
-    
-}
-.bouttons{
-    margin:5px;
-    display: flex;
-    justify-content: space-around;
-    width:35vh;
-    /* min-width:15px;*/
-}
-.bttnCompleter{
-    border-radius: 20px;
-    font-size:large;
-    width: 15vh;
-    height: 5vh;
+
 }
 
-.bttnAnnuler{
-    border-radius: 20px;
-    font-size:large;
-    width: 15vh;
-    height: 5vh;
+.body {
+    height: 100vh;
 }
+
+.ContainerCommande {
+    padding: 8px;
+    margin: 15px;
+    border-radius: 10px;
+
+}
+
+.bouttons {
+    margin: 5px;
+    display: flex;
+    justify-content: space-around;
+    width: 35vh;
+    /* min-width:15px;*/
+}
+
+.bttnCompleter {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.bttnAnnuler {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
 .detailCommande {
     text-align: left;
 }
-.detailCommande[open]{
-    background-color: white;
+
+.detailCommande[open] {
     border-radius: 10px;
 }
 
