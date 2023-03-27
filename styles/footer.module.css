@@ -48,6 +48,13 @@
 	color: #999;
 }
 
+/* === DARK MODE === */
+@media (prefers-color-scheme: dark) {
+	.footer_li a {
+		color: #e1e1e1;
+	}
+}
+
 /* === VUE SPECIFIQUE ORDINATEUR === */
 @media only screen and (min-width: 601px) {
 	.footer {
