@@ -5,29 +5,27 @@ import { useState, useEffect } from "react";
 import styles from '../styles/headerbar.module.css';
 import Link from 'next/link';
 import { useCookies } from "react-cookie";
+import { MdShoppingCart } from 'react-icons/md';
 
 const hostname = 'localhost';
 const port = '4003';
 const url = 'http://' + hostname + ':' + port;
 
 let BtnCompte = () => {
-    
+
 
     const [cookies, setCookie] = useCookies(['token'])
     const [statusConnexion, setStatusConnexion] = useState()
 
     useEffect(() => {
         const verifierSession = async (token) => {
-            let response = await fetch(url + '/api/verifier_session/' + token, {cache: "no-cache"});
+            let response = await fetch(url + '/api/verifier_session/' + token, { cache: "no-cache" });
 
             setStatusConnexion(response.status);
         }
 
         verifierSession(cookies.token);
     }, []);
-
-
-    // console.log(statusConnexion)
 
     // si la session est valide, l'utilisateur est connecté
     if (statusConnexion === 200) {
@@ -111,6 +109,12 @@ export default function HeaderBar() {
                 <BtnCompte />
 
             </div>
+
+            <Link
+                href="/panier"
+                id={styles.icone_panier}>
+                <MdShoppingCart />
+            </Link>
 
         </div>
     );

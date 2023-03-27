@@ -81,6 +81,12 @@
 		width: 100%;
 	}
 
+	#icone_panier {
+		height: 100%;
+		position:relative;
+		right: 0;
+	}
+
 	#lien_connexion {
 		font-weight: normal !important;
 		justify-content: right !important;
