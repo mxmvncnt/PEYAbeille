@@ -1,5 +1,4 @@
 .dashboard_container{
-    background-color: lightgray;
     width: 90vh;
     margin: 5px;
     padding: 10px;
@@ -8,13 +7,11 @@
 }
 
 .AllerCommande{
-    background-color: lightgray;
     width: 50vh;
     border-radius: 10px;
     text-align: center;
 }
 .AllerInventaire{
-    background-color: lightgray;
     width: 50vh;
     border-radius: 10px;
     text-align: center;
@@ -26,4 +23,32 @@
     width: 20vh;
     height: 8vh;
     font-size: large;
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+	.dashboard_container{
+        background-color: #141414;        
+    }
+
+    .AllerCommande{
+        background-color: #141414;
+    }
+    
+    .AllerInventaire{
+        background-color: #141414;
+    }
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+	.dashboard_container{
+        background-color: #efefef;
+    }
+    
+    .AllerCommande{
+        background-color: #efefef;
+    }
+
+    .AllerInventaire{
+        background-color: #efefef;
+    }
 }
