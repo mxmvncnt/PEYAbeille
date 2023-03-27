@@ -7,7 +7,16 @@ const getItemsPanier = () => {
     const nextCookies = cookies();
     let arrayPanier = nextCookies.get('panier');
 
-    if (arrayPanier == undefined) {
+    let arrPanierLength;
+
+    try {
+        let parsedArrayPanier = JSON.parse(arrayPanier["value"]);
+        arrPanierLength = parsedArrayPanier["items_panier"].length
+    } catch (error) {
+        arrPanierLength = 0;
+    }
+
+    if (arrayPanier == undefined || arrPanierLength == 0) {
         return "Aucune donnee";
     } else {
         return arrayPanier;
