@@ -28,7 +28,7 @@ export default async function dashboard() {
 
                     <div className={styles.AllerCommande}>
                         <h3> Dernieres commandes</h3>
-                        <Link href="/admin/commande">
+                        <Link href="/admin/commandes">
                             <button className={styles.button}> Go!</button>
                         </Link>
                     </div>
