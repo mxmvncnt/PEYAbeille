@@ -7,14 +7,6 @@ const getItemsPanier = () => {
     const nextCookies = cookies();
     let arrayPanier = nextCookies.get('panier');
 
-    console.log(arrayPanier)
-
-    try {
-        arrayPanier = JSON.parse(arrayPanier["panier"]["items_panier"]);
-    } catch (error) {
-        arrayPanier = undefined;
-    }
-
     if (arrayPanier == undefined) {
         return "Aucune donnee";
     } else {
