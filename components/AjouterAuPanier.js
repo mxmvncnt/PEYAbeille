@@ -43,9 +43,9 @@ export default function AjouterAuPanier(item) {
 
     return (
         <div>
-            <Link href="/panier" onClick={() => ajouterItemAuPanier(item)}>
+            <a href="/panier" onClick={() => ajouterItemAuPanier(item)}>
                 <button>Ajouter au panier</button>
-            </Link>
+            </a>
         </div>
     )
 }
