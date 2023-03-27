@@ -1,0 +1,39 @@
+.ContainerInventaire{
+    background-color: lightgrey;
+    width: 85vw;
+    height: 30vh;
+    border-radius: 10px;
+    margin:auto;
+    display: flex;;
+}
+.form{
+    padding:10px;
+    width:30%;
+}
+
+.form label{
+    display:inline-block;
+    text-align: right;
+    width:25vh;
+    padding:7px;
+}
+.form textarea{
+    height: 10vh;
+}
+.ContainerImage{
+    width: 55%;
+}
+.bttnSupprimer{
+    border-radius:10px;
+    border: red 1px solid;
+    color: red;
+    width: 15vh;
+    margin:15px;
+}
+.bttnConfirmer{
+    border-radius:10px;
+    border: green 1px solid;
+    color: green;
+    width: 15vh;
+    margin:15px;
+}
