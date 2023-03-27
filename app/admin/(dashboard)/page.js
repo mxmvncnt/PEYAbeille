@@ -2,6 +2,7 @@ import React from "react";
 import { cookies } from 'next/headers';
 import { getAdminStats } from '../../../server/Api'
 import styles from '../../../styles/dashboard.module.css';
+import Link from "next/link";
 
 const getToken = () => {
     const nextCookies = cookies(); // Get cookies object
@@ -14,8 +15,8 @@ export default async function dashboard() {
 
     if (token != null) {
         const data = await getAdminStats(token["value"]);
-        return(
-            <div>
+        return (
+            <div className={styles.body}>
                 <h1>Dashboard</h1>
                 <div className={styles.dashboard_container}>
                     <p>Volume de ventes total: {data["ventes"]}</p>
@@ -24,16 +25,22 @@ export default async function dashboard() {
                     <p>Produit le moins populare: {data["produits"]["moins_populaire"]["produit"]["nom"]} ({data["produits"]["moins_populaire"]["ventes"]} ventes)</p>
                 </div>
                 <div className={styles.bouttons}>
+
                     <div className={styles.AllerCommande}>
                         <h3> Dernieres commandes</h3>
-                        <button className={styles.button}> Go!</button>
+                        <Link href="/admin/commande">
+                            <button className={styles.button}> Go!</button>
+                        </Link>
                     </div>
+
                     <div className={styles.AllerInventaire}>
                         <h3> Inventaire</h3>
-                        <button className={styles.button}> Go!</button>
+                        <Link href="/admin/inventaire">
+                            <button className={styles.button}> Go!</button>
+                        </Link>
                     </div>
+
                 </div>
-    
             </div>
         );
     } else {
