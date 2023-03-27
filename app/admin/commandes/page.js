@@ -6,7 +6,7 @@ import Commande from "../../../components/Commande";
 export default function Commandes() {
     return (
 
-        <div>
+        <div className={styles.body}>
             <h1> Commandes</h1>
 
             <Commande />
