@@ -543,71 +543,81 @@ async function run() {
 
         let commandesJson = {
           "commandes": [
-            // {
-            //   ID_COMMANDE: 2,
-            //   ADRESSE: '500 blv Samson Ste-do',
-            //   DATE_COMMANDE: '2023-02-01T04:00:00.000Z',
-            //   STATUT_ENVOYE: 'F',
-            //   NOM: 'Bencheriff',
-            //   PRENOM: 'Kenza',
-            //   EMAIL: 'pouepettekenza@gmail.com',
-            //   QUANTITE: 1,
-            //   PRIX: 30,
-            //   ID_PRODUIT: 3,
-            //   NOM_1: 'Miel de Fleurs Sauvages',
-            //   PRIX_SUGGERE: 23
-            // }
-            
+
           ],
         };
 
-        for (let i = 0; i < commandes.length; i++) {
-          const element = commandes[i];
+
+        commandes.forEach(element => {
           let commandeElement;
-          
 
-          if (commandesJson["commandes"].length > i) {
-
-            if (element["ID_COMMANDE"] == commandesJson["commandes"][i]["ID_COMMANDE"]) {
-              
-              commandeElement = {
-                id : element["ID_PRODUIT"],
-                nom : element["NOM_1"],
-                prix_unite : element["PRIX_SUGGERE"],
-                quantite : element["QUANTITE"]
-              }
-
-              commandesJson["commandes"][i]["items"].push(commandeElement);
-
-            } 
-
-          } else {
-
+          // la premiere commande est ajoutee manuellement et sans items
+          if (commandesJson["commandes"].length == 0) {
             commandeElement = {
-              id : element["ID_COMMANDE"],
-              adresse : element["ADRESSE"],
+              id: element["ID_COMMANDE"],
+              adresse: element["ADRESSE"],
               date: Date.toString(element["DATE_COMMANDE"]),
               statut: element["STATUT_ENVOYE"],
               prix_sous_total: element["PRIX"],
-              client : {
-                nom : element["NOM"],
-                prenom : element["PRENOM"],
-                email : element["EMAIL"]
+              client: {
+                nom: element["NOM"],
+                prenom: element["PRENOM"],
+                email: element["EMAIL"]
               },
-              items : [
-                {
-                  id : element["ID_PRODUIT"],
-                  nom : element["NOM_1"],
-                  prix_unite : element["PRIX_SUGGERE"],
-                  quantite : element["QUANTITE"]
-                }
+              items: [
+
               ]
             }
 
+            commandesJson["commandes"].push(commandeElement)
           }
 
-          commandesJson["commandes"].push(commandeElement);
-        }
+          commandesJson["commandes"].forEach(elementCommandeJson => {
+
+            /**
+             * Si le ID de la commande dans le json est le meme que la ligne 
+             * de la BD, on ajoute que l'item a la commande precedente au lieu
+             * de creer un deuxieme element a larray.
+             */
+            if (elementCommandeJson["id"] == element["ID_COMMANDE"]) {
+
+              commandeElement = {
+                id: element["ID_PRODUIT"],
+                nom: element["NOM_1"],
+                prix_unite: element["PRIX_SUGGERE"],
+                quantite: element["QUANTITE"]
+              }
+
+              elementCommandeJson["items"].push(commandeElement);
+
+              // Si le ID nest pas le meme on ajoute un nouvel element a larray
+            } else {
+
+              commandeElement = {
+                id: element["ID_COMMANDE"],
+                adresse: element["ADRESSE"],
+                date: Date.toString(element["DATE_COMMANDE"]),
+                statut: element["STATUT_ENVOYE"],
+                prix_sous_total: element["PRIX"],
+                client: {
+                  nom: element["NOM"],
+                  prenom: element["PRENOM"],
+                  email: element["EMAIL"]
+                },
+                items: [
+                  {
+                    id: element["ID_PRODUIT"],
+                    nom: element["NOM_1"],
+                    prix_unite: element["PRIX_SUGGERE"],
+                    quantite: element["QUANTITE"]
+                  }
+                ]
+              }
+
+              commandesJson["commandes"].push(commandeElement);
+            }
+          });
+        });
 
         res.status(201).json(commandesJson).end();
 
