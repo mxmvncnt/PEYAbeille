@@ -9,11 +9,11 @@ export default function Commande(data) {
 
     return (
         <div className={styles.ContainerCommande}>
-                <button className={styles.bttnCompleter}> Completer </button>
-                <button className={styles.bttnAnnuler}> Annuler </button>
             <div className={styles.commande}>
                 <h2>(# {data.id}) {data.client.nom}, {data.client.prenom}</h2>
                 <div className={styles.bouttons}>
+                    <button className={styles.bttnCompleter} disabled={data.statut == 'F' ? true : false}> Completer </button>
+                    <button className={styles.bttnAnnuler} disabled={data.statut == 'F' ? true : false}> Annuler </button>
                 </div>
                 <p>{data.client.nom}, {data.client.prenom} <br />{data.adresse}</p>
 
