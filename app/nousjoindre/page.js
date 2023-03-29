@@ -1,5 +1,7 @@
 import React from "react";
 import styles from '../../styles/nous_joindre.module.css';
+import image from '../../public/apicul.jpg';
+import Image from "next/image";
 
 export default function NousJoindre() {
     return (
@@ -8,7 +10,11 @@ export default function NousJoindre() {
             <div className={styles.page_nousjoindre_grid_carte_image}>
 
                 <div className={styles.page_nousjoindre_grid_item}>
-                    <img className={styles.page_nousjoindre_image} src="https://static.actu.fr/uploads/2021/03/ruche-miel-adobe-stock.jpeg" alt="" />
+                    <Image className={`${styles.page_nousjoindre_image}`}
+                        src={image}
+                        alt={"image temporaire"}
+                        
+                    />
                 </div>
 
                 <div className={`${styles.page_nousjoindre_grid_item} ${styles.page_nousjoindre_contact}`}>
