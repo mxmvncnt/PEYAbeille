@@ -1,19 +1,37 @@
 import React from "react";
+import { cookies } from 'next/headers';
 import styles from '../../../styles/commande.module.css';
 import Commande from "../../../components/Commande";
+import { getCommandesAdmin } from "../../../server/Api";
 
 
-export default function Commandes() {
-    return (
+const getToken = () => {
+    const nextCookies = cookies(); // Get cookies object
+    const token = nextCookies.get('token') // Find cookie
+    return token
+}
 
-        <div className={styles.body}>
-            <h1> Commandes</h1>
+export default async function Commandes() {
 
-            <Commande />
-            <Commande />
+    const token = getToken();
+    if (token != null) {
 
-        </div>
+        let data = await getCommandesAdmin(token["value"]);
 
-    );
+        return (
+            <div style={{minHeight:"100vh"}}>
+                {data["commandes"].map((commande) => (
+                    <Commande key={commande.id} data={commande} />
+                ))}
+            </div>
+        );
+
+    } else {
+        return (
+            <div>
+                <h1>ERREUR: vous n'avez pas les permissions pour faire cela.</h1>
+            </div>
+        )
+    }
 }
 
