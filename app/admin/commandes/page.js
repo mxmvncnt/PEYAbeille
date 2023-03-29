@@ -14,22 +14,32 @@ const getToken = () => {
 export default async function Commandes() {
 
     const token = getToken();
+
+    console.log(token)
     if (token != null) {
 
         let data = await getCommandesAdmin(token["value"]);
 
-        return (
-            <div style={{minHeight:"100vh"}}>
-                {data["commandes"].map((commande) => (
-                    <Commande data={commande} key={commande.id}/>
-                ))}
-            </div>
-        );
+        if (data != 403) {
+            return (
+                <div style={{minHeight:"100vh"}}>
+                    {data["commandes"].map((commande) => (
+                        <Commande data={commande} key={commande.id}/>
+                    ))}
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <h1>ERREUR: vous n'avez pas les permissions pour faire cela.</h1>
+                </div>
+            )
+        }
 
     } else {
         return (
             <div>
-                <h1>ERREUR: vous n'avez pas les permissions pour faire cela.</h1>
+                <h1>ERREUR: vous devez être connecté pour faire cela.</h1>
             </div>
         )
     }

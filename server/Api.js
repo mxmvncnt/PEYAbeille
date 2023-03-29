@@ -47,11 +47,21 @@ export async function register(nom, prenom, email, password) {
 export async function getAdminStats(token) {
     let response = await fetch(url + '/api/admin/infos_ventes/' + token, { cache: "no-cache" });
     let jsonData = await response.json();
+
+    if (response.status == 403) {
+        return 403;
+    }
+
     return jsonData;
 }
 
 export async function getCommandesAdmin(token) {
     let response = await fetch(url + '/api/admin/commandes/' + token, { cache: "no-cache" });
     let jsonData = await response.json();
+
+    if (response.status == 403) {
+        return 403;
+    }
+
     return jsonData;
 }
