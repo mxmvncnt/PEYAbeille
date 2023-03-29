@@ -21,7 +21,7 @@ export default async function Commandes() {
         return (
             <div style={{minHeight:"100vh"}}>
                 {data["commandes"].map((commande) => (
-                    <Commande key={commande.id} data={commande} />
+                    <Commande data={commande} key={commande.id}/>
                 ))}
             </div>
         );
