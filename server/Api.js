@@ -49,3 +49,9 @@ export async function getAdminStats(token) {
     let jsonData = await response.json();
     return jsonData;
 }
+
+export async function getCommandesAdmin(token) {
+    let response = await fetch(url + '/api/admin/commandes/' + token, { cache: "no-cache" });
+    let jsonData = await response.json();
+    return jsonData;
+}
