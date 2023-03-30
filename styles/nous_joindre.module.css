@@ -1,6 +1,19 @@
 .page_nousjoindre_grid_carte_image {
-    display: grid;
-    place-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.page_nousjoindre_grid_item:first-child {
+    margin-right: 20px;
+    flex-basis: 50%;
+}
+
+.page_nousjoindre_grid_item:last-child {
+    flex-basis: 50%;
 }
 
 .page_nousjoindre_grid_item {
