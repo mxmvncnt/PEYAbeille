@@ -5,8 +5,7 @@ import styles from '../styles/commande.module.css';
 export default function Commande(data) {
 
     data = data["data"]
-    console.log(data)
-
+    let total=0;
     return (
         <div className={styles.ContainerCommande}>
             <div className={styles.commande}>
@@ -24,9 +23,12 @@ export default function Commande(data) {
                     <ul>
                         {data.items.map((item) => (
                             <div>
-                                <li key={item.id}>{item.quantite} x {item.nom}</li>
+                                <li key={item.id}>{item.quantite} x {item.nom} = {parseInt(item.quantite) * parseFloat(item.prix_unite)}$ </li>
+                                
+                                {total += parseInt(item.quantite) * parseFloat(item.prix_unite)}
                             </div>
                         ))}
+                        <li>    Total = {total}$</li>
                     </ul>
                 </div>
             </details>

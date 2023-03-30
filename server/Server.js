@@ -540,7 +540,7 @@ async function run() {
             inner join ITEM__COMMANDE IC on COMMANDE.ID_COMMANDE = IC.COMMANDE_ID_COMMANDE
             inner join PRODUIT P on IC.ID_PRODUIT = P.ID_PRODUIT`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
         commandes = commandes["rows"]
-
+        console.log(commandes);
         let commandesJson = {
           "commandes": [
 
