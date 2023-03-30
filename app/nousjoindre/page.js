@@ -12,8 +12,10 @@ export default function NousJoindre() {
                 <div className={styles.page_nousjoindre_grid_item}>
                     <Image className={`${styles.page_nousjoindre_image}`}
                         src={image}
-                        alt={"image temporaire"}
-                        
+                        alt={"image temporaire"}   
+                        width ={600}
+                        height={700}   
+
                     />
                 </div>
 
@@ -28,14 +30,9 @@ export default function NousJoindre() {
                     </div>
 
                     <div className={styles.page_nousjoindre_contact_item}>
-                        <iframe title="OpenStreetMaps" id={styles.page_nousjoindre_iframe_map} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            src="https://www.openstreetmap.org/export/embed.html?bbox=-74.17625931207037%2C45.328975270124204%2C-73.18748978082037%2C45.746440307251355&amp;layer=mapnik">
-                        </iframe>
-                        <br />
-                        <small>
-                            <a href="https://www.openstreetmap.org/#map=11/45.5381/-73.6819">Carte plus grande</a>
-                        </small>
+                    <iframe title="OpenStreetMaps" id={styles.page_nousjoindre_iframe_map} width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-73.90743255615236%2C45.795416816359804%2C-73.68083953857423%2C45.904702604307666&amp;layer=mapnik" style={{border: '1px' , 'solid' : 'black' }} ></iframe><br/><small><a href="https://www.openstreetmap.org/#map=13/45.8501/-73.7941">View Larger Map</a></small>
                     </div>
+                    
 
                 </div>
 

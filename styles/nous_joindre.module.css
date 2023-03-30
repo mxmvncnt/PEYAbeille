@@ -5,6 +5,7 @@
     margin-left: 20px;
     height: 100%;
     width: 100%;
+    margin-top: 3%;
 }
 
 .page_nousjoindre_grid_item:first-child {
@@ -33,6 +34,7 @@
 .page_nousjoindre_contact_item {
     display: flex;
     flex-direction: column;
+    margin-bottom: 25%;
 }
 
 /* adresse */
@@ -57,8 +59,8 @@
 
     /* carte */
     #page_nousjoindre_iframe_map {
-        width: 35vw;
-        height: 50vh;
+        width: 45vw;
+        height: 65vh;
     }
 
     /* arrondir les coins du centre de limage */
@@ -88,4 +90,55 @@
         height: 70vh;
         display: block;
     }
+
+
 }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-input {
+    margin: 10px 0;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .form-textarea {
+    margin: 10px 0;
+    width: 100%;
+    max-width: 400px;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+  }
+  
+  .form-button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .form-button:hover {
+    background-color: #303f9f;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .form-input, .form-textarea {
+      max-width: 100%;
+    }
+  }
