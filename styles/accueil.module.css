@@ -108,6 +108,10 @@
 	.section {
         background-color: #242424;
     }
+
+    .container { 
+        background-color: #33302e;
+    }
 }
 
 /* Light Mode */

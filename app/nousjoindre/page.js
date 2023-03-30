@@ -1,6 +1,6 @@
 import React from "react";
 import styles from '../../styles/nous_joindre.module.css';
-import image from '../../public/apicul.jpg';
+import image from '../../public/cap12.png';
 import Image from "next/image";
 
 export default function NousJoindre() {
@@ -13,8 +13,7 @@ export default function NousJoindre() {
                     <Image className={`${styles.page_nousjoindre_image}`}
                         src={image}
                         alt={"image temporaire"}   
-                        width ={600}
-                        height={700}   
+                       
 
                     />
                 </div>

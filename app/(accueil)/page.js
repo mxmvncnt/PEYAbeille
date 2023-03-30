@@ -2,7 +2,7 @@ import React from "react";
 import styles from '../../styles/accueil.module.css'
 import image_accueil from '../../public/acc_pot.jpg'
 import abeille from '../../public/abb02.png'
-import abeille2 from '../../public/abb8.png'
+//import abeille2 from '../../public/abb8.png'
 import abeille3 from '../../public/abb11.png'
 import Image from "next/image";
 
@@ -26,7 +26,7 @@ export default function Accueil() {
                         <div className={`${styles.imgContainer}`}>
                             <Image
                                 className={`${styles.img_acc}`}
-                                src={abeille}
+                                src={abeille3}
                                 alt="image temporaire"
                             />
                         </div>
@@ -43,7 +43,7 @@ export default function Accueil() {
                         <div className={`${styles.imgContainer}`}>
                             <Image
                                 className={`${styles.img_acc}`}
-                                src={abeille2}
+                                src={abeille3}
                                 alt="image temporaire"
                             />
                         </div>
