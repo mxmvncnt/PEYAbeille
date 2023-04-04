@@ -56,7 +56,7 @@ export default async function dashboard() {
     } else {
         return (
             <div>
-                <h1>ERREUR: vous n'avez pas les permissions pour faire cela.</h1>
+                <h1>ERREUR: vous devez être connecté pour faire cela.</h1>
             </div>
         )
     }
