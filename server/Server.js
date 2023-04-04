@@ -23,7 +23,12 @@ if (libPath && fs.existsSync(libPath)) {
   oracledb.initOracleClient({ libDir: libPath });
 }
 
-app.use(fileUpload());
+app.use(fileUpload({
+  createParentPath: true, // ne pas faire une erreur de chemin introuvable
+  safeFileNames: true, // eviter des fichiers mis en ligne tels que ../index.js qui remplaceraient le contenu du site.
+  preserveExtension: 4, // .webp utilise 4 char donc on ne veut pas tronquer
+  abortOnLimit: true // retourner une erreur si le fichier est trop gros au lieu de couper le flux 
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -304,7 +309,7 @@ async function run() {
 
     const image = req.files;
 
-    // console.log(image["images"])
+    // console.log(image["images"]);
 
     if (image == null) {
       return res.sendStatus(400);
