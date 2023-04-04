@@ -2,6 +2,7 @@
 * importation des modules requis
 **/
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const app = express()
 const oracledb = require('oracledb');
@@ -22,6 +23,7 @@ if (libPath && fs.existsSync(libPath)) {
   oracledb.initOracleClient({ libDir: libPath });
 }
 
+app.use(fileUpload());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -287,6 +289,31 @@ async function run() {
       }).end();
 
     }
+  });
+
+
+  /***************************************\
+  |* =================================== *|
+  |*  POST ADMIN AJOUTER IMAGES PRODUIT  *|
+  |* =================================== *|
+  \***************************************/
+
+  // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
+  app.post('/api/admin/upload_images', async function (req, res) {
+    // console.log(req.files);
+
+    const image = req.files;
+
+    // console.log(image["images"])
+
+    if (image == null) {
+      return res.sendStatus(400);
+    }
+
+    // fs.rename(image, './file_uploads/images_produit/2/' + image["images"].name)
+    image["images"].mv(__dirname + '/file_upload/' + image["images"].name);
+
+    res.sendStatus(200);
   });
 
   /*********************************\
