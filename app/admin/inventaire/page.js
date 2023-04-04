@@ -16,7 +16,7 @@ export default function inventaire() {
 
 function Inventaire() {
     return (
-        <div style={{minHeight:"100vh"}}>
+        <div style={{ minHeight: "100vh" }}>
             <div className={styles.ContainerInventaire}>
 
                 <div className={styles.form}>
@@ -31,10 +31,11 @@ function Inventaire() {
                         <textarea className={styles.input_field}></textarea><br />
                     </form>
                 </div>
-                <div className={styles.ContainerImage}>
-                    <p> Ajouter une image</p>
-                    <button>Ajouter Image</button>
-                </div>
+                <form action="http://localhost:4003/api/admin/upload_images" method="post" encType="multipart/form-data">
+                    <input type="file" name="images" multiple/>
+                    {/* <button type="submit" >Envoyer</button> */}
+                    <input type="submit"/>
+                </form>
                 <div>
                     <button className={styles.bttnSupprimer}> Supprimer produit</button>
                     <button className={styles.bttnConfirmer}>Confirmer</button>
