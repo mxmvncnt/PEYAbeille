@@ -18,6 +18,13 @@
     padding: 15px;
 }
 
+.thumbnail {
+    object-fit: contain;
+    width: 80%;
+    margin: 0 auto;
+    max-height: 400px;
+}
+
 /* === DARK MODE === */
 @media (prefers-color-scheme: light) {
 	.page_produits_produit {
@@ -41,5 +48,9 @@
 @media only screen and (max-width: 600px) {
     .page_produits_grid_produits {
         grid-template-columns: auto;
+    }
+
+    .page_produits_produit {
+        max-width: 400px;
     }
 }
