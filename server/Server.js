@@ -334,12 +334,34 @@ async function run() {
         res.status(403).json({
           "erreur": "Vous n'avez pas les permissions requises."
         }).end();
+  // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
+  app.get('/api/admin/get_images_produits', async function (req, res) {
+
+    let produits = await con.execute(`SELECT ID_PRODUIT FROM PRODUIT`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+
+    produits = produits["rows"]
+
+    let imagesProduitJson = {
+      "produits": [
+
+      ],
+    };
+
+    produits.forEach(produit => {
+      if (fs.existsSync(`${__dirname}/file_upload/id_produit/${produit.ID_PRODUIT}/`)) {
+        imagesProduitJson["produits"].push({
+          id_produit: produit.ID_PRODUIT,
+          url : `http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${produit.ID_PRODUIT}/0.png`
+        });
       }
     } else {
       res.status(403).json({
         "erreur": "Vous devez être connecté pour faire cette action"
       }).end();
     }
+    });   
+
+    res.status(201).json(imagesProduitJson).end();
   });
 
   /*********************************\
