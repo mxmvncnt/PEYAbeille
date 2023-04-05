@@ -304,33 +304,25 @@ async function run() {
   \***************************************/
 
   // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
-  app.post('/api/admin/upload_images/:path/', async function (req, res) {
-    // console.log(req.files);
+  app.post('/api/admin/upload_images/:id_produit', async function (req, res) {
 
     const images = req.files;
     let params = req.params;
-    const emplacement = params['path'];
 
-    // console.log(image["images"]);
+    const idProduit = params['id_produit'];
 
     if (images == null) {
       return res.sendStatus(400);
     }
 
-    // for (let i = 0; i < image["images"].length; i++) {
-    //   image["images"].mv(`${__dirname}/file_upload/${emplacement}/${image["images"].name}`);
-    // }
-
+    // verifie sil y a plus quun image, si oui toutes la ajouter au dossier du produit.
     if (images["images"].length == undefined) {
-      images["images"].mv(`${__dirname}/file_upload/${emplacement}/${images["images"].name}`);
+      images["images"].mv(`${__dirname}/file_upload/id_produit/${idProduit}/${images["images"].name}`);
     } else {
       images["images"].forEach(image => {
-        image.mv(`${__dirname}/file_upload/${emplacement}/${image.name}`);
+        image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/${image.name}`);
       });
     }
-
-    
-    
 
     res.sendStatus(200);
   });
