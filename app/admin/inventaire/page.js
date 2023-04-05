@@ -31,7 +31,7 @@ function Inventaire() {
                         <textarea className={styles.input_field}></textarea><br />
                     </form>
                 </div>
-                <form action="http://localhost:4003/api/admin/upload_images" method="post" encType="multipart/form-data">
+                <form action={`http://localhost:4003/api/admin/upload_images/id_produit/${2}/`} method="post" encType="multipart/form-data">
                     <input type="file" name="images" multiple/>
                     {/* <button type="submit" >Envoyer</button> */}
                     <input type="submit"/>

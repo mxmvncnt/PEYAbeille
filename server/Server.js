@@ -304,19 +304,33 @@ async function run() {
   \***************************************/
 
   // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
-  app.post('/api/admin/upload_images', async function (req, res) {
+  app.post('/api/admin/upload_images/:path/', async function (req, res) {
     // console.log(req.files);
 
-    const image = req.files;
+    const images = req.files;
+    let params = req.params;
+    const emplacement = params['path'];
 
     // console.log(image["images"]);
 
-    if (image == null) {
+    if (images == null) {
       return res.sendStatus(400);
     }
 
-    // fs.rename(image, './file_uploads/images_produit/2/' + image["images"].name)
-    image["images"].mv(__dirname + '/file_upload/' + image["images"].name);
+    // for (let i = 0; i < image["images"].length; i++) {
+    //   image["images"].mv(`${__dirname}/file_upload/${emplacement}/${image["images"].name}`);
+    // }
+
+    if (images["images"].length == undefined) {
+      images["images"].mv(`${__dirname}/file_upload/${emplacement}/${images["images"].name}`);
+    } else {
+      images["images"].forEach(image => {
+        image.mv(`${__dirname}/file_upload/${emplacement}/${image.name}`);
+      });
+    }
+
+    
+    
 
     res.sendStatus(200);
   });
