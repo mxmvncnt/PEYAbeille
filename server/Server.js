@@ -10,6 +10,8 @@ const fs = require('fs')
 const crypto = require('crypto')
 require('dotenv').config();
 const bcrypt = require('bcrypt')
+const path = require('path');
+const { hostname } = require('os');
 
 let libPath;
 if (process.platform === "win32") {
@@ -31,6 +33,7 @@ app.use(fileUpload({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'file_upload')))
 
 async function run() {
 
