@@ -306,9 +306,9 @@ async function run() {
   // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
   app.post('/api/admin/upload_images/:id_produit', async function (req, res) {
 
-    if (await isSessionOuverte(token)) {
+    // if (await isSessionOuverte(token)) {
 
-      if (await verifierPermsAdmin(token)) {
+    //   if (await verifierPermsAdmin(token)) {
 
         const images = req.files;
         let params = req.params;
@@ -330,10 +330,24 @@ async function run() {
 
         res.sendStatus(200);
 
-      } else {
-        res.status(403).json({
-          "erreur": "Vous n'avez pas les permissions requises."
-        }).end();
+    //   } else {
+    //     res.status(403).json({
+    //       "erreur": "Vous n'avez pas les permissions requises."
+    //     }).end();
+    //   }
+    // } else {
+    //   res.status(403).json({
+    //     "erreur": "Vous devez être connecté pour faire cette action"
+    //   }).end();
+    // }
+  });
+
+  /*****************************\
+  |* ========================= *|
+  |*  GET IMAGES DES PRODUITS  *|
+  |* ========================= *|
+  \*****************************/
+
   // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
   app.get('/api/admin/get_images_produits', async function (req, res) {
 
@@ -354,11 +368,6 @@ async function run() {
           url : `http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${produit.ID_PRODUIT}/0.png`
         });
       }
-    } else {
-      res.status(403).json({
-        "erreur": "Vous devez être connecté pour faire cette action"
-      }).end();
-    }
     });   
 
     res.status(201).json(imagesProduitJson).end();
