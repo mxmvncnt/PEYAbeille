@@ -323,30 +323,47 @@ async function run() {
       return res.sendStatus(400);
     }
 
+    console.log(images['images'])
     let nombreImgProduit;
 
     // verifie sil y a plus quun image, si oui toutes la ajouter au dossier du produit.
     if (images["images"].length == undefined) {
 
+      let extensionFichier = images["images"].mimetype;
+      extensionFichier = extensionFichier.split("/")
+
       let dossierImgProduit = fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit));
-      images["images"].mv(`${__dirname}/file_upload/id_produit/${idProduit}/${dossierImgProduit.length + 1}.png`);
+      images["images"].mv(`${__dirname}/file_upload/id_produit/${idProduit}/${dossierImgProduit.length + 1}.${extensionFichier[1]}`);
 
     } else {
 
       images["images"].forEach(image => {
 
-        // si le sous dossier existe, on ajoute les images avec le nombre en tant que nom de fichier (ex. 2.png)
-        if (fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit))) {
+        // https://pqina.nl/blog/upload-image-with-nodejs/#only-allowing-images
+        // Accepter que les MIME Type d'images
+        if (/^image/.test(image.mimetype)) {
 
-          image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/${nombreImgProduit}.png`);
+          // si le sous dossier existe, on ajoute les images avec le nombre en tant que nom de fichier (ex. 2.png)
+          if (fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit))) {
 
-          nombreImgProduit = nombreImgProduit + 1;
+            let extensionFichier = image.mimetype;
+            extensionFichier = extensionFichier.split("/");
 
-        } else {
-          
-          image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/0.png`);
-          nombreImgProduit = 1;
-          console.log(nombreImgProduit)
+            image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/${nombreImgProduit}.${extensionFichier[1]}`);
+
+            nombreImgProduit = nombreImgProduit + 1;
+
+          } else {
+
+            let extensionFichier = image.mimetype;
+            extensionFichier = extensionFichier.split("/");
+
+            image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/0.${extensionFichier[1]}`);
+            nombreImgProduit = 1;
+            console.log(nombreImgProduit)
+
+          }
+
         }
       });
     }
@@ -377,11 +394,16 @@ async function run() {
     let params = req.params;
     let id_produit = params['id_produit'];
 
-    if (fs.existsSync(`${__dirname}/file_upload/id_produit/${id_produit}/0.png`)) {
+    if (fs.existsSync(`${__dirname}/file_upload/id_produit/${id_produit}/`)) {
 
-      res.status(201).json(`http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${id_produit}/0.png`).end();
+      let dossierProduit = fs.readdirSync(`${__dirname}/file_upload/id_produit/${id_produit}/`);
+
+      dossierProduit.map(image => {
+        if (image.startsWith("0.")) {
+          res.status(201).json(`http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${id_produit}/${image}`).end();
+        }
+      })
     }
-
     else {
 
       res.status(404).json({
