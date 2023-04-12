@@ -4,8 +4,7 @@ import Link from "next/link";
 import { getProduits } from "../../server/Api";
 import IndicateurPrix from "../../components/IndicateurPrix";
 import styles from '../../styles/produits.module.css'
-import Image from "next/image";
-import img_not_found from '../../public/no_img_found.png'
+import ImageProduit from "../../components/ImageProduit";
 
 export default async function Produits() {
     const data = await getProduits();
@@ -18,7 +17,9 @@ export default async function Produits() {
                 {data.map((item) => (
                     <div key={item["ID_PRODUIT"]}>
                         <div className={styles.page_produits_produit}>
-                            <Image className={styles.thumbnail} src={img_not_found} alt="Aucune image n'à été trouvée pour ce produit" />
+
+                            <ImageProduit id={item["ID_PRODUIT"]} />
+
                             <h2 className={styles.page_produits_titre}>
                                 {item["NOM"]}
                             </h2>
