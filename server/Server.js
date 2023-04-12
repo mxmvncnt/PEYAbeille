@@ -323,32 +323,31 @@ async function run() {
       return res.sendStatus(400);
     }
 
+    let nombreImgProduit;
+
     // verifie sil y a plus quun image, si oui toutes la ajouter au dossier du produit.
     if (images["images"].length == undefined) {
 
-      images["images"].mv(`${__dirname}/file_upload/id_produit/${idProduit}/${images["images"].name}`);
+      let dossierImgProduit = fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit));
+      images["images"].mv(`${__dirname}/file_upload/id_produit/${idProduit}/${dossierImgProduit.length + 1}.png`);
 
     } else {
 
       images["images"].forEach(image => {
 
-        // console.log(fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)));
-        // console.log(path.join(__dirname, 'file_upload', 'id_produit', idProduit))
-
+        // si le sous dossier existe, on ajoute les images avec le nombre en tant que nom de fichier (ex. 2.png)
         if (fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit))) {
 
-          let nombreImgProduit = fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit));
+          image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/${nombreImgProduit}.png`);
 
-          // console.log(fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)));
-
-          image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/${nombreImgProduit.length++}.png`);
+          nombreImgProduit = nombreImgProduit + 1;
 
         } else {
-
+          
           image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/0.png`);
-
+          nombreImgProduit = 1;
+          console.log(nombreImgProduit)
         }
-        // console.log(fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)).length)
       });
     }
 
@@ -388,7 +387,7 @@ async function run() {
       res.status(404).json({
         "erreur": "Le produit demandé n'a pas d'image"
       }).end();
-      
+
     }
   });
 
