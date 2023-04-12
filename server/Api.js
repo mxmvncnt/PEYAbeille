@@ -65,3 +65,14 @@ export async function getCommandesAdmin(token) {
 
     return jsonData;
 }
+
+export async function getImageProduit(id) {
+    let response = await fetch(url + '/api/admin/get_image_produit/' + id, { cache: "no-cache" });
+    let jsonData = await response.json();
+    
+    if (response.status == 404) {
+        return 404;
+    }
+
+    return jsonData;
+}

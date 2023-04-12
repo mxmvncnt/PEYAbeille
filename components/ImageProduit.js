@@ -2,17 +2,18 @@ import React from "react";
 import styles from '../styles/produits.module.css'
 import Image from "next/image";
 import img_not_found from '../public/no_img_found.png'
+import { getImageProduit } from "../server/Api";
 
 const fs = require('fs');
 
 export default async function ImageProduit(id) {
     id = id["id"];
     
-    let fichierImage = `/home/maxime/Documents/GitHub/peyabeille/server/file_upload/id_produit/${id}/0.png`;
+    let urlImage = await getImageProduit(id);
 
-    if (fs.existsSync(fichierImage)) 
+    if (urlImage != 404)
     {
-        return <Image className={styles.thumbnail} width={1000} height={1000} src={fichierImage} alt="Aucune image n'à été trouvée pour ce produit" />
+        return <Image className={styles.thumbnail} width={1000} height={1000} src={urlImage} alt="Aucune image n'à été trouvée pour ce produit" />
     } 
     else 
     {

@@ -314,45 +314,45 @@ async function run() {
 
     //   if (await verifierPermsAdmin(token)) {
 
-        const images = req.files;
-        let params = req.params;
+    const images = req.files;
+    let params = req.params;
 
-        const idProduit = params['id_produit'];
+    const idProduit = params['id_produit'];
 
-        if (images == null) {
-          return res.sendStatus(400);
-        }
+    if (images == null) {
+      return res.sendStatus(400);
+    }
 
-        // verifie sil y a plus quun image, si oui toutes la ajouter au dossier du produit.
-        if (images["images"].length == undefined) {
+    // verifie sil y a plus quun image, si oui toutes la ajouter au dossier du produit.
+    if (images["images"].length == undefined) {
 
-          images["images"].mv(`${__dirname}/file_upload/id_produit/${idProduit}/${images["images"].name}`);
+      images["images"].mv(`${__dirname}/file_upload/id_produit/${idProduit}/${images["images"].name}`);
+
+    } else {
+
+      images["images"].forEach(image => {
+
+        // console.log(fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)));
+        // console.log(path.join(__dirname, 'file_upload', 'id_produit', idProduit))
+
+        if (fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit))) {
+
+          let nombreImgProduit = fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit));
+
+          // console.log(fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)));
+
+          image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/${nombreImgProduit.length++}.png`);
 
         } else {
 
-          images["images"].forEach(image => {
+          image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/0.png`);
 
-            // console.log(fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)));
-            // console.log(path.join(__dirname, 'file_upload', 'id_produit', idProduit))
-
-            if (fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit))) {
-
-              let nombreImgProduit = fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit));
-
-              // console.log(fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)));
-              
-              image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/${nombreImgProduit.length++}.png`);
-
-            } else {
-
-              image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/0.png`);
-
-            }
-            // console.log(fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)).length)
-          });
         }
+        // console.log(fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)).length)
+      });
+    }
 
-        res.sendStatus(200);
+    res.sendStatus(200);
 
     //   } else {
     //     res.status(403).json({
@@ -373,28 +373,18 @@ async function run() {
   \*****************************/
 
   // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
-  app.get('/api/admin/get_images_produits', async function (req, res) {
+  app.get('/api/admin/get_image_produit/:id_produit', async function (req, res) {
+    let params = req.params;
+    let id_produit = params['id_produit'];
 
-    let produits = await con.execute(`SELECT ID_PRODUIT FROM PRODUIT`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
-
-    produits = produits["rows"]
-
-    let imagesProduitJson = {
-      "produits": [
-
-      ],
-    };
-
-    produits.forEach(produit => {
-      if (fs.existsSync(`${__dirname}/file_upload/id_produit/${produit.ID_PRODUIT}/`)) {
-        imagesProduitJson["produits"].push({
-          id_produit: produit.ID_PRODUIT,
-          url : `http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${produit.ID_PRODUIT}/0.png`
-        });
-      }
-    });   
-
-    res.status(201).json(imagesProduitJson).end();
+    if (fs.existsSync(`${__dirname}/file_upload/id_produit/${id_produit}/0.png`)) {
+      res.status(201).json(`http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${id_produit}/0.png`).end();
+    }
+    else {
+      res.status(404).json({
+        "erreur": "Le produit demandé n'a pas d'image"
+      }).end();
+    }
   });
 
   /*********************************\
