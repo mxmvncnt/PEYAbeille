@@ -12,6 +12,7 @@ require('dotenv').config();
 const bcrypt = require('bcrypt')
 const path = require('path');
 const { hostname } = require('os');
+const { Console } = require('console');
 
 let libPath;
 if (process.platform === "win32") {
@@ -324,10 +325,30 @@ async function run() {
 
         // verifie sil y a plus quun image, si oui toutes la ajouter au dossier du produit.
         if (images["images"].length == undefined) {
+
           images["images"].mv(`${__dirname}/file_upload/id_produit/${idProduit}/${images["images"].name}`);
+
         } else {
+
           images["images"].forEach(image => {
-            image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/${image.name}`);
+
+            // console.log(fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)));
+            // console.log(path.join(__dirname, 'file_upload', 'id_produit', idProduit))
+
+            if (fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit))) {
+
+              let nombreImgProduit = fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit));
+
+              // console.log(fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)));
+              
+              image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/${nombreImgProduit.length++}.png`);
+
+            } else {
+
+              image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/0.png`);
+
+            }
+            // console.log(fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit)).length)
           });
         }
 
