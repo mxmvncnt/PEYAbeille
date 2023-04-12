@@ -76,3 +76,14 @@ export async function getImageProduit(id) {
 
     return jsonData;
 }
+
+export async function getImagesProduit(id) {
+    let response = await fetch(url + '/api/admin/get_images_produit/' + id, { cache: "no-cache" });
+    let jsonData = await response.json();
+    
+    if (response.status == 404) {
+        return 404;
+    }
+
+    return jsonData;
+}

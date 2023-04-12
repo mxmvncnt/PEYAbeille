@@ -387,6 +387,44 @@ async function run() {
     }
   });
 
+  /******************************\
+  |* ========================== *|
+  |*  GET IMAGES D'UN PRODUITS  *|
+  |* ========================== *|
+  \******************************/
+
+  // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
+  app.get('/api/admin/get_images_produit/:id_produit', async function (req, res) {
+    let params = req.params;
+    let id_produit = params['id_produit'];
+
+    let imagesProduitJson = {
+      "produits": [
+
+      ],
+    };
+
+    if (fs.existsSync(`${__dirname}/file_upload/id_produit/${id_produit}/`)) {
+
+      let dossierProduit = fs.readdirSync(`${__dirname}/file_upload/id_produit/${id_produit}/`);
+
+      dossierProduit.map(image => {
+        imagesProduitJson["produits"].push({
+          url: `http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${id_produit}/${image}`
+        });
+      })
+      res.status(201).json(imagesProduitJson).end();
+    }
+    else {
+      res.status(404).json({
+        "erreur": "Le produit demandé n'a pas d'image"
+      }).end();
+    }
+
+
+
+  });
+
   /*********************************\
    * ============================= *
    *  POST ADMIN MODIFIER PRODUIT  *
