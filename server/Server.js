@@ -374,16 +374,21 @@ async function run() {
 
   // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
   app.get('/api/admin/get_image_produit/:id_produit', async function (req, res) {
+
     let params = req.params;
     let id_produit = params['id_produit'];
 
     if (fs.existsSync(`${__dirname}/file_upload/id_produit/${id_produit}/0.png`)) {
+
       res.status(201).json(`http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${id_produit}/0.png`).end();
     }
+
     else {
+
       res.status(404).json({
         "erreur": "Le produit demandé n'a pas d'image"
       }).end();
+      
     }
   });
 
@@ -395,6 +400,7 @@ async function run() {
 
   // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
   app.get('/api/admin/get_images_produit/:id_produit', async function (req, res) {
+
     let params = req.params;
     let id_produit = params['id_produit'];
 
@@ -413,16 +419,17 @@ async function run() {
           url: `http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${id_produit}/${image}`
         });
       })
+
       res.status(201).json(imagesProduitJson).end();
+
     }
     else {
+
       res.status(404).json({
         "erreur": "Le produit demandé n'a pas d'image"
       }).end();
+
     }
-
-
-
   });
 
   /*********************************\
