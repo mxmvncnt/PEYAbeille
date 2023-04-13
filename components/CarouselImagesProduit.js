@@ -1,6 +1,7 @@
 import React from "react";
 import styles from '../styles/produit.module.css'
 import Image from "next/image";
+import { Suspense } from "react";
 import { getImagesProduit } from "../server/Api";
 
 import img_not_found from '../public/no_img_found.png'
@@ -32,14 +33,16 @@ export default async function CarouselImageProduit(id) {
                         {
                             jsonImages.map((urlImage) => (
                                 <div className={styles.page_produit_grid_item_images_slider_item} id="slide_1">
-                                    <Image
-                                        id={styles.img}
-                                        key={urlImage["url"]}
-                                        src={urlImage["url"]}
-                                        width={1000}
-                                        height={1000}
-                                        alt={"test"}
-                                    />
+                                    <Suspense fallback={<p>Chargement...</p>}>
+                                        <Image
+                                            id={styles.img}
+                                            key={urlImage["url"]}
+                                            src={urlImage["url"]}
+                                            width={1000}
+                                            height={1000}
+                                            alt={"test"}
+                                        />
+                                    </Suspense>
                                 </div>
                             ))
                         }
