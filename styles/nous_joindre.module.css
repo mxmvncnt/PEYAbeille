@@ -1,110 +1,115 @@
-.page_nousjoindre_grid_carte_image {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-   /* margin-left: 20px; */
-    height: 100%;
-    width: 100%;
-    margin-top: 8%;
-    margin-left: 2%;
-}
-
-.page_nousjoindre_grid_item:first-child {
-    margin-right: 20px;
-    flex-basis: 50%;
-}
-
-.page_nousjoindre_grid_item:last-child {
-    flex-basis: 50%;
+.page_nousjoindre_container {
+    display: grid;
+    height: 125vh;
 }
 
 .page_nousjoindre_grid_item {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+}
+
+.page_nousjoindre_image {
+    height: 100%;
+    background-image: url(/cap12.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.contact_form {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
 }
 
-/* Grid pour l'adresse et la carte */
+.contact_form label {
+    margin-top: auto;
+}
+
+.contact_form input,
+.contact_form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid black;
+}
+
 .page_nousjoindre_contact {
     display: grid;
-    place-content: center;
-    grid-template-rows: 30% 70%;
-    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
 }
 
-/* item de la grille contact */
+
+.adresse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin-right: 5vw;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow:
+        0px 1.1px 2.2px rgba(0, 0, 0, 0.02),
+        0px 2.7px 5.3px rgba(0, 0, 0, 0.028),
+        0px 5px 10px rgba(0, 0, 0, 0.035),
+        0px 8.9px 17.9px rgba(0, 0, 0, 0.042),
+        0px 16.7px 33.4px rgba(0, 0, 0, 0.05),
+        0px 40px 80px rgba(0, 0, 0, 0.07);
+}
+
+.adresse h2 {
+    margin-top: 1rem;
+  }
+  
+  .adresse p {
+    margin-top: 0.5rem;
+  }
+  
+  #iframe_map {
+    margin-top: 1rem;
+    border: 1px solid black;
+  }
+
 .page_nousjoindre_contact_item {
     display: flex;
     flex-direction: column;
-    margin-bottom: 30%;
-    line-height: 0%;
+    gap: 1rem;
 }
 
-/* adresse */
-.page_nousjoindre_adresse {
-    text-align: center;
-    line-height: 0;
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .adresse {
+        background-color: #141414
+    }
 }
 
-/* carte */
-#page_nousjoindre_iframe_map {
-    border: 1px solid black;
-    display: block;
-    border-radius: 10px;
-}
-/* arrondir les coins du centre de limage */
-.page_nousjoindre_image {
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+    .adresse {
+        background-color: rgb(255, 255, 255);
+    }
 }
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
-@media only screen and (min_width: 601px) {
-    .page_nousjoindre_grid_carte_image {
-        grid-template-columns: 60% 40%;
-        height: 100vh;
-    }
-
-    /* carte */
-    #page_nousjoindre_iframe_map {
-        width: 45vw;
-        height: 65vh;
-    }
-
-    /* arrondir les coins du centre de limage */
-    .page_nousjoindre_image {
-        border-radius: 0px 10px 10px 0px;
-        width: 600px;
-        height: 700px;
-    }
+@media only screen and (min-width: 1201px) {
+    
 }
 
 /* === VUE SPECIFIQUE MOBILE === */
-@media only screen and (max_width: 600px) {
-    .page_nousjoindre_grid_carte_image {
-        grid-template-columns: auto;
-        width: 90vw;
+@media only screen and (max-width: 1200px) {
+    .adresse {
+        background-color: red;
     }
-
-    .page_nousjoindre_contact {
-        margin-top: 10vh;
-    }
-
-    .page_nousjoindre_image {
-        width: 50px;
-        height: 100px;
-    }
-    .page_nousjoindre_grid_item {
-        display: grid;
-        flex-direction: column;
-    }
-    #page_nousjoindre_iframe_map {
-        border: 1px solid black;
-        width: 90vw;
-        height: 70vh;
-        display: block;
-    }
-
-
 }
