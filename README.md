@@ -75,19 +75,19 @@ Assignez le role comme 'SYSDBA'. Le nom d'hote doit etre 'localhost' et le port 
 6. Avec cette nouvelle connection, roulez les scripts de créations de table et d'insértion
 
 7. Sur votre terminal, realisez la commande suivante
-'''
+```
 docker pull gvenzl/oracle-xe:21-full
 docker run -d -p 1521:1521 -e ORACLE_PASSWORD={oracle} -v oracle-volume:/opt/oracle/XE21CFULL/oradata gvenzl/oracle-xe:21-full
-'''
+```
 8. Encore sur votre terminal lancer la commande
-'''
+```
 npm run dev
-'''
+```
 9. En parrallèle, ouvrez une autre terminal sur le même repertoire, lancez la commande 
-'''
+```
 npm start
-'''
+```
 10. Allez sur le navigateur de votre choix et le site se trouve a l'addresse suivante:
-'''
+```
 http://localhost:3000/
-''''
+```
