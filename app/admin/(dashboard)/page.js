@@ -21,10 +21,24 @@ export default async function dashboard() {
                 <div className={styles.body}>
                     <h1>Dashboard</h1>
                     <div className={styles.dashboard_container}>
-                        <p>Volume de ventes total: {data["ventes"]}</p>
-                        <p>Nombre de commandes total: {data["commandes"]}</p>
-                        <p>Produit le plus populaire: {data["produits"]["plus_populaire"]["produit"]["nom"]} ({data["produits"]["plus_populaire"]["ventes"]} ventes)</p>
-                        <p>Produit le moins populare: {data["produits"]["moins_populaire"]["produit"]["nom"]} ({data["produits"]["moins_populaire"]["ventes"]} ventes)</p>
+                        <div className={styles.stat}>
+                            <h1>{data["ventes"]}</h1>
+                            <p>Volume de ventes total </p>
+                        </div>
+                        <div className={styles.stat}>
+                            <h1>{data["commandes"]}</h1>
+                            <p>Nombre de commandes total</p>
+                        </div>
+                        <div className={styles.stat}>
+                            <h1> {data["produits"]["plus_populaire"]["produit"]["nom"]}</h1>
+                            <p>Produit le plus populaire ({data["produits"]["plus_populaire"]["ventes"]} ventes)</p>
+                        </div>
+                        <div className={styles.stat}>
+                            <h1>{data["produits"]["moins_populaire"]["produit"]["nom"]}</h1>
+                            <p>Produit le moins populare ({data["produits"]["moins_populaire"]["ventes"]} ventes)</p>
+                        </div>
+
+
                     </div>
                     <div className={styles.bouttons}>
     

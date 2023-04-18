@@ -3,11 +3,12 @@
 }
 
 .dashboard_container{
-    width: 90vh;
-    margin: 5px;
+    width: 60%;
+    margin: auto;
     padding: 10px;
     border-radius: 10px;
-    
+    display: flex;
+    justify-content: space-between;
 }
 
 .AllerCommande{
@@ -39,10 +40,23 @@
     transition: 0.2s;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
-
+.bouttons{
+    width:60%;
+    margin:auto;
+    display: flex;
+    justify-content: space-between;
+}
+.stat{
+    border:1px solid black;
+    border-radius: 15px;
+    height: 100px;
+}
+.stat h1{
+    text-align: center;
+}
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
-	.dashboard_container{
+	.stat{
         background-color: #141414;        
     }
 
@@ -57,7 +71,7 @@
 
 /* Light Mode */
 @media (prefers-color-scheme: light) {
-	.dashboard_container{
+	.stat{
         background-color: #efefef;
     }
     
