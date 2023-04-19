@@ -5,7 +5,7 @@ export default function UneCommande(){
     return (
         <div className={styles.containerCommande}>
             <table className={styles.table}>
-                <tr>
+                {/* <tr>
                     <th> Numero de commande </th>
                     <th> Date de commande</th>
                     <th> Statut</th>
@@ -26,7 +26,7 @@ export default function UneCommande(){
                     </ol>
                     </td>
 
-                </tr>
+                </tr> */}
             </table>
         </div>
     )

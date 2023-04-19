@@ -6,7 +6,9 @@ import { redirect } from "next/navigation";
 export default function LogOut() {
     const [cookie, setCookie, removeCookie] = useCookies();
     const Logout = () =>{
+
         removeCookie('token', {path:'/'})
+        alert("test");
         redirect('/')
     }
     
