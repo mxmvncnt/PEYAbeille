@@ -4,6 +4,7 @@ import Informations from "../../components/InformationsCompte";
 import UneCommande from "../../components/UneCommande";
 import fleurs from '../../public/fleurs.jpg'
 import Image from "next/image";
+import BoutonLogOut from "../../components/BoutonLogOut";
 
 export default function Compte() {
     return (
@@ -19,6 +20,7 @@ export default function Compte() {
                         <button className={styles.btn}>Mes commandes </button>
                         &nbsp;
                         <button className={styles.btn}>Se déconnecter </button>
+                        <BoutonLogOut/>
                     </div>
                  </div>
                 
