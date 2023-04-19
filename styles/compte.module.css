@@ -1,16 +1,25 @@
 
 .informations{
     background-color: lightgray;
-
     border-radius: 10px;
-    align-items: center;
     width: 70%;
     margin: auto;
+    padding: 5px;
 }
 .input{
-    border-radius: 10px;
-    height: 20px;
-    width: 250px;
+    /*open source input : https://uiverse.io/alexruix/jolly-emu-80*/
+    max-width: 200px;
+    height: 44px;
+    background-color: white;
+    border-radius: .5rem;
+    padding: 0 1rem;
+    border: 2px solid transparent;
+    font-size: 1rem;
+    transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
+}
+.input:hover{
+    outline: none;
+    border-color:black;
 }
 .form{
     display: flex;
@@ -85,8 +94,43 @@
 .btn{
     display: inline-block;
     padding: 0.9rem 1.8rem;
-    background-color: grey;
-    color: white;
+    background-color: lightgrey;
+    color: black;
+    font-weight: bolder;
     border-radius: 10px;
     margin: 5 5 5 5;
+}
+.btn:hover{
+    background-color: rgb(255, 210, 0);
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+.form{
+    display: flex;
+    flex-wrap: wrap;
+}
+.infos{
+    padding: 10px;
+    order:1;
+    flex:1 0 25%;
+}
+.courriel{
+    padding: 10px;
+    order:1;
+    flex:1 0 25%;
+}
+.motdepasse{
+    padding: 10px;
+    order:1;
+    flex:1 0 25%;
+}
+.addresse{
+    padding: 10px;
+    order:2;
+    flex: 1 0 40%;
+}
+.confirmer{
+    order:2;
+    flex: 1 0 50%;
 }

@@ -53,6 +53,7 @@
 }
 .stat h1{
     text-align: center;
+    margin:5px;
 }
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {

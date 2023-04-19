@@ -22,7 +22,7 @@ export default async function dashboard() {
                     <h1>Dashboard</h1>
                     <div className={styles.dashboard_container}>
                         <div className={styles.stat}>
-                            <h1>{data["ventes"]}</h1>
+                            <h1>{data["ventes"]} $</h1>
                             <p>Volume de ventes total </p>
                         </div>
                         <div className={styles.stat}>
