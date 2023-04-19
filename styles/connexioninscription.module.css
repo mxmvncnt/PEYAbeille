@@ -1,12 +1,10 @@
-body{
+.body{
     display: flex;
     background-image: url(abejas-en-verano.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    /*align-items: center;*/
     justify-content: center;
     align-content: center;
-    
 }
 
 .wrap{
