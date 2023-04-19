@@ -18,16 +18,16 @@ function Connexion() {
             <div className={styles.wrap}>
                 <div className={`${styles.form_box} ${styles.login} ${isRegister ? 'hide' : ''}`}>
                     <h2>Connexion</h2>
-                    <form>
+
+                    <form action={`/api/login`} method="GET">
                         <div className={styles.input_box}>
-                            <span className={styles.icon}></span>
-                            <input type="email" required />
-                            <label>Email</label>
+                            <label htmlFor="courriel">Courriel:</label>
+                            <input type="email" id="courriel" name="email" />
                         </div>
+
                         <div className={styles.input_box}>
-                            <span className={styles.icon}></span>
-                            <input type="password" required />
-                            <label>Mot de passe</label>
+                            <label htmlFor="mdp">Mot de passe:</label>
+                            <input type="password" id="mdp" name="password" />
                         </div>
                         <button type="submit" className={styles.btn}>
                             Se Connecter
