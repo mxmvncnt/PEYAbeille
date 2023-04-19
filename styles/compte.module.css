@@ -8,7 +8,8 @@
 }
 .input{
     /*open source input : https://uiverse.io/alexruix/jolly-emu-80*/
-    max-width: 200px;
+    max-width: 300px;
+    width:250px;
     height: 44px;
     background-color: white;
     border-radius: .5rem;
