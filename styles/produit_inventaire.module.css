@@ -21,10 +21,10 @@
 .contenu:not([open]) {
     height: 2em;
 }
-
+/* 
 .contenu[open] {
     height: 33em;
-}
+} */
 
 /* fade in the service content when opened */
 .contenu:not([open]) table {
