@@ -16,13 +16,13 @@ export default function NousJoindre() {
                     <h2>Nous contacter</h2>
                     <form action="#" method="POST">
                         <label htmlFor="nom"> Nom et Prénom:</label>
-                        <input type="text" id="nom" name="nom" required />
+                        <input className="input-field-singlerow" type="text" id="nom" name="nom" required />
                         <label htmlFor="titre"> Sujet:</label>
-                        <input type="text" id="titre" name="titre" required />
+                        <input className="input-field-singlerow" type="text" id="titre" name="titre" required />
                         <label htmlFor="email">Email:</label>
-                        <input type="email" id="email" name="email" required />
+                        <input className="input-field-singlerow" type="email" id="email" name="email" required />
                         <label htmlFor="message">Message:</label>
-                        <textarea id="message" name="message" required></textarea>
+                        <textarea className="input-field-singlerow" id="message" name="message" required></textarea>
                         <button className='btn-acheter' type="submit">Envoyer</button>
                     </form>
                 </div>

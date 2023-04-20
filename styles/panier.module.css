@@ -69,11 +69,6 @@
 
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
-	.input_field {
-        color: #ececec;
-        background-color: #2c2c2c;
-    }
-
     .carte_items_commande {
         background-color: #141414
     }
@@ -86,10 +81,6 @@
 
 /* Light Mode */
 @media (prefers-color-scheme: light) {
-	.input_field {
-        background-color: #efefef;
-    }
-
     .carte_items_commande {
         background-color: rgb(255, 255, 255);
     }

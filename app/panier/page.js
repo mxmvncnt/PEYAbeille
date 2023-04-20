@@ -2,6 +2,7 @@ import React from "react";
 import { cookies } from 'next/headers';
 import styles from '../../styles/panier.module.css';
 import ItemPanier from "../../components/ItemPanier";
+import '../global.css'
 
 const getItemsPanier = () => {
     const nextCookies = cookies();
@@ -54,16 +55,16 @@ export default async function Panier() {
                             <form action={``} method="GET">
 
                                 <label htmlFor="prenom">Prénom:</label>
-                                <input className={styles.input_field} type="text" id="prenom" name="prenom" />
+                                <input className="input-field-singlerow" type="text" id="prenom" name="prenom" />
 
                                 <label htmlFor="nom">Nom:</label>
-                                <input className={styles.input_field} type="text" id="nom" name="nom" />
+                                <input className="input-field-singlerow" type="text" id="nom" name="nom" />
 
                                 <label htmlFor="numeroRue">Numéro de rue:</label>
-                                <input className={styles.input_field} type="text" id="numeroRue" name="numeroRue" />
+                                <input className="input-field-singlerow" type="text" id="numeroRue" name="numeroRue" />
 
                                 <label htmlFor="rue">Rue:</label>
-                                <input className={styles.input_field} type="text" id="rue" name="rue" />
+                                <input className="input-field-singlerow" type="text" id="rue" name="rue" />
 
                                 <input type="submit" value="Confirmer" />
                             </form>
@@ -125,16 +126,16 @@ export default async function Panier() {
                             <form action={``} method="GET">
 
                                 <label htmlFor="prenom">Prénom:</label>
-                                <input className={styles.input_field} disabled />
+                                <input className="input-field-singlerow" disabled />
 
                                 <label htmlFor="nom">Nom:</label>
-                                <input className={styles.input_field} disabled />
+                                <input className="input-field-singlerow" disabled />
 
                                 <label htmlFor="numeroRue">Numéro de rue:</label>
-                                <input className={styles.input_field} disabled />
+                                <input className="input-field-singlerow" disabled />
 
                                 <label htmlFor="rue">Rue:</label>
-                                <input className={styles.input_field} disabled />
+                                <input className="input-field-singlerow" disabled />
 
                                 <input value="Confirmer" disabled/>
                             </form>

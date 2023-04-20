@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 // import '../../../styles/connexioninscription.module.css';
 import styles from '../../../styles/connexioninscription.module.css';
+import '../../global.css'
 
 function Connexion() {
     const [isRegister, setIsRegister] = useState(false);
@@ -20,14 +21,14 @@ function Connexion() {
                     <h2>Connexion</h2>
 
                     <form action={`/api/login`} method="GET">
-                        <div className={styles.input_box}>
+                        <div>
                             <label htmlFor="courriel">Courriel:</label>
-                            <input type="email" id="courriel" name="email" />
+                            <input className="input-field-singlerow" type="email" id="courriel" name="email" />
                         </div>
 
-                        <div className={styles.input_box}>
+                        <div>
                             <label htmlFor="mdp">Mot de passe:</label>
-                            <input type="password" id="mdp" name="password" />
+                            <input className="input-field-singlerow" type="password" id="mdp" name="password" />
                         </div>
                         <button type="submit" className={styles.btn}>
                             Se Connecter
@@ -47,29 +48,29 @@ function Connexion() {
                     <h2>Inscription</h2>
                     <form action={`/api/register`} method="GET">
 
-                        <div className={styles.input_box}>
+                        <div>
                             <label htmlFor="prenom">Prénom:</label>
-                            <input type="text" id="prenom" name="prenom" />
+                            <input className="input-field-singlerow" type="text" id="prenom" name="prenom" />
                         </div>
 
-                        <div className={styles.input_box}>
+                        <div>
                             <label htmlFor="nom">Nom:</label>
-                            <input type="text" id="nom" name="nom" />
+                            <input className="input-field-singlerow" type="text" id="nom" name="nom" />
                         </div>
 
-                        <div className={styles.input_box}>
+                        <div>
                             <label htmlFor="courriel">Courriel:</label>
-                            <input type="email" id="courriel" name="email" />
+                            <input className="input-field-singlerow" type="email" id="courriel" name="email" />
                         </div>
 
-                        <div className={styles.input_box}>
+                        <div>
                             <label htmlFor="mdp">Mot de passe:</label>
-                            <input type="password" id="mdp" name="password" />
+                            <input className="input-field-singlerow" type="password" id="mdp" name="password" />
                         </div>
 
-                        <div className={styles.input_box}>
+                        <div>
                             <label htmlFor="mdp">Confirmez le mot de passe:</label>
-                            <input type="password" id="mdp" name="password" />
+                            <input className="input-field-singlerow" type="password" id="mdp" name="password" />
                         </div>
 
                         <div className={styles.remember_forgot}>
