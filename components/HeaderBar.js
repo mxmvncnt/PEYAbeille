@@ -69,22 +69,21 @@ export default function HeaderBar() {
                     setIsNavExpanded(!isNavExpanded)
                 }}>☰</button>
 
-            {/* LOGO A LA PLACE DU TEXTE "PEYABEILLE"*/}
             <Link
                 href="/"
                 id={styles.navigation_bar_logo}
                 onClick={() => {
                     setIsNavExpanded(false)
-                }}>  
-                <Image 
-                className={styles.navigation_bar_logo}
-                src={Logo} 
-                href="/"
-                alt={"Example Logo"}
-                height="40" 
-                width="40"/>
+                }}>
+                <Image
+                    className={styles.navigation_bar_logo_img}
+                    src={Logo}
+                    href="/"
+                    alt={"Logo Peyabeille"}
+                    height="30"
+                    width="30" />
             </Link>
-            
+
             {/* inspiré de: https://blog.logrocket.com/create_responsive_navbar_react_css/ */}
             <div className={isNavExpanded ? `${styles.navigation_bar_menu} ${styles.expanded}` : styles.navigation_bar_menu}>
                 <Link
