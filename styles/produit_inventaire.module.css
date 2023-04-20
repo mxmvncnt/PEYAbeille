@@ -55,14 +55,6 @@
     width: 55%;
 }
 
-.input_field {
-    box-sizing: border-box;
-    border-radius: 10px;
-    padding: 15px 10px;
-    border: none;
-    width: 100%;
-}
-
 .bttnConfirmer, .bttnSupprimer {
     font-size: 1.2rem;
     padding: 10px 20px;

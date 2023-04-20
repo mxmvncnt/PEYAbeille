@@ -1,5 +1,6 @@
 import React from "react";
 import styles from '../styles/produit_inventaire.module.css';
+import '../app/global.css'
 
 
 export default function ProduitInventaire(
@@ -21,19 +22,19 @@ export default function ProduitInventaire(
                             <form>
 
                                 <label>Nom: </label>
-                                <input className={styles.input_field} defaultValue={data["NOM"]}></input>
+                                <input className="input-field-singlerow" defaultValue={data["NOM"]}></input>
 
                                 <label>Quantité disponible (unités): </label>
-                                <input className={styles.input_field} type="number" min="0" defaultValue={data["QUANTITE"]}></input>
+                                <input className="input-field-singlerow" type="number" min="0" defaultValue={data["QUANTITE"]}></input>
 
                                 <label>Prix original ($): </label>
-                                <input className={styles.input_field} type="number" defaultValue={data["PRIX_FIXE"]}></input>
+                                <input className="input-field-singlerow" type="number" defaultValue={data["PRIX_FIXE"]}></input>
 
                                 <label>Prix suggéré ($): </label>
-                                <input className={styles.input_field} type="number" defaultValue={data["PRIX_SUGGERE"]}></input>
+                                <input className="input-field-singlerow" type="number" defaultValue={data["PRIX_SUGGERE"]}></input>
 
                                 <label>Description du produit: </label>
-                                <textarea className={styles.input_field} defaultValue={data["DESCRIPTION"]}></textarea>
+                                <textarea className="input-field-singlerow" defaultValue={data["DESCRIPTION"]}></textarea>
 
                             </form>
                         </div>
