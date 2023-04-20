@@ -21,19 +21,19 @@ export default function ProduitInventaire(
                             <form>
 
                                 <label>Nom: </label>
-                                <input className={styles.input_field} value={data["NOM"]}></input>
+                                <input className={styles.input_field} defaultValue={data["NOM"]}></input>
 
                                 <label>Quantité disponible (unités): </label>
-                                <input className={styles.input_field} type="number" min="0" value={data["QUANTITE"]}></input>
+                                <input className={styles.input_field} type="number" min="0" defaultValue={data["QUANTITE"]}></input>
 
                                 <label>Prix original ($): </label>
-                                <input className={styles.input_field} type="number" value={data["PRIX_FIXE"]}></input>
+                                <input className={styles.input_field} type="number" defaultValue={data["PRIX_FIXE"]}></input>
 
                                 <label>Prix suggéré ($): </label>
-                                <input className={styles.input_field} type="number" value={data["PRIX_SUGGERE"]}></input>
+                                <input className={styles.input_field} type="number" defaultValue={data["PRIX_SUGGERE"]}></input>
 
                                 <label>Description du produit: </label>
-                                <textarea className={styles.input_field} value={data["DESCRIPTION"]}></textarea>
+                                <textarea className={styles.input_field} defaultValue={data["DESCRIPTION"]}></textarea>
 
                             </form>
                         </div>
