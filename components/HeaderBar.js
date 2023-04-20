@@ -5,20 +5,22 @@ import { useState, useEffect } from "react";
 import styles from '../styles/headerbar.module.css';
 import Link from 'next/link';
 import { useCookies } from "react-cookie";
+import Logo from "../public/logo1.png";
+import Image from "next/image";
 
 const hostname = 'localhost';
 const port = '4003';
 const url = 'http://' + hostname + ':' + port;
 
 let BtnCompte = () => {
-    
+
 
     const [cookies, setCookie] = useCookies(['token'])
     const [statusConnexion, setStatusConnexion] = useState()
 
     useEffect(() => {
         const verifierSession = async (token) => {
-            let response = await fetch(url + '/api/verifier_session/' + token, {cache: "no-cache"});
+            let response = await fetch(url + '/api/verifier_session/' + token, { cache: "no-cache" });
 
             setStatusConnexion(response.status);
         }
@@ -73,10 +75,16 @@ export default function HeaderBar() {
                 id={styles.navigation_bar_logo}
                 onClick={() => {
                     setIsNavExpanded(false)
-                }}>
-                PEYABEILLE
+                }}>  
+                <Image 
+                className={styles.navigation_bar_logo}
+                src={Logo} 
+                href="/"
+                alt={"Example Logo"}
+                height="40" 
+                width="40"/>
             </Link>
-
+            
             {/* inspiré de: https://blog.logrocket.com/create_responsive_navbar_react_css/ */}
             <div className={isNavExpanded ? `${styles.navigation_bar_menu} ${styles.expanded}` : styles.navigation_bar_menu}>
                 <Link
