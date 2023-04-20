@@ -5,8 +5,6 @@ body {
     margin: 0;
     font-family: 'Source Sans Pro', sans-serif;
     transition: 0.3s;
-    color: #242424;
-    background-color: rgb(255, 255, 255);
 }
 
 html {
@@ -23,21 +21,26 @@ h2 {
     font-size: 1.8em;
 }
 
+.input-field-singlerow {
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 15px 10px;
+    border: none;
+    width: 100%;
+}
+
 /* === BOUTONS === */
 .btn-acheter {
 	font-size: 1.2rem;
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
-    background-color: rgb(255, 230, 0);
-    color: black;
     cursor: pointer;
     font-weight: 600;
     transition: 0.2s;
 }
 
 .btn-acheter:hover {
-    background-color: rgb(255, 210, 0);
     transform: scale(1.03);
     transition: 0.2s;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
@@ -52,10 +55,31 @@ h2 {
 	color:#000000;
 }
 
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+	body {
+        color: #242424;
+        background-color: rgb(255, 255, 255);
+	}
+
+	.btn-acheter {
+        background-color: rgb(255, 230, 0);
+        color: black;
+	}
+
+    .btn-acheter:hover {
+        background-color: rgb(255, 210, 0);
+    }
+
+    .input-field-singlerow {
+        background-color: #efefef;
+        border: rgb(200, 200, 200) 1px solid;
+    }
+}
+
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
 	body {
-        transition: 0.3s;
 		background-color: #000000;
         color: rgb(225, 225, 225);
 	}
@@ -64,6 +88,12 @@ h2 {
 		background-color: rgb(200, 180, 0);
 		border: 2px solid black;
 	}
+
+    .input-field-singlerow {
+        color: #ececec;
+        background-color: #1f1f1f;
+        border: rgb(75, 75, 75) 1px solid;
+    }
 }
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
