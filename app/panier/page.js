@@ -127,7 +127,7 @@ export default async function Panier() {
                                 <label htmlFor="rue">Rue:</label>
                                 <input className={styles.input_field} disabled />
 
-                                <input value="Confirmer" disabled/>
+                                <input value="Confirmer" disabled />
                             </form>
                         </div>
                     </div>
@@ -146,7 +146,7 @@ export default async function Panier() {
                                 </div>
                             </div>
                             <div className={styles.infos_total}>
-                                
+
                             </div>
                         </div>
                     </div>
