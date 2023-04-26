@@ -102,7 +102,7 @@
     }
 
     .openstreetmap {
-        width: 40vw;
+        width: 44vw;
         height: 40vh;
     }
 
@@ -130,7 +130,7 @@
     }
 
     .openstreetmap {
-        width: 100%;
+        width: 83vw;
         height: 50vh;
     }
 }
