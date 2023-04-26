@@ -4,20 +4,23 @@ import Link from "next/link";
 import { getProduits } from "../../server/Api";
 import IndicateurPrix from "../../components/IndicateurPrix";
 import styles from '../../styles/produits.module.css'
+import ImageProduit from "../../components/ImageProduit";
 
 export default async function Produits() {
     const data = await getProduits();
 
     return (
-        <div className={styles.page_produits_page_produits}>
+        <div className={styles.body}>
             <h1>Produits</h1>
 
-            <div className={styles.page_produits_grid_produits}>
+            <div className={styles.grid_layout}>
                 {data.map((item) => (
                     <div key={item["ID_PRODUIT"]}>
+                        <div className={styles.produit}>
 
-                        <div className={styles.page_produits_produit}>
-                            <h2 className={styles.page_produits_titre}>
+                            <ImageProduit id={item["ID_PRODUIT"]} />
+
+                            <h2 className={styles.produit_titre}>
                                 {item["NOM"]}
                             </h2>
                             <IndicateurPrix prix_regulier={item["PRIX_FIXE"]} prix_suggere={item["PRIX_SUGGERE"]} />

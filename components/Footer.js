@@ -11,24 +11,24 @@ export default function Footer() {
                 <h3>PEYABEILLE</h3>
                 <ul className={`${styles.footer_ul} ${styles.footer_liens}`}>
                     <li className={`${styles.footer_li}`}> <a href="/"> <div>Acceuil</div> </a> </li>
-                    <li className={`${styles.footer_li}`}> <a href="/apropos"><div>À propos</div> </a></li>
-                    <li className={`${styles.footer_li}`}>  <a href="/produits"><div>Produits</div></a></li>
-                    <li className={`${styles.footer_li}`}> <a href="/produits"><div>Nous joindre</div></a></li>
+                    <li className={`${styles.footer_li}`}> <a href="/apropos">À propos</a></li>
+                    <li className={`${styles.footer_li}`}>  <a href="/produits">Produits</a></li>
+                    <li className={`${styles.footer_li}`}> <a href="/produits">Nous joindre</a></li>
                 </ul>
             </div>
             <div className={`${styles.footer_categorie}`}>
                 <h3>Produits</h3>
                 <ul className={`${styles.footer_ul} ${styles.footer_liens}`}>
-                    <li className={`${styles.footer_li}`}><a href="example.com"><div>Cat 1</div></a></li>
-                    <li className={`${styles.footer_li}`}><a href="example.com"><div>Cat 2</div></a></li>
-                    <li className={`${styles.footer_li}`}><a href="example.com"><div>Cat 3</div></a></li>
+                    <li className={`${styles.footer_li}`}><a href="example.com">Cat 1</a></li>
+                    <li className={`${styles.footer_li}`}><a href="example.com">Cat 2</a></li>
+                    <li className={`${styles.footer_li}`}><a href="example.com">Cat 3</a></li>
                 </ul>
             </div>
             <div className={`${styles.footer_categorie}`}>
                 <h3>Politiques</h3>
                 <ul className={`${styles.footer_ul}`}>
-                    <li className={`${styles.footer_li}`}><a href="example.com"><div>Conditions d'utilisation</div></a></li>
-                    <li className={`${styles.footer_li}`}><a href="example.com"><div>Politique de confidentialité</div></a></li>
+                    <li className={`${styles.footer_li}`}><a href="example.com">Conditions d'utilisation</a></li>
+                    <li className={`${styles.footer_li}`}><a href="example.com">Politique de confidentialité</a></li>
                 </ul>
             </div>
             <div className={`${styles.footer_categorie}`}>

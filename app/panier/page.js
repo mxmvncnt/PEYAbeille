@@ -2,12 +2,22 @@ import React from "react";
 import { cookies } from 'next/headers';
 import styles from '../../styles/panier.module.css';
 import ItemPanier from "../../components/ItemPanier";
+import '../global.css'
 
 const getItemsPanier = () => {
     const nextCookies = cookies();
     let arrayPanier = nextCookies.get('panier');
 
-    if (arrayPanier == undefined) {
+    let arrPanierLength;
+
+    try {
+        let parsedArrayPanier = JSON.parse(arrayPanier["value"]);
+        arrPanierLength = parsedArrayPanier["items_panier"].length
+    } catch (error) {
+        arrPanierLength = 0;
+    }
+
+    if (arrayPanier == undefined || arrPanierLength == 0) {
         return "Aucune donnee";
     } else {
         return arrayPanier;
@@ -29,8 +39,8 @@ export default async function Panier() {
         sousTotal = sousTotal.toFixed(2)
         let taxesTVQ = (sousTotal * 0.09975).toFixed(2);
         let taxesTPS = (sousTotal * 0.05).toFixed(2);
-        let taxesTotal = parseFloat(taxesTPS) + parseFloat(taxesTVQ);
-        let prixTotal = parseFloat(sousTotal) + parseFloat(taxesTotal);
+        let taxesTotal = (parseFloat(taxesTPS) + parseFloat(taxesTVQ)).toFixed(2);
+        let prixTotal = (parseFloat(sousTotal) + parseFloat(taxesTotal)).toFixed(2);
 
         let itemsPanierJson = dataTotal["items_panier"]
 
@@ -45,16 +55,16 @@ export default async function Panier() {
                             <form action={``} method="GET">
 
                                 <label htmlFor="prenom">Prénom:</label>
-                                <input className={styles.input_field} type="text" id="prenom" name="prenom" />
+                                <input className="input-field-singlerow" type="text" id="prenom" name="prenom" />
 
                                 <label htmlFor="nom">Nom:</label>
-                                <input className={styles.input_field} type="text" id="nom" name="nom" />
+                                <input className="input-field-singlerow" type="text" id="nom" name="nom" />
 
                                 <label htmlFor="numeroRue">Numéro de rue:</label>
-                                <input className={styles.input_field} type="text" id="numeroRue" name="numeroRue" />
+                                <input className="input-field-singlerow" type="text" id="numeroRue" name="numeroRue" />
 
                                 <label htmlFor="rue">Rue:</label>
-                                <input className={styles.input_field} type="text" id="rue" name="rue" />
+                                <input className="input-field-singlerow" type="text" id="rue" name="rue" />
 
                                 <input type="submit" value="Confirmer" />
                             </form>
@@ -116,16 +126,16 @@ export default async function Panier() {
                             <form action={``} method="GET">
 
                                 <label htmlFor="prenom">Prénom:</label>
-                                <input className={styles.input_field} disabled />
+                                <input className="input-field-singlerow" disabled />
 
                                 <label htmlFor="nom">Nom:</label>
-                                <input className={styles.input_field} disabled />
+                                <input className="input-field-singlerow" disabled />
 
                                 <label htmlFor="numeroRue">Numéro de rue:</label>
-                                <input className={styles.input_field} disabled />
+                                <input className="input-field-singlerow" disabled />
 
                                 <label htmlFor="rue">Rue:</label>
-                                <input className={styles.input_field} disabled />
+                                <input className="input-field-singlerow" disabled />
 
                                 <input value="Confirmer" disabled />
                             </form>

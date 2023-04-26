@@ -2,6 +2,7 @@
 * importation des modules requis
 **/
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const app = express()
 const oracledb = require('oracledb');
@@ -9,6 +10,9 @@ const fs = require('fs')
 const crypto = require('crypto')
 require('dotenv').config();
 const bcrypt = require('bcrypt')
+const path = require('path');
+const { hostname } = require('os');
+const { Console } = require('console');
 
 let libPath;
 if (process.platform === "win32") {
@@ -22,8 +26,15 @@ if (libPath && fs.existsSync(libPath)) {
   oracledb.initOracleClient({ libDir: libPath });
 }
 
+app.use(fileUpload({
+  createParentPath: true, // ne pas faire une erreur de chemin introuvable
+  safeFileNames: true, // eviter des fichiers mis en ligne tels que ../index.js qui remplaceraient le contenu du site.
+  preserveExtension: 4, // .webp utilise 4 char donc on ne veut pas tronquer
+  abortOnLimit: true // retourner une erreur si le fichier est trop gros au lieu de couper le flux 
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'file_upload')))
 
 async function run() {
 
@@ -289,6 +300,159 @@ async function run() {
     }
   });
 
+
+  /***************************************\
+  |* =================================== *|
+  |*  POST ADMIN AJOUTER IMAGES PRODUIT  *|
+  |* =================================== *|
+  \***************************************/
+
+  // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
+  app.post('/api/admin/upload_images/:id_produit', async function (req, res) {
+
+    // if (await isSessionOuverte(token)) {
+
+    //   if (await verifierPermsAdmin(token)) {
+
+    const images = req.files;
+    let params = req.params;
+
+    const idProduit = params['id_produit'];
+
+    if (images == null) {
+      return res.sendStatus(400);
+    }
+
+    console.log(images['images'])
+    let nombreImgProduit;
+
+    // verifie sil y a plus quun image, si oui toutes la ajouter au dossier du produit.
+    if (images["images"].length == undefined) {
+
+      let extensionFichier = images["images"].mimetype;
+      extensionFichier = extensionFichier.split("/")
+
+      let dossierImgProduit = fs.readdirSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit));
+      images["images"].mv(`${__dirname}/file_upload/id_produit/${idProduit}/${dossierImgProduit.length + 1}.${extensionFichier[1]}`);
+
+    } else {
+
+      images["images"].forEach(image => {
+
+        // https://pqina.nl/blog/upload-image-with-nodejs/#only-allowing-images
+        // Accepter que les MIME Type d'images
+        if (/^image/.test(image.mimetype)) {
+
+          // si le sous dossier existe, on ajoute les images avec le nombre en tant que nom de fichier (ex. 2.png)
+          if (fs.existsSync(path.join(__dirname, 'file_upload', 'id_produit', idProduit))) {
+
+            let extensionFichier = image.mimetype;
+            extensionFichier = extensionFichier.split("/");
+
+            image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/${nombreImgProduit}.${extensionFichier[1]}`);
+
+            nombreImgProduit = nombreImgProduit + 1;
+
+          } else {
+
+            let extensionFichier = image.mimetype;
+            extensionFichier = extensionFichier.split("/");
+
+            image.mv(`${__dirname}/file_upload/id_produit/${idProduit}/0.${extensionFichier[1]}`);
+            nombreImgProduit = 1;
+            console.log(nombreImgProduit)
+
+          }
+
+        }
+      });
+    }
+
+    res.sendStatus(200);
+
+    //   } else {
+    //     res.status(403).json({
+    //       "erreur": "Vous n'avez pas les permissions requises."
+    //     }).end();
+    //   }
+    // } else {
+    //   res.status(403).json({
+    //     "erreur": "Vous devez être connecté pour faire cette action"
+    //   }).end();
+    // }
+  });
+
+  /*****************************\
+  |* ========================= *|
+  |*  GET IMAGES DES PRODUITS  *|
+  |* ========================= *|
+  \*****************************/
+
+  // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
+  app.get('/api/admin/get_image_produit/:id_produit', async function (req, res) {
+
+    let params = req.params;
+    let id_produit = params['id_produit'];
+
+    if (fs.existsSync(`${__dirname}/file_upload/id_produit/${id_produit}/`)) {
+
+      let dossierProduit = fs.readdirSync(`${__dirname}/file_upload/id_produit/${id_produit}/`);
+
+      dossierProduit.map(image => {
+        if (image.startsWith("0.")) {
+          res.status(201).json(`http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${id_produit}/${image}`).end();
+        }
+      })
+    }
+    else {
+
+      res.status(404).json({
+        "erreur": "Le produit demandé n'a pas d'image"
+      }).end();
+
+    }
+  });
+
+  /******************************\
+  |* ========================== *|
+  |*  GET IMAGES D'UN PRODUITS  *|
+  |* ========================== *|
+  \******************************/
+
+  // Inspiration prise de: https://pqina.nl/blog/upload-image-with-nodejs/
+  app.get('/api/admin/get_images_produit/:id_produit', async function (req, res) {
+
+    let params = req.params;
+    let id_produit = params['id_produit'];
+
+    let imagesProduitJson = {
+      "produits": [
+
+      ],
+    };
+
+    if (fs.existsSync(`${__dirname}/file_upload/id_produit/${id_produit}/`)) {
+
+      let dossierProduit = fs.readdirSync(`${__dirname}/file_upload/id_produit/${id_produit}/`);
+
+      dossierProduit.map(image => {
+        imagesProduitJson["produits"].push({
+          url: `http://${process.env.SERVER_HOSTNAME}:${process.env.SERVER_PORT}/id_produit/${id_produit}/${image}`
+        });
+      })
+
+      res.status(201).json(imagesProduitJson).end();
+
+    }
+    else {
+
+      res.status(404).json({
+        "erreur": "Le produit demandé n'a pas d'image"
+      }).end();
+
+    }
+  });
+
   /*********************************\
    * ============================= *
    *  POST ADMIN MODIFIER PRODUIT  *
@@ -488,6 +652,138 @@ async function run() {
             }
           }
         ).end();
+
+      } else {
+
+        res.status(403).json({
+          "erreur": "Vous n'avez pas les permissions requises."
+        }).end();
+
+      }
+    } else {
+
+      res.status(403).json({
+        "erreur": "Vous devez être connecté pour faire cela."
+      }).end();
+
+    }
+  });
+
+  /***********************************\
+   * =============================== *
+   *  GET ADMIN DASHBOARD COMMANDES  *
+   * =============================== *
+  \***********************************/
+  app.get('/api/admin/commandes/:token', async function (req, res) {
+    // Activer le CORS
+    res.set('Access-Control-Allow-Origin', '*');
+
+    // prendre les parametres de l'url (token)
+    let params = req.params;
+    let token = params['token'];
+
+    if (await isSessionOuverte(token)) {
+
+      if (await verifierPermsAdmin(token)) {
+
+        let commandes = await con.execute(`
+        SELECT COMMANDE.ID_COMMANDE,
+            COMMANDE.ADRESSE,
+            COMMANDE.DATE_COMMANDE,
+            COMMANDE.STATUT_ENVOYE,
+            U.NOM,
+            U.PRENOM,
+            U.EMAIL,
+            IC.QUANTITE,
+            IC.PRIX,
+            P.ID_PRODUIT,
+            P.NOM,
+            P.PRIX_SUGGERE
+        FROM commande
+            inner join UTILISATEUR U on U.ID_UTILISATEUR = COMMANDE.UTILISATEUR_ID_UTILISATEUR
+            inner join ITEM__COMMANDE IC on COMMANDE.ID_COMMANDE = IC.COMMANDE_ID_COMMANDE
+            inner join PRODUIT P on IC.ID_PRODUIT = P.ID_PRODUIT`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        commandes = commandes["rows"]
+        console.log(commandes);
+        let commandesJson = {
+          "commandes": [
+
+          ],
+        };
+
+
+        commandes.forEach(element => {
+          let commandeElement;
+
+          // la premiere commande est ajoutee manuellement et sans items
+          if (commandesJson["commandes"].length == 0) {
+            commandeElement = {
+              id: element["ID_COMMANDE"],
+              adresse: element["ADRESSE"],
+              date: Date.toString(element["DATE_COMMANDE"]),
+              statut: element["STATUT_ENVOYE"],
+              prix_sous_total: element["PRIX"],
+              client: {
+                nom: element["NOM"],
+                prenom: element["PRENOM"],
+                email: element["EMAIL"]
+              },
+              items: [
+
+              ]
+            }
+
+            commandesJson["commandes"].push(commandeElement)
+          }
+
+          commandesJson["commandes"].forEach(elementCommandeJson => {
+
+            /**
+             * Si le ID de la commande dans le json est le meme que la ligne 
+             * de la BD, on ajoute que l'item a la commande precedente au lieu
+             * de creer un deuxieme element a larray.
+             */
+            if (elementCommandeJson["id"] == element["ID_COMMANDE"]) {
+
+              commandeElement = {
+                id: element["ID_PRODUIT"],
+                nom: element["NOM_1"],
+                prix_unite: element["PRIX_SUGGERE"],
+                quantite: element["QUANTITE"]
+              }
+
+              elementCommandeJson["items"].push(commandeElement);
+
+              // Si le ID nest pas le meme on ajoute un nouvel element a larray
+            } else {
+
+              commandeElement = {
+                id: element["ID_COMMANDE"],
+                adresse: element["ADRESSE"],
+                date: Date.toString(element["DATE_COMMANDE"]),
+                statut: element["STATUT_ENVOYE"],
+                prix_sous_total: element["PRIX"],
+                client: {
+                  nom: element["NOM"],
+                  prenom: element["PRENOM"],
+                  email: element["EMAIL"]
+                },
+                items: [
+                  {
+                    id: element["ID_PRODUIT"],
+                    nom: element["NOM_1"],
+                    prix_unite: element["PRIX_SUGGERE"],
+                    quantite: element["QUANTITE"]
+                  }
+                ]
+              }
+
+              commandesJson["commandes"].push(commandeElement);
+            }
+          });
+        });
+
+        res.status(201).json(commandesJson).end();
 
       } else {
 

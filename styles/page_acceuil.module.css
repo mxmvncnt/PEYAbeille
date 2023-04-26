@@ -1,0 +1,92 @@
+.section{
+    margin: auto;
+}
+
+.section h3 {
+    margin-top: 10px;
+}
+
+.titreImage {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+.titreImage h3 {
+    font-size: 3rem;
+}
+
+.titreImage p {
+    font-size: 1.5rem;
+}
+
+.background {
+    margin: auto;
+}
+
+.background h3 {
+    margin-top: 10px;
+}
+
+.img_acc {
+    width: 100%;
+    margin: auto;
+    object-fit: cover;
+    opacity: 80%;
+}
+
+.img_acc2 {
+    width: 50%;
+    height: 60%;
+    object-fit: cover;
+    margin: auto;
+    opacity: 40%;
+}
+
+.overlay {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: black;
+    z-index: 1;
+}
+
+.overlay h3 {
+    font-size: 3rem;
+}
+
+.overlay p {
+    font-size: 1.5rem;
+}
+
+.overlay button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 230, 0);
+    color: black;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .flexContainer {
+        flex-direction: column;
+    }
+
+    .imgContainer,
+    .textContainer {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .imgContainer {
+        margin-bottom: 20px;
+    }
+}

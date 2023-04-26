@@ -1,3 +1,6 @@
+# Les fichiers mis en ligne par les utilisateurs/admins
+server/file_upload/*
+
 # Logs
 logs
 *.log

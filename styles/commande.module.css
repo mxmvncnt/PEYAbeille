@@ -1,48 +1,115 @@
-.commande{
+.commande {
     border-color: black;
-    border-radius:10px;
-    background-color: lightgray;
+    border-radius: 10px;
     display: flex;
-    padding:8px;
+    padding: 8px;
     margin: 15px;
     text-align: center;
     justify-content: space-around;
     align-items: center;
-    
-}
-.ContainerCommande{
-    padding:8px;
-    margin: 15px;
-    background-color: lightgray;
-    border-radius:10px;
-    
-}
-.bouttons{
-    margin:5px;
-    display: flex;
-    justify-content: space-around;
-    width:35vh;
-    /* min-width:15px;*/
-}
-.bttnCompleter{
-    border-radius: 20px;
-    background-color: #20E55F;
-    font-size:large;
-    width: 15vh;
-    height: 5vh;
+
 }
 
-.bttnAnnuler{
-    border-radius: 20px;
-    background-color: #E82C0F;
-    font-size:large;
-    width: 15vh;
-    height: 5vh;
+.body {
+    height: 100vh;
 }
+
+.ContainerCommande {
+    padding: 8px;
+    margin: 15px;
+    border-radius: 10px;
+
+}
+
+.bouttons {
+    margin: 5px;
+    display: flex;
+    justify-content: space-around;
+    width: 35vh;
+    /* min-width:15px;*/
+}
+
+.bttnCompleter {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.bttnAnnuler {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.bttnCompleter:disabled,
+.bttnAnnuler:disabled {
+    background-color: rgb(123, 123, 123);
+    cursor: not-allowed;
+}
+
 .detailCommande {
     text-align: left;
 }
-.detailCommande[open]{
-    background-color: white;
+
+.detailCommande[open] {
     border-radius: 10px;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .commande {
+        border-color: black;
+        background-color: #141414;
+    }
+
+    .ContainerCommande {
+        background-color: #141414;
+    }
+
+    .bttnCompleter {
+        background-color: #26a269;
+    }
+
+    .bttnAnnuler {
+        background-color: #c01c28;
+
+    }
+
+    .detailCommande[open] {
+        background-color: #202020;
+    }
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+    .commande {
+        border-color: black;
+        background-color: lightgray;
+    }
+
+    .ContainerCommande {
+        background-color: lightgray;
+    }
+
+    .bttnCompleter {
+        background-color: #2ec27e;
+    }
+
+    .bttnAnnuler {
+        background-color: #e01b24;
+    }
+
+    .detailCommande[open] {
+        background-color: white;
+    }
 }
