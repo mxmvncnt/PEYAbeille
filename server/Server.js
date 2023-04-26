@@ -110,7 +110,7 @@ async function run() {
         break;
 
       // Prix alphabetique inverse (z -> a)
-      case 3:
+      case 4:
         // selectioner les produits qui ne sont pas cachés (categorie id = 0)
         result = await con.execute("SELECT * FROM produit WHERE categorie_id_categorie != 0 ORDER BY NOM DESC", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
         break;
