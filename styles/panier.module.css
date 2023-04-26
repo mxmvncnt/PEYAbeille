@@ -99,7 +99,7 @@
 
 
     .infos_total {
-        background-color: rgba(255, 0, 0, 0.5);
+        background-color: rgba(255, 255, 255, 0.5);
         border-top: rgb(200, 200, 200) 1px solid;
     }
 }
