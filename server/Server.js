@@ -79,13 +79,50 @@ async function run() {
    *    GET LES PRODUITs     *
    * ======================= *
   \***************************/
-  app.get('/api/produits', async function (req, res) {
+  app.get('/api/produits/:typeTri', async function (req, res) {
     // Activer le CORS
     res.set('Access-Control-Allow-Origin', '*');
 
-    // selectioner les produits qui ne sont pas cachés (categorie id = 0)
-    let result = await con.execute("SELECT * FROM produit WHERE categorie_id_categorie != 0", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
-    res.send(result["rows"])
+    // prendre les parametres de l'url (type de tri)
+    let params = req.params;
+    let typeTri = parseInt(params['typeTri']);
+
+    let result;
+
+    switch (typeTri) {
+
+      // Prix croissant ($ -> $$$)
+      case 1:
+        // selectioner les produits qui ne sont pas cachés (categorie id = 0)
+        result = await con.execute("SELECT * FROM produit WHERE categorie_id_categorie != 0 ORDER BY PRIX_SUGGERE ASC", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        break;
+
+      // Prix decroissant ($$$ -> $)
+      case 2:
+        // selectioner les produits qui ne sont pas cachés (categorie id = 0)
+        result = await con.execute("SELECT * FROM produit WHERE categorie_id_categorie != 0 ORDER BY PRIX_SUGGERE DESC", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });      
+        break;
+
+      // Prix alphabetique (a -> z)
+      case 3:
+        // selectioner les produits qui ne sont pas cachés (categorie id = 0)
+        result = await con.execute("SELECT * FROM produit WHERE categorie_id_categorie != 0 ORDER BY NOM ASC", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        break;
+
+      // Prix alphabetique inverse (z -> a)
+      case 3:
+        // selectioner les produits qui ne sont pas cachés (categorie id = 0)
+        result = await con.execute("SELECT * FROM produit WHERE categorie_id_categorie != 0 ORDER BY NOM DESC", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        break;
+
+      // tri par defaut (par ordre d'ajout dans la BD)
+      default:
+        // selectioner les produits qui ne sont pas cachés (categorie id = 0)
+        result = await con.execute("SELECT * FROM produit WHERE categorie_id_categorie != 0", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        break;
+    }
+
+    res.send(result["rows"]);
   });
 
 

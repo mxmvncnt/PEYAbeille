@@ -7,7 +7,9 @@ import styles from '../../styles/produits.module.css'
 import ImageProduit from "../../components/ImageProduit";
 
 export default async function Produits() {
-    const data = await getProduits();
+    const data = await getProduits(1);
+
+    console.log(data)
 
     return (
         <div className={styles.body}>

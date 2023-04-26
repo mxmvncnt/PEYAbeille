@@ -12,8 +12,8 @@ export async function verifierSession(token) {
     return jsonData;
 }
 
-export async function getProduits() {
-    let response = await fetch(url + "/api/produits", { cache: "no-cache" });
+export async function getProduits(typeTri) {
+    let response = await fetch(url + "/api/produits/" + typeTri, { cache: "no-cache" });
     let jsonData = await response.json();
     return jsonData;
 }
