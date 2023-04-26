@@ -1,21 +1,34 @@
 "use client";
-import React from "react";
+import React from "react"
 import {useCookies} from 'react-cookie'
-import { redirect } from "next/navigation";
+import {redirect} from "next/navigation"
+import { useRouter } from 'next/navigation';
+import styles from '../styles/compte.module.css';
 
-export default function LogOut() {
+function LogOut() {
     const [cookie, setCookie, removeCookie] = useCookies();
-    const Logout = () =>{
+    const router = useRouter();
 
-        removeCookie('token', {path:'/'})
-        alert("test");
-        redirect('/')
+    const logout = async () => {
+        try {
+            removeCookie('token', { path: '/' });
+            router.push('/')
+            
+
+        } catch (error) {
+            console.error('Erreur de suppresion de cookies:', error)
+        }
     }
-    
-    return(
+
+    return (
         <div>
-            <button onClick={Logout}>Logout</button>
+            <button className={styles.btn}
+                onClick={logout}>
+                Se déconnecter</button>
         </div>
     )
 }
 
+
+
+export default LogOut;
