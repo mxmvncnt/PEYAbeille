@@ -113,15 +113,15 @@ export default function HeaderBar() {
                     Nous joindre
                 </Link>
 
+                <Link
+                    href="/panier"
+                    id={styles.panier}>
+                    <MdShoppingCart id={styles.icone_panier}/> Panier
+                </Link>
+
                 <BtnCompte />
 
             </div>
-
-            <Link
-                href="/panier"
-                id={styles.icone_panier}>
-                <MdShoppingCart />
-            </Link>
 
         </div>
     );

@@ -84,8 +84,14 @@
 
 	#icone_panier {
 		height: 100%;
-		position:relative;
+		position: relative;
 		right: 0;
+		margin-right: 5px;
+		transform: translateY(3px);
+	}
+
+	#panier {
+		font-weight: 400;
 	}
 
 	#lien_connexion {
