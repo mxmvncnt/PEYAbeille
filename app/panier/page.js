@@ -73,7 +73,7 @@ export default async function Panier() {
 
 
                     <div>
-                        <h2 className={styles.titre_section}>Items</h2>
+                        <h2 className={styles.titre_section}>Contenu du panier</h2>
                         <div className={styles.carte_items_commande}>
                             <div className={styles.items_commande}>
                                 <div className={styles.data_items}>
