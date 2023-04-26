@@ -34,7 +34,7 @@ export default function NousJoindre() {
                     <p>peyabeille@abeille.com</p>
 
                     <div className={styles.page_nousjoindre_contact_item}>
-                    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-73.90520095825197%2C45.795416816359804%2C-73.67860794067384%2C45.904702604307666&amp;layer=mapnik&amp;marker=45.85008655163701%2C-73.79190444946289"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=45.8501&amp;mlon=-73.7919#map=13/45.8501/-73.7919">View Larger Map</a></small>
+                        <iframe className={styles.openstreetmap} frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-73.90520095825197%2C45.795416816359804%2C-73.67860794067384%2C45.904702604307666&amp;layer=mapnik&amp;marker=45.85008655163701%2C-73.79190444946289"></iframe><br /><small><a href="https://www.openstreetmap.org/?mlat=45.8501&amp;mlon=-73.7919#map=13/45.8501/-73.7919">View Larger Map</a></small>
                     </div>
                 </div>
             </div>
