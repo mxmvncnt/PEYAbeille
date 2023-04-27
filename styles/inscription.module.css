@@ -1,21 +1,23 @@
 .body {
     height: 100vh;
     /* https://cssgradient.io/ */
-    background: linear-gradient(304deg, rgba(255,76,0,1), rgba(255,167,0,1), rgba(255,230,0,1));
-	background-size: 600% 600%;
-	animation: background_animation 15s ease infinite;
+    background: linear-gradient(304deg, rgba(255, 76, 0, 1), rgba(255, 167, 0, 1), rgba(255, 230, 0, 1));
+    background-size: 600% 600%;
+    animation: background_animation 15s ease infinite;
 }
 
 @keyframes background_animation {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .card {
@@ -60,8 +62,6 @@
 }
 
 .btn_fullwidth {
-    background-color: black;
-    color: yellow;
     font-size: 1.2rem;
     padding: 10px 20px;
     border: none;
@@ -84,6 +84,11 @@
 @media (prefers-color-scheme: light) {
     .card {
         background-color: rgb(255, 255, 255);
+    }
+
+    .btn_fullwidth {
+        background-color: black;
+        color: rgb(255, 230, 0);
     }
 }
 
