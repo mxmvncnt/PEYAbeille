@@ -42,7 +42,29 @@
         0px 40px 80px rgba(0, 0, 0, 0.07);
 }
 
+.card_header {
+    border-bottom: 1px solid rgb(190, 190, 190);
+}
+
+.card_title {
+    margin-top: 0;
+}
+
+.card_item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn_fullwidth {
+    background-color: black;
+    color: yellow;
+    font-size: 1.2rem;
+    padding: 10px 20px;
     border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
     margin-top: 15px;
     width: 100%;
 }
@@ -67,6 +89,10 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
+
+    .card_header {
+        width: 400px;
+    }
 }
 
 /* === VUE SPECIFIQUE MOBILE === */
@@ -79,5 +105,9 @@
         width: 85vw;
         -ms-transform: translate(-50%, -80%);
         transform: translate(-50%, -80%);
+    }
+
+    .card_header {
+        width: 85vw;
     }
 }
