@@ -13,6 +13,14 @@ const bcrypt = require('bcrypt')
 const path = require('path');
 const { hostname } = require('os');
 const { Console } = require('console');
+const { MongoClient } = require('mongodb');
+const { config } = require('dotenv');
+config();
+console.log();
+
+let mongoClient;
+
+
 
 let libPath;
 if (process.platform === "win32") {
@@ -37,6 +45,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'file_upload')))
 
 async function run() {
+  try {
+    mongoClient = new MongoClient(process.env.DB_URI);
+    console.log("Connection à MongoDB...");
+    await mongoClient.connect();
+    console.log("Connecté à MongoDB!");
+  } catch (error) {
+    console.error("Erreur de connexion à MongoDB!", error);
+    process.exit();
+  }
 
   const con = await oracledb.getConnection({
     host: process.env.ORACLE_HOSTNAME,
@@ -100,7 +117,7 @@ async function run() {
       // Prix decroissant ($$$ -> $)
       case 2:
         // selectioner les produits qui ne sont pas cachés (categorie id = 0)
-        result = await con.execute("SELECT * FROM produit WHERE categorie_id_categorie != 0 ORDER BY PRIX_SUGGERE DESC", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });      
+        result = await con.execute("SELECT * FROM produit WHERE categorie_id_categorie != 0 ORDER BY PRIX_SUGGERE DESC", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
         break;
 
       // Prix alphabetique (a -> z)

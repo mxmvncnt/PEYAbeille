@@ -2,7 +2,8 @@ import React from "react";
 import styles from "../../styles/nous_joindre.module.css";
 import image from "../../public/cap12.png";
 import Image from "next/image";
-import '../global.css'
+import '../global.css';
+   
 
 export default function NousJoindre() {
     return (
@@ -15,9 +16,11 @@ export default function NousJoindre() {
                 <div className={`${styles.page_nousjoindre_grid_item} ${styles.contact_form}`}>
                     <h2>Nous contacter</h2>
                     <form action="#" method="POST">
-                        <label htmlFor="nom"> Nom et Prénom:</label>
+                        <label htmlFor="nom">Nom:</label>
                         <input className="input-field-singlerow" type="text" id="nom" name="nom" required />
-                        <label htmlFor="titre"> Sujet:</label>
+                        <label htmlFor="prenom">Prénom:</label>
+                        <input className="input-field-singlerow" type="text" id="prenom" name="prenom" required />
+                        <label htmlFor="titre">Sujet:</label>
                         <input className="input-field-singlerow" type="text" id="titre" name="titre" required />
                         <label htmlFor="email">Email:</label>
                         <input className="input-field-singlerow" type="email" id="email" name="email" required />
