@@ -1,24 +1,83 @@
-.body{
+.body {
     height: 100vh;
+    /* https://cssgradient.io/ */
+    background: linear-gradient(304deg, rgba(255,76,0,1), rgba(255,167,0,1), rgba(255,230,0,1));
+	background-size: 600% 600%;
+	animation: background_animation 15s ease infinite;
 }
 
-.container{
-    font-size: 30px;
-    color: #070706;
-    align: center;
-    border-radius: 10px;
-    background-color: coral;
+@keyframes background_animation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.card {
+    /* --- */
+    /* https://www.w3schools.com/howto/howto_css_center-vertical.asp */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* ---  */
+
+    margin: 0 auto;
     width: 400px;
-    height: 400px;
-    padding: 20px;
-    text-align: center;
-    margin: auto;
-    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow:
+        0px 1.1px 2.2px rgba(0, 0, 0, 0.02),
+        0px 2.7px 5.3px rgba(0, 0, 0, 0.028),
+        0px 5px 10px rgba(0, 0, 0, 0.035),
+        0px 8.9px 17.9px rgba(0, 0, 0, 0.042),
+        0px 16.7px 33.4px rgba(0, 0, 0, 0.05),
+        0px 40px 80px rgba(0, 0, 0, 0.07);
 }
 
-.input{ 
-    border-radius: 10px;
     border: none;
-    padding: 10px 15px;
+    margin-top: 15px;
+    width: 100%;
 }
 
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .card {
+        background-color: #141414
+    }
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+    .card {
+        background-color: rgb(255, 255, 255);
+    }
+}
+
+/* === VUE SPECIFIQUE ORDINATEUR === */
+@media only screen and (min-width: 930px) {
+    .card {
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 929px) {
+    .body {
+        min-height: 100vh;
+    }
+
+    .card {
+        width: 85vw;
+        -ms-transform: translate(-50%, -80%);
+        transform: translate(-50%, -80%);
+    }
+}
