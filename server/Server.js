@@ -15,8 +15,7 @@ const { hostname } = require('os');
 const { Console } = require('console');
 const { MongoClient } = require('mongodb');
 const { config } = require('dotenv');
-config();
-console.log();
+
 
 let mongoClient;
 
@@ -60,6 +59,31 @@ async function run() {
     user: process.env.ORACLE_USER,
     password: process.env.ORACLE_PASSWORD,
     connectString: process.env.ORACLE_CONNECTSTRING
+  });
+
+  /***************************\
+   * ======================= *
+   *     POST CONTACT      *
+   * ======================= *
+  \***************************/
+  app.post('/api/nousjoindre/contact/', async function (req, res) {
+    // Activer le CORS 
+    res.set('Access-Control-Allow-Origin', '*');
+
+    /**
+     * Le body de la requete post doit contenir le champ email et le champ password
+     */
+    
+    let contactForm = {
+      "nom": req.body.nom,
+      "prenom": req.body.prenom, 
+      "sujet": req.body.titre,
+      "email": req.body.email,
+      "message":req.body.message
+    };
+
+  
+
   });
 
   /***************************\
