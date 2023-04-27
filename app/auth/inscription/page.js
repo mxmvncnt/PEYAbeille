@@ -6,7 +6,10 @@ export default function Inscription() {
     return (
         <div className={styles.body}>
             <div className={styles.card}>
-                <h1>Inscription</h1>
+                <div className={styles.card_header}>
+                    <h2 className={styles.card_title}>Inscription</h2>
+                </div>
+
                 <form action={`/api/register`} method="GET">
 
                     <div className={styles.card_item}>
