@@ -35,6 +35,12 @@ export default function Inscription() {
                         </button>
                     </div>
                 </form>
+                <div className={styles.card_footer}>
+                    <small>
+                        <a href="/auth/connexion">Déjà membre PEYABEILLE?</a>
+                    </small>
+                </div>
+
             </div>
         </div>
     );

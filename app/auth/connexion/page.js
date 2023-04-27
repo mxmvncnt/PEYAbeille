@@ -30,7 +30,9 @@ function Connexion() {
                         </button>
                     </div>
                     <div className={styles.card_footer}>
-
+                    <small>
+                        <a href="/auth/inscription">Pas de compte?</a>
+                    </small>
                     </div>
                 </form>
             </div>

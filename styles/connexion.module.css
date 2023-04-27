@@ -42,8 +42,12 @@
         0px 40px 80px rgba(0, 0, 0, 0.07);
 }
 
-.card_header {
+/* .card_header {
     border-bottom: 1px solid rgb(190, 190, 190);
+} */
+
+.card_footer {
+    text-align: center;
 }
 
 .card_title {
