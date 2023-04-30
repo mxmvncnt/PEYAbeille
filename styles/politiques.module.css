@@ -1,0 +1,21 @@
+
+ .container {
+    height: auto;
+    margin: 0;
+  padding: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  }
+  
+  .container p {
+    font-style: italic;
+  }
+  .container h3 {
+
+    text-align: center;
+  }
+  
+  
