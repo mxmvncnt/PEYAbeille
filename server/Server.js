@@ -82,7 +82,7 @@ async function run() {
       "message":req.body.message
     };
 
-    //await collection.insertOne(contactForm);
+    await collection.insertOne(contactForm);
   
 
   });
