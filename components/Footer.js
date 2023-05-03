@@ -26,7 +26,7 @@ export default function Footer() {
                 <h3>Politiques</h3>
                 <ul className={`${styles.footer_ul}`}>
                     <li className={`${styles.footer_li}`}><a href="/conditionutilisation">Conditions d'utilisation</a></li>
-                    <li className={`${styles.footer_li}`}><a href="/Politiquedeconfidentialité">Politique de confidentialité</a></li>
+                    <li className={`${styles.footer_li}`}><a href="/politique">Politique de confidentialité</a></li>
                 </ul>
             </div>
             <div className={`${styles.footer_categorie}`}>

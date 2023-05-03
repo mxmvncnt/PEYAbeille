@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "../../styles/politiques.module.css";
+import styles from "../../styles/conditionutilisation.module.css";
 import '../global.css';
 
 export default function Compte() {
     return (
         <div className={styles.container}>
             <div >
-                <h3>Conditions d'utilisation</h3>
+                <h1>Conditions d'utilisation</h1>
                 <div>
                     <h4>
                         Article 1 : Objet

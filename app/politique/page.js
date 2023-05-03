@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../../styles/politiques.module.css";
 import '../global.css';
 
-export default function Compte() {
+export default function Politique() {
     return (
         <div className={styles.container}>
             <div >
