@@ -12,12 +12,17 @@
 }
 
 .AllerCommande{
-    width: 50vh;
+    width: 40vh;
     border-radius: 10px;
     text-align: center;
 }
 .AllerInventaire{
-    width: 50vh;
+    width: 40vh;
+    border-radius: 10px;
+    text-align: center;
+}
+.AllerMessage{
+    width: 40vh;
     border-radius: 10px;
     text-align: center;
 }
@@ -68,6 +73,9 @@
     .AllerInventaire{
         background-color: #141414;
     }
+    .AllerMessage{
+        background-color: #141414;
+    }
 }
 
 /* Light Mode */
@@ -81,6 +89,9 @@
     }
 
     .AllerInventaire{
+        background-color: #efefef;
+    }
+    .AllerMessage{
         background-color: #efefef;
     }
 }

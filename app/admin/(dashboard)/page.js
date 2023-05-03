@@ -48,6 +48,12 @@ export default async function dashboard() {
                                 <button className={styles.button}> Go!</button>
                             </Link>
                         </div>
+                        <div className={styles.AllerMessage}>
+                            <h3> Messages</h3>
+                            <Link href="/admin/message">
+                                <button className={styles.button}> Go!</button>
+                            </Link>
+                        </div>
     
                         <div className={styles.AllerInventaire}>
                             <h3> Inventaire</h3>
