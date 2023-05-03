@@ -1,6 +1,7 @@
 import React from "react";
 import styles from '../../styles/accueil.module.css'
 import image_accueil from '../../public/acc_pot.jpg'
+import Link from 'next/link'
 import abeille from '../../public/abb02.png'
 import abeille2 from '../../public/abb8.PNG'
 import abeille3 from '../../public/abb11.png'
@@ -17,7 +18,7 @@ export default function Accueil() {
                 <div className={`${styles.overlay}`}>
                     <h3> Découvrez la richesse des saveurs naturelles de PEYABEILLE </h3>
                     <p> Commandez notre miel pur et nos produits de la ruche dès maintenant. </p>
-                    <button> Passer à la commande</button>
+                    <Link href="/produits" > <button> Passer à la commande</button></Link>
                 </div>
             </div>
             <div className={`${styles.container}`}>
