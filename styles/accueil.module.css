@@ -1,5 +1,5 @@
 .container {
-    background-color: rgba(200,190,181,255);
+    background-color: rgba(200, 190, 181, 255);
     display: flex;
     /* display points next to each other */
     flex-wrap: wrap;
@@ -10,35 +10,32 @@
     /* set maximum width for container */
     margin: 0;
     margin-bottom: 0;
-    
-
-    /* center container */
 }
 
 /* Style each point section */
 .section {
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 20px;
-    margin-bottom: 40px;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
-.flexContainer{
+.flexContainer {
     display: flex;
     align-items: flex-start;
+    gap: 30px;
 }
-.imgContainer{
+
+.imgContainer {
     flex: 1;
-
 }
 
-.textContainer{
-    flex:1;
-    padding-right: 100px ;
+.textContainer {
+    flex: 1;
     overflow: hidden;
 }
 
@@ -46,19 +43,16 @@
     margin: auto;
 }
 
-.background h3 {
-    margin-top: 10px;
-}
-
 .img_acc1 {
     width: 100%;
     object-fit: cover;
     opacity: 80%;
-    border-radius: 10px;
 }
+
 .img_acc {
-    width: 90%;
     object-fit: cover;
+    width: 100%;
+    
     opacity: 90%;
     border-radius: 10px;
 }
@@ -105,38 +99,53 @@
 
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
-	.section {
+    .section {
         background-color: #242424;
     }
 
-    .container { 
+    .container {
         background-color: #33302e;
     }
 }
 
 /* Light Mode */
 @media (prefers-color-scheme: light) {
-	.section {
+    .section {
         background-color: #f2f2f2;
     }
 }
 
-@media screen and (max-width: 768px) {
+/* === VUE SPECIFIQUE ORDINATEUR === */
+@media only screen and (min-width: 1000px) {
+    .section {
+        width: 50%;
+    }
+}
+
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 999px) {
+    .overlay {
+        margin-top: 20vh;
+    }
+
+    .img_acc1 {
+        height: 110vh;
+    }
+
     .flexContainer {
         flex-direction: column;
-        margin: 5%;
-
     }
 
     .imgContainer,
     .textContainer {
         width: 100%;
-        margin-left: 20px;
     }
-    .section{
-        margin-right: 40px;
-    }
+
     .imgContainer {
         margin-bottom: 20px;
+    }
+
+    .section {
+        width: 80vw;
     }
 }
