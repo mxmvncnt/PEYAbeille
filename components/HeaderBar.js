@@ -22,7 +22,7 @@ let BtnCompte = () => {
     const [statusConnexion, setStatusConnexion] = useState()
     const [montrerMenu, setMontrerMenu] = useState(false)
     const [nom, setNom] = useState('')
-    
+
 
     useEffect(() => {
         const verifierSession = async (token) => {
@@ -30,13 +30,12 @@ let BtnCompte = () => {
 
             setStatusConnexion(response.status);
         }
-        const getNom = async(token) => {
+        const getNom = async (token) => {
             let response = await fetch(url + '/api/nom/' + token, { cache: "no-cache" });
             let data = await response.json();
             if (data != null || data != undefined) {
                 setNom(data.rows[0].NOM);
             }
-            
         }
 
         verifierSession(cookies.token);
@@ -44,37 +43,41 @@ let BtnCompte = () => {
     }, []);
 
 
-
-     const toggleMontrerMenu = () => {
+    const toggleMontrerMenu = () => {
         setMontrerMenu(!montrerMenu)
-     }
+    }
+
+
     // si la session est valide, l'utilisateur est connecté
     if (statusConnexion === 200) {
-        // return <Link
-        //     href="/compte"
-        //     id={styles.lien_monCompte}>
-        //     Mon compte
-        // </Link>  
-        return <div className={styles.monCompteWrapper}>
-            <a id={styles.lien_monCompte} onClick={toggleMontrerMenu}>Mon compte </a>
-            <MenuDropdown show={montrerMenu} nom ={nom} />
+
+        return (
+            <div className={styles.monCompteWrapper}>
+                <a id={styles.lien_monCompte} onClick={toggleMontrerMenu}>Mon compte </a>
+                <MenuDropdown show={montrerMenu} nom={nom} />
             </div>
+        );
+
     } else {
-        return <div>
-            <Link
-                href="/auth/connexion"
-                id={styles.lien_connexion}
-                onClick={() => {
-                    setIsNavExpanded(false)
-                }}>
-                Connexion
-            </Link>
-            <Link
-                href="/auth/inscription"
-                id={styles.lien_inscription}>
-                Inscription
-            </Link>
-        </div>
+
+        return (
+            <div>
+                <Link
+                    href="/auth/connexion"
+                    id={styles.lien_connexion}
+                    onClick={() => {
+                        setIsNavExpanded(false)
+                    }}>
+                    Connexion
+                </Link>
+                <Link
+                    href="/auth/inscription"
+                    id={styles.lien_inscription}>
+                    Inscription
+                </Link>
+            </div>
+        );
+
     }
 }
 
@@ -139,7 +142,7 @@ export default function HeaderBar() {
                 <Link
                     href="/panier"
                     id={styles.panier}>
-                    <MdShoppingCart id={styles.icone_panier}/> Panier
+                    <MdShoppingCart id={styles.icone_panier} /> Panier
                 </Link>
 
                 <BtnCompte />
