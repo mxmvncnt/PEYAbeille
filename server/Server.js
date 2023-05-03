@@ -44,10 +44,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'file_upload')))
 
 async function run() {
+
+  let collection;
   try {
     mongoClient = new MongoClient(process.env.DB_URI);
     console.log("Connection à MongoDB...");
     await mongoClient.connect();
+
+    const db = mongoClient.db("Peyabeille");
+    collection = db.collection("Contact");
     console.log("Connecté à MongoDB!");
   } catch (error) {
     console.error("Erreur de connexion à MongoDB!", error);
@@ -66,14 +71,14 @@ async function run() {
    *     POST CONTACT      *
    * ======================= *
   \***************************/
-  app.post('/api/nousjoindre/contact/', async function (req, res) {
+  app.post('/api/nousjoindre/contact', async function (req, res) {
     // Activer le CORS 
     res.set('Access-Control-Allow-Origin', '*');
 
     /**
      * Le body de la requete post doit contenir le champ email et le champ password
      */
-
+    
     let contactForm = {
       "nom": req.body.nom,
       "prenom": req.body.prenom,
@@ -84,6 +89,9 @@ async function run() {
 
     await collection.insertOne(contactForm);
 
+    res.status(200).json({
+      "succes": "Le message à été envoyé."
+    }).end();
 
   });
 
