@@ -890,15 +890,15 @@ async function run() {
     // console.log(token)
 
     if (token !== "undefined") {
-
+      try{
       let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
-
       userID = userID["rows"][0]["UTILISATEUR_ID"];
-
       let result = await con.execute("SELECT nom FROM utilisateur where id_utilisateur = :userID ", [userID], { outFormat: oracledb.OUT_FORMAT_OBJECT });
 
       res.send(result);
-      
+    }catch(error){
+      console.error(error);
+    }
     }
 
   })
