@@ -3,7 +3,6 @@ import styles from '../../../styles/inventaire.module.css';
 import ProduitInventaire from "../../../components/ProduitInventaire";
 import { getProduits } from "../../../server/Api";
 
-
 export default async function inventaire() {
     const data = await getProduits();
 

@@ -879,35 +879,6 @@ async function run() {
 
     }
   });
-  //get le nom de l utilisateur
-  app.get('/api/nom/:token', async function (req, res) {
-
-    res.set('Access-Control-Allow-Origin', '*');
-
-    let params = req.params;
-    let token = params['token'];
-
-    // console.log(token)
-
-    if (token !== "undefined") {
-      try{
-      let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
-      userID = userID["rows"][0]["UTILISATEUR_ID"];
-      let result = await con.execute("SELECT nom FROM utilisateur where id_utilisateur = :userID ", [userID], { outFormat: oracledb.OUT_FORMAT_OBJECT });
-
-      res.send(result);
-    }catch(error){
-      console.error(error);
-    }
-    }
-
-  })
-
-  app.get('api/commande/detail', async function (req, res) {
-    res.set('Access-Control-Allow-Origin', '*');
-
-
-  })
   /**
    * Retourne TRUE ou FALSE selon le statut de connexion de lutilisateur. (true = connecte)
    */

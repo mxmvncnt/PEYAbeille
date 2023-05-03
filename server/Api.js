@@ -87,14 +87,3 @@ export async function getImagesProduit(id) {
 
     return jsonData;
 }
-
-export async function getNom(id) {
-    let response = await fetch(url + '/api/nom/' + id, {cache:"no-cache"});
-    let jsonData = await response.json();
-
-    if (response.status == 404) {
-        return 404;
-    }
-
-    return jsonData;
-}
