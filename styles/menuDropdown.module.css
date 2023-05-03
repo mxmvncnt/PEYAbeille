@@ -1,0 +1,39 @@
+
+  .monCompte {
+    position: relative;
+    overflow: visible;
+    z-index: 9999;
+  }
+  
+  .containerDropDown {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    z-index: 900;
+    display: block;
+    min-width: 160px;
+    padding: 8px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    overflow: visible;
+    margin-top: 55px;
+  }
+  
+  .containerOption {
+    display: block;
+    padding: 6px 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #212529;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    overflow: visible;
+    z-index: 900;
+    border-bottom: 1px solid rgb(255, 230, 0);
+  }

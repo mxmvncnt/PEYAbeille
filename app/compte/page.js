@@ -19,7 +19,6 @@ export default function Compte() {
                         &nbsp;
                         <button className={styles.btn}>Mes commandes </button>
                         &nbsp;
-                        <button className={styles.btn}>Se déconnecter </button>
                         <BoutonLogOut/>
                     </div>
                  </div>

@@ -880,6 +880,21 @@ async function run() {
     }
   });
 
+  app.get('/api/nom/:token', async function(req, res) {
+
+    res.set('Access-Control-Allow-Origin', '*');
+    
+    let params = req.params;
+    let token = params['token'];
+    
+    let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+    userID = userID["rows"][0]["UTILISATEUR_ID"];
+
+    let result = await con.execute("SELECT nom FROM utilisateur where id_utilisateur = :userID ", [userID], {outFormat: oracledb.OUT_FORMAT_OBJECT});
+    // result=result["rows"][0]["NOM"];
+    res.send(result);
+  })
+
   /**
    * Retourne TRUE ou FALSE selon le statut de connexion de lutilisateur. (true = connecte)
    */
