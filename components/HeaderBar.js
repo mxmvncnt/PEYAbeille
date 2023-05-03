@@ -8,7 +8,9 @@ import { useCookies } from "react-cookie";
 import { MdShoppingCart } from 'react-icons/md';
 import Logo from "../public/logo1.png";
 import Image from "next/image";
-
+import MenuDropdown from './MenuDropdown';
+import { debug } from 'util';
+//import {getNom} from '../server/Api';
 const hostname = 'localhost';
 const port = '4003';
 const url = 'http://' + hostname + ':' + port;
@@ -18,6 +20,9 @@ let BtnCompte = () => {
 
     const [cookies, setCookie] = useCookies(['token'])
     const [statusConnexion, setStatusConnexion] = useState()
+    const [montrerMenu, setMontrerMenu] = useState(false)
+    const [nom, setNom] = useState('')
+    
 
     useEffect(() => {
         const verifierSession = async (token) => {
@@ -25,17 +30,35 @@ let BtnCompte = () => {
 
             setStatusConnexion(response.status);
         }
+        const getNom = async(token) => {
+            let response = await fetch(url + '/api/nom/' + token, { cache: "no-cache" });
+            let data = await response.json();
+            if (data != null || data != undefined) {
+                setNom(data.rows[0].NOM);
+            }
+            
+        }
 
         verifierSession(cookies.token);
+        getNom(cookies.token);
     }, []);
 
+
+
+     const toggleMontrerMenu = () => {
+        setMontrerMenu(!montrerMenu)
+     }
     // si la session est valide, l'utilisateur est connecté
     if (statusConnexion === 200) {
-        return <Link
-            href="/compte"
-            id={styles.lien_monCompte}>
-            Mon compte
-        </Link>
+        // return <Link
+        //     href="/compte"
+        //     id={styles.lien_monCompte}>
+        //     Mon compte
+        // </Link>  
+        return <div className={styles.monCompteWrapper}>
+            <a id={styles.lien_monCompte} onClick={toggleMontrerMenu}>Mon compte </a>
+            <MenuDropdown show={montrerMenu} nom ={nom} />
+            </div>
     } else {
         return <div>
             <Link

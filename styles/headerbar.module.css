@@ -9,9 +9,13 @@
 	background: rgba(0, 0, 0, 0.75);
 	-webkit-backdrop-filter: blur(40px) saturate(200%);
 	backdrop-filter: blur(40px) saturate(200%);
-	z-index: 1000;
+	z-index: 500;
 	box-shadow:
 		0px 9px 17px rgba(0, 0, 0, 0.07);
+}
+.monCompteWrapper{
+	overflow-y: visible;
+	z-index: 600;
 }
 
 /* style des liens/boutons de la navbar */
@@ -114,6 +118,10 @@
 		position: absolute;
 		right: 5px;
 		font-weight: normal;
+		cursor: pointer;
+	}
+	.monComptWarpper{
+		position: relative;
 	}
 }
 
