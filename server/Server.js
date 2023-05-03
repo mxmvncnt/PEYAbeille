@@ -94,7 +94,20 @@ async function run() {
     }).end();
 
   });
+   /***************************\
+   * ======================= *
+   *GET COLLECTION FROM MONGODB*
+   * ======================= *
+  \***************************/
+  app.get('/api/messages_admin', async function (req, res) {
+    res.set('Access-Control-Allow-Origin', '*');
 
+    let messages = await collection.find({}, { projection: { _id: 0, nom: 1, sujet: 1, sujet: 1, email:1, message:1} }).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+    });
+    res.status(201).json(messages).end();
+  });
   /***************************\
    * ======================= *
    *  GET VERIFIER SESSION   *

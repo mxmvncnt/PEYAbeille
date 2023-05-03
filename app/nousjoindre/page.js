@@ -15,7 +15,7 @@ export default function NousJoindre() {
             <div className={`${styles.page_nousjoindre_contact}`}>
                 <div className={`${styles.page_nousjoindre_grid_item} ${styles.contact_form}`}>
                     <h2>Nous contacter</h2>
-                    <form action="#" method="POST">
+                    <form action="http://localhost:4003/api/nousjoindre/contact" method="POST">
                         <label htmlFor="nom">Nom:</label>
                         <input className="input-field-singlerow" type="text" id="nom" name="nom" required />
                         <label htmlFor="prenom">Prénom:</label>
