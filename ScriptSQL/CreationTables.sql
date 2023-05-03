@@ -61,7 +61,8 @@ ALTER TABLE produit ADD CONSTRAINT produit_pk PRIMARY KEY ( id_produit );
 CREATE TABLE table_session (
     id_table_session            NUMBER NOT NULL,
     jettons                     VARCHAR2(128) NOT NULL,
-    utilisateur_id		        NUMBER NOT NULL
+    utilisateur_id		        NUMBER NOT NULL,
+    date_expiration             TIMESTAMP NOT NULL
 );
 
 

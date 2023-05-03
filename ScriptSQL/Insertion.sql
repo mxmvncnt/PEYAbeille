@@ -97,18 +97,22 @@ CREATE SEQUENCE seq_table_session;
 INSERT INTO table_session
             (id_table_session,
              jettons,
-             utilisateur_id)
+             utilisateur_id,
+             date_expiration)
 VALUES      (seq_table_session.NEXTVAL,
              'fdskjLKJIU9867KJH',
-             1);
+             1,
+             '1999-12-01 10:00:00');
 
 INSERT INTO table_session
             (id_table_session,
              jettons,
-             utilisateur_id)
+             utilisateur_id,
+             date_expiration)
 VALUES      (seq_table_session.NEXTVAL,
              'fdklsjfdsIOUH8866',
-             2);
+             2,
+             '1999-12-01 10:00:00');
 
 -- vérification // select * from table_session;
 -------------------------------------------------------------------------------
