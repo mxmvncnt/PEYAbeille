@@ -91,3 +91,27 @@ npm start
 ```
 http://localhost:3000/
 ```
+
+## Installation MongoDB 
+**Le site web requiert une base de données MongoDB**
+
+1. Télécharger l'image docker mongodb sur le lien suivant: https://docs.docker.com/get-docker/
+
+2. Extraire l'image Docker MongoDB avec la commande suivant:
+    docker pull mongodb/mongodb-community-server
+
+3. Exécuter l'image en tant que conteneur par cette commande: 
+    docker run --name mongo -d mongodb/mongodb-community-server:latest
+
+4. Vérifier que le conteneur est en cours d'exécution: 
+    docker container ls
+
+5. Connectez-vous au déploiement MongoDB avec mongosh:
+    docker exec -it mongo mongosh
+
+6. Validez votre déploiement : 
+  db.runCommand(
+   {
+      Bonjour le Monde: 1
+   }
+  )
