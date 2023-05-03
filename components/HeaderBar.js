@@ -30,6 +30,7 @@ let BtnCompte = () => {
 
             setStatusConnexion(response.status);
         }
+        
         const getNom = async (token) => {
             let response = await fetch(url + '/api/nom/' + token, { cache: "no-cache" });
             let data = await response.json();
