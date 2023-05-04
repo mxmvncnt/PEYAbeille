@@ -12,6 +12,9 @@ export default async function CarouselImageProduit(id) {
 
     let jsonImages = await getImagesProduit(id);
 
+    let numeroImageNavigation = 0;
+    let numeroImage = 0
+
     if (jsonImages != 404) {
         jsonImages = jsonImages["produits"]
 
@@ -19,15 +22,8 @@ export default async function CarouselImageProduit(id) {
             <div>
                 {/* Section Images */}
                 <div className={`${styles.page_produit_grid_item} ${styles.page_produit_grid_item_images}`}>
-                    {/* Code pris et modifié de: https://css_tricks.com/can_get_pretty_far_making_slider_just_html_css/ */}
+                    {/* Code pris et modifié de: https://css-tricks.com/can-get-pretty-far-making-slider-just-html-css/ */}
                     {/* Remplacer cela par une boucle quand nous avons de vraies images */}
-
-                    {/* Boutons pour aller directement a une image */}
-                    {/* <a href="#image_1">1</a>
-            <a href="#image_2">2</a>
-            <a href="#image_3">3</a>
-            <a href="#image_4">4</a>
-            <a href="#image_5">5</a> */}
 
                     <div className={styles.page_produit_grid_item_images_slider}>
                         {
@@ -35,7 +31,8 @@ export default async function CarouselImageProduit(id) {
                                 <div className={styles.page_produit_grid_item_images_slider_item} id="slide_1">
                                     <Suspense fallback={<p>Chargement...</p>}>
                                         <Image
-                                            id={styles.img}
+                                            id={`image_${++numeroImage}`}
+                                            className={styles.img}
                                             key={urlImage["url"]}
                                             src={urlImage["url"]}
                                             width={1000}
@@ -45,6 +42,16 @@ export default async function CarouselImageProduit(id) {
                                     </Suspense>
                                 </div>
                             ))
+                        }
+                    </div>
+
+                    {/* Boutons pour aller directement a une image */}
+                    <div className={styles.boutons_navigation}>
+                        {
+                            jsonImages.map((urlImage) => (
+                                <a className={styles.navigation_image_item} href={`#image_${++numeroImageNavigation}`}>{numeroImageNavigation}</a>
+                            ))
+
                         }
                     </div>
                 </div>

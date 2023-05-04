@@ -20,6 +20,8 @@
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
 }
 
 /* tous les div dans le slider */
@@ -31,10 +33,10 @@
 }
 
 /* images dans le slider */
-.page_produit_grid_item_images_slider>div>#img {
+.page_produit_grid_item_images_slider>div>.img {
     height: 98%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
 }
 
@@ -47,6 +49,32 @@
 /* === BOUTON ACHETER === */
 .page_produit_grid_item_acheter {
     place-content: center;
+}
+
+.boutons_navigation {
+    display: grid;
+    place-content: center;
+    margin: auto;
+    text-align: center;
+    grid-template-columns: repeat(auto-fill, 40px);
+    width: 40vw;
+    gap: 10px;
+}
+
+.boutons_navigation:visited {
+    color: inherit;
+}
+
+.navigation_image_item {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
 }
 
 /* === VUE SPECIFIQUE ORDINATEUR === */
@@ -94,10 +122,27 @@
     }
 
     /* images dans le slider */
-    .page_produit_grid_item_images_slider>div>#img {
+    .page_produit_grid_item_images_slider>div>.img {
         height: 98%;
         width: 100%;
         object-fit: cover;
         border-radius: 10px;
+    }
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+    .navigation_image_item {
+        background-color: #fafafa;
+        border: rgb(200, 200, 200) 1px solid;
+    }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .navigation_image_item {
+        color: #ececec;
+        background-color: #2e2e2e;
+        border: rgb(75, 75, 75) 1px solid;
     }
 }
