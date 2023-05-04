@@ -87,3 +87,13 @@ export async function getImagesProduit(id) {
 
     return jsonData;
 }
+export async function getCommandeCompte(token){
+    let response = await fetch(url + '/api/compte/commande/' + token,{ cache: "no-cache" });
+    let jsonData = await response.json();
+
+    if (response.status == 404) {
+        return 404;
+    }
+
+    return jsonData;
+}

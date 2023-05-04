@@ -804,7 +804,7 @@ async function run() {
             inner join ITEM__COMMANDE IC on COMMANDE.ID_COMMANDE = IC.COMMANDE_ID_COMMANDE
             inner join PRODUIT P on IC.ID_PRODUIT = P.ID_PRODUIT`, [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
         commandes = commandes["rows"]
-        console.log(commandes);
+        //console.log(commandes);
         let commandesJson = {
           "commandes": [
 
@@ -900,6 +900,93 @@ async function run() {
 
     }
   });
+
+   // get commande utilisateur(mon compte)
+  app.get('/api/compte/commande/:token', async function (req, res) {
+    // Activer le CORS
+    res.set('Access-Control-Allow-Origin', '*');
+    let params = req.params;
+    let token = params['token'];
+
+    if (await isSessionOuverte(token)) {
+        let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        userID = userID["rows"][0]["UTILISATEUR_ID"];
+
+        let commandes = await con.execute(`
+        SELECT COMMANDE.ID_COMMANDE,
+            COMMANDE.ADRESSE,
+            COMMANDE.DATE_COMMANDE,
+            COMMANDE.STATUT_ENVOYE,
+            IC.QUANTITE,
+            IC.PRIX
+        FROM commande
+            inner join UTILISATEUR U on U.ID_UTILISATEUR = COMMANDE.UTILISATEUR_ID_UTILISATEUR
+            inner join ITEM__COMMANDE IC on COMMANDE.ID_COMMANDE = IC.COMMANDE_ID_COMMANDE
+            inner join PRODUIT P on IC.ID_PRODUIT = P.ID_PRODUIT
+       WHERE U.ID_UTILISATEUR = :userID`, [userID], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+        commandes = commandes["rows"]
+        console.log(commandes);
+
+        let commandesJson = {
+          "commandes": [
+
+          ],
+        };
+
+        commandes.forEach(element => {
+          let commandeElement = {
+            id: element["ID_COMMANDE"],
+            adresse: element["ADRESSE"],
+            date: new Date(element["DATE_COMMANDE"]).toISOString().split('T')[0],
+            statut: element["STATUT_ENVOYE"],
+            prix_sous_total: element["PRIX"],
+            items: [
+              {
+                id: element["ID_PRODUIT"],
+                nom: element["NOM_1"],
+                prix_unite: element["PRIX_SUGGERE"],
+                quantite: element["QUANTITE"]
+              }
+            ]
+          };
+    
+          commandesJson["commandes"].push(commandeElement);
+        });
+        // commandes.forEach(element => {
+        //   let commandeElement;
+
+
+        //   commandesJson["commandes"].forEach(elementCommandeJson => {
+        //       commandeElement = {
+        //         id: element["ID_COMMANDE"],
+        //         adresse: element["ADRESSE"],
+        //         date: Date.toString(element["DATE_COMMANDE"]),
+        //         statut: element["STATUT_ENVOYE"],
+        //         prix_sous_total: element["PRIX"],
+        //         items: [
+        //           {
+        //             id: element["ID_PRODUIT"],
+        //             nom: element["NOM_1"],
+        //             prix_unite: element["PRIX_SUGGERE"],
+        //             quantite: element["QUANTITE"]
+        //           }
+        //         ]
+        //       }
+
+        //       commandesJson["commandes"].push(commandeElement);
+            
+        //   });
+        // });
+
+        res.status(201).json(commandesJson).end();
+    } else {
+
+      res.status(403).json({
+        "erreur": "Vous devez être connecté pour faire cela."
+      }).end();
+
+    }
+  })
   /**
    * Retourne TRUE ou FALSE selon le statut de connexion de lutilisateur. (true = connecte)
    */

@@ -10,7 +10,7 @@ function LogoutButton() {
   const [, , removeCookie] = useCookies(['token']);
 
   const handleLogout = () => {
-    // Remove the "token" cookie and redirect to the home page
+    
     removeCookie('token', { path: '/' });
     window.location.href = '/';
   };

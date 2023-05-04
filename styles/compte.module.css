@@ -141,6 +141,60 @@
     order: 2;
     flex: 1 0 50%;
 }
+.containerCommandes{
+    background-color: lightgray;
+    border-radius: 10px;
+    margin: auto;
+    border-radius: 10px;
+    width: 70%;
+    padding: 7px;
+    margin-top: 20px;
+}
+.containerCommande{
+    background-color: #fff;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid;
+    border-collapse: collapse;
+    justify-content: space-between;
+    overflow: auto;
+}
+.dateCommande{
+    border: 1px solid;
+    flex-grow: 2;
+    padding: 5px;
+}
+.addresseCommande{
+    border: 1px solid;
+    flex-grow: 3;
+    padding: 5px;
+
+}
+.statutCommande{
+    border: 1px solid;
+    flex-grow: 1;
+    padding: 5px;
+
+}
+.totalCommande{
+    border: 1px solid;
+    flex-grow: 1;
+    padding: 5px;
+
+}
+.idCommande{
+    border: 1px solid;
+    flex-grow: 1;
+    padding: 5px;
+
+}
+#btn{
+    background-color: lightgrey;
+    color: white;
+}
+
 
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
