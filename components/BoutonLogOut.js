@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import styles from '../styles/compte.module.css';
 import React from 'react';
 import { useCookies } from 'react-cookie';
+import '../app/global.css';
 
 function LogoutButton() {
   const [, , removeCookie] = useCookies(['token']);
@@ -15,7 +16,7 @@ function LogoutButton() {
   };
 
   return (
-    <button className={styles.btn} onClick={handleLogout}>
+    <button className="btn-acheter" id={styles.btn_logout} onClick={handleLogout}>
       Logout
     </button>
   );
