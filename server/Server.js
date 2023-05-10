@@ -78,7 +78,7 @@ async function run() {
     /**
      * Le body de la requete post doit contenir le champ email et le champ password
      */
-    
+
     let contactForm = {
       "nom": req.body.nom,
       "prenom": req.body.prenom,
@@ -94,19 +94,28 @@ async function run() {
     }).end();
 
   });
-   /***************************\
-   * ======================= *
-   *GET COLLECTION FROM MONGODB*
-   * ======================= *
-  \***************************/
-  app.get('/api/messages_admin', async function (req, res) {
+  /***************************\
+  * ======================= *
+  *GET COLLECTION FROM MONGODB*
+  * ======================= *
+ \***************************/
+  app.get('/api/messages_admin/:token', async function (req, res) {
     res.set('Access-Control-Allow-Origin', '*');
 
-    let messages = await collection.find({}, { projection: { _id: 0, nom: 1, sujet: 1, sujet: 1, email:1, message:1} }).toArray(function(err, result) {
-      if (err) throw err;
-      console.log(result);
-    });
-    res.status(201).json(messages).end();
+    // prendre les parametres de l'url (token)
+    let params = req.params;
+    let token = params['token'];
+
+    if (await isSessionOuverte(token)) {
+
+      if (await verifierPermsAdmin(token)) {
+        let messages = await collection.find({}, { projection: { _id: 0, nom: 1, prenom: 1, sujet: 1, email: 1, message: 1 } }).toArray(function (err, result) {
+          if (err) throw err;
+        });
+        res.status(201).json(messages).end();
+      }
+    }
+
   });
   /***************************\
    * ======================= *
@@ -901,7 +910,7 @@ async function run() {
     }
   });
 
-   // get commande utilisateur(mon compte)
+  // get commande utilisateur(mon compte)
   app.get('/api/compte/commande/:token', async function (req, res) {
     // Activer le CORS
     res.set('Access-Control-Allow-Origin', '*');
@@ -909,10 +918,10 @@ async function run() {
     let token = params['token'];
 
     if (await isSessionOuverte(token)) {
-        let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
-        userID = userID["rows"][0]["UTILISATEUR_ID"];
+      let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+      userID = userID["rows"][0]["UTILISATEUR_ID"];
 
-        let commandes = await con.execute(`
+      let commandes = await con.execute(`
         SELECT COMMANDE.ID_COMMANDE,
             COMMANDE.ADRESSE,
             COMMANDE.DATE_COMMANDE,
@@ -924,61 +933,61 @@ async function run() {
             inner join ITEM__COMMANDE IC on COMMANDE.ID_COMMANDE = IC.COMMANDE_ID_COMMANDE
             inner join PRODUIT P on IC.ID_PRODUIT = P.ID_PRODUIT
        WHERE U.ID_UTILISATEUR = :userID`, [userID], { outFormat: oracledb.OUT_FORMAT_OBJECT });
-        commandes = commandes["rows"]
-        console.log(commandes);
+      commandes = commandes["rows"]
+      console.log(commandes);
 
-        let commandesJson = {
-          "commandes": [
+      let commandesJson = {
+        "commandes": [
 
-          ],
+        ],
+      };
+
+      commandes.forEach(element => {
+        let commandeElement = {
+          id: element["ID_COMMANDE"],
+          adresse: element["ADRESSE"],
+          date: new Date(element["DATE_COMMANDE"]).toISOString().split('T')[0],
+          statut: element["STATUT_ENVOYE"],
+          prix_sous_total: element["PRIX"],
+          items: [
+            {
+              id: element["ID_PRODUIT"],
+              nom: element["NOM_1"],
+              prix_unite: element["PRIX_SUGGERE"],
+              quantite: element["QUANTITE"]
+            }
+          ]
         };
 
-        commandes.forEach(element => {
-          let commandeElement = {
-            id: element["ID_COMMANDE"],
-            adresse: element["ADRESSE"],
-            date: new Date(element["DATE_COMMANDE"]).toISOString().split('T')[0],
-            statut: element["STATUT_ENVOYE"],
-            prix_sous_total: element["PRIX"],
-            items: [
-              {
-                id: element["ID_PRODUIT"],
-                nom: element["NOM_1"],
-                prix_unite: element["PRIX_SUGGERE"],
-                quantite: element["QUANTITE"]
-              }
-            ]
-          };
-    
-          commandesJson["commandes"].push(commandeElement);
-        });
-        // commandes.forEach(element => {
-        //   let commandeElement;
+        commandesJson["commandes"].push(commandeElement);
+      });
+      // commandes.forEach(element => {
+      //   let commandeElement;
 
 
-        //   commandesJson["commandes"].forEach(elementCommandeJson => {
-        //       commandeElement = {
-        //         id: element["ID_COMMANDE"],
-        //         adresse: element["ADRESSE"],
-        //         date: Date.toString(element["DATE_COMMANDE"]),
-        //         statut: element["STATUT_ENVOYE"],
-        //         prix_sous_total: element["PRIX"],
-        //         items: [
-        //           {
-        //             id: element["ID_PRODUIT"],
-        //             nom: element["NOM_1"],
-        //             prix_unite: element["PRIX_SUGGERE"],
-        //             quantite: element["QUANTITE"]
-        //           }
-        //         ]
-        //       }
+      //   commandesJson["commandes"].forEach(elementCommandeJson => {
+      //       commandeElement = {
+      //         id: element["ID_COMMANDE"],
+      //         adresse: element["ADRESSE"],
+      //         date: Date.toString(element["DATE_COMMANDE"]),
+      //         statut: element["STATUT_ENVOYE"],
+      //         prix_sous_total: element["PRIX"],
+      //         items: [
+      //           {
+      //             id: element["ID_PRODUIT"],
+      //             nom: element["NOM_1"],
+      //             prix_unite: element["PRIX_SUGGERE"],
+      //             quantite: element["QUANTITE"]
+      //           }
+      //         ]
+      //       }
 
-        //       commandesJson["commandes"].push(commandeElement);
-            
-        //   });
-        // });
+      //       commandesJson["commandes"].push(commandeElement);
 
-        res.status(201).json(commandesJson).end();
+      //   });
+      // });
+
+      res.status(201).json(commandesJson).end();
     } else {
 
       res.status(403).json({

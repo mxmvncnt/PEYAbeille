@@ -6,7 +6,7 @@ const port = process.env.SERVER_PORT;
 const url = `http://${hostname}:${port}`
 
 export async function verifierSession(token) {
-    let response = await fetch(url + '/api/verifier_session/' + token, {cache: "no-cache"});
+    let response = await fetch(url + '/api/verifier_session/' + token, { cache: "no-cache" });
 
     let jsonData = await response.json();
     return jsonData;
@@ -69,7 +69,7 @@ export async function getCommandesAdmin(token) {
 export async function getImageProduit(id) {
     let response = await fetch(url + '/api/admin/get_image_produit/' + id, { cache: "no-cache" });
     let jsonData = await response.json();
-    
+
     if (response.status == 404) {
         return 404;
     }
@@ -80,15 +80,16 @@ export async function getImageProduit(id) {
 export async function getImagesProduit(id) {
     let response = await fetch(url + '/api/admin/get_images_produit/' + id, { cache: "no-cache" });
     let jsonData = await response.json();
-    
+
     if (response.status == 404) {
         return 404;
     }
 
     return jsonData;
 }
-export async function getCommandeCompte(token){
-    let response = await fetch(url + '/api/compte/commande/' + token,{ cache: "no-cache" });
+
+export async function getCommandeCompte(token) {
+    let response = await fetch(url + '/api/compte/commande/' + token, { cache: "no-cache" });
     let jsonData = await response.json();
 
     if (response.status == 404) {
@@ -106,4 +107,15 @@ export async function postMessageContact(nom, prenom, titre, email, message) {
     });
     let jsonData = await response.json();
     return jsonData[0];
+}
+
+export async function getMessagesContact(token) {
+    let response = await fetch(url + '/api/messages_admin/' + token, { cache: "no-cache" });
+    let jsonData = await response.json();
+
+    if (response.status == 404) {
+        return 404;
+    }
+
+    return jsonData;
 }
