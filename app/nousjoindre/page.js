@@ -3,9 +3,20 @@ import styles from "../../styles/nous_joindre.module.css";
 import image from "../../public/cap12.png";
 import Image from "next/image";
 import '../global.css';
-   
 
-export default function NousJoindre() {
+async function envoyerFormulaire() {
+    
+    let response = await fetch(url + '/api/nousjoindre/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nom, prenom, email, password }),
+    });
+
+    let jsonData = await response.json();
+    return jsonData[0];
+}  
+
+export default async function NousJoindre() {
     return (
         <div className={styles.page_nousjoindre_container}>
             <div className={`${styles.page_nousjoindre_grid_item} ${styles.page_nousjoindre_image}`}>
@@ -15,7 +26,7 @@ export default function NousJoindre() {
             <div className={`${styles.page_nousjoindre_contact}`}>
                 <div className={`${styles.page_nousjoindre_grid_item} ${styles.contact_form}`}>
                     <h2>Nous contacter</h2>
-                    <form action="http://localhost:4003/api/nousjoindre/contact" method="POST">
+                    <form action={`/api/envoyer_message`} method="GET">
                         <label htmlFor="nom">Nom:</label>
                         <input className="input-field-singlerow" type="text" id="nom" name="nom" required />
                         <label htmlFor="prenom">Prénom:</label>
