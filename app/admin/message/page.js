@@ -1,8 +1,7 @@
 import React from "react";
 import { cookies } from 'next/headers';
 import styles from '../../../styles/MessageAdmin.module.css';
-import Commande from "../../../components/Commande";
-import { getCommandesAdmin } from "../../../server/Api";
+import { getMessagesContact } from "../../../server/Api";
 import MessageAdmin from "../../../components/MessageAdmin";
 
 
@@ -16,16 +15,19 @@ export default async function Message() {
 
     const token = getToken();
 
-    console.log(token)
     if (token != null) {
 
-        let data = await getCommandesAdmin(token["value"]);
+        let data = await getMessagesContact(token["value"]);
 
         if (data != 403) {
             return (
-                <div className={styles.page}>
+                <div className={styles.body}>
                     <h1>Messages</h1>
-                    <MessageAdmin/>
+                    <div className={styles.container_messages}>
+                        {data.map((message) => (
+                            <MessageAdmin data={message} />
+                        ))}
+                    </div>
                 </div>
             );
         } else {
