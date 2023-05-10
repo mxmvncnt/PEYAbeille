@@ -7,11 +7,11 @@ export async function GET(request) {
 
     const nom = searchParams.get('nom');
     const prenom = searchParams.get('prenom');
-    const sujet = searchParams.get('sujet');
+    const titre = searchParams.get('titre');
     const email = searchParams.get('email');
     const message = searchParams.get('message');
 
-    await postMessageContact(nom, prenom, sujet, email, message );
+    await postMessageContact(nom, prenom, titre, email, message );
 
     redirect('/nousjoindre')
 }

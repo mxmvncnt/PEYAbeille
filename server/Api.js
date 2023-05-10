@@ -98,11 +98,11 @@ export async function getCommandeCompte(token){
     return jsonData;
 }
 
-export async function postMessageContact(nom, prenom, sujet, email, message) {
+export async function postMessageContact(nom, prenom, titre, email, message) {
     let response = await fetch(url + '/api/nousjoindre/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nom, prenom, sujet, email, message }),
+        body: JSON.stringify({ nom, prenom, titre, email, message }),
     });
     let jsonData = await response.json();
     return jsonData[0];
