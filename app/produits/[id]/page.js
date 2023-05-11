@@ -31,8 +31,7 @@ export default async function Produit({ params }) {
                             <IndicateurPrix prix_regulier={data["PRIX_FIXE"]} prix_suggere={data["PRIX_SUGGERE"]} />
 
                             <AjouterAuPanier item={await data["ID_PRODUIT"]} nom_produit={await data["NOM"]} prix_suggere_unite={await data["PRIX_SUGGERE"]} quantite={1} />
-
-                            <small>En stock: {data["QUANTITE"]}</small>
+                            <p className={styles.indicateur_stock}>En stock: {data["QUANTITE"]}</p>
                         </div>
                     </div>
                 </div>

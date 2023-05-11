@@ -97,7 +97,13 @@
 }
 
 /* === VUE SPECIFIQUE MOBILE === */
-@media only screen and (max_width: 600px) {
+@media only screen and (max-width: 600px) {
+
+    .body {
+        width: 90vw;
+        margin: 0 auto;
+    }
+
     .page_produit_grid {
         grid-template-columns: auto;
     }
@@ -127,8 +133,11 @@
     .carousel_slider>div>.carousel_image {
         height: 98%;
         width: 100%;
-        object-fit: cover;
         border-radius: 10px;
+    }
+
+    .indicateur_stock {
+        text-align: center;
     }
 }
 

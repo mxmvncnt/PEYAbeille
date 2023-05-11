@@ -2,3 +2,9 @@
     padding-top: 10px;
 }
 
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 600px) {
+    .body {
+        text-align: center;
+    }
+}
