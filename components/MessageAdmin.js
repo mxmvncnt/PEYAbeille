@@ -28,7 +28,10 @@ export default function MessageAdmin(data) {
                 <p>{jsonData.message}</p>
             </div>
             <div className={styles.boutonMailTo}>
-                <button>Répondre</button>
+                <a href={`mailto:${jsonData.email}?subject=Re: ${jsonData.sujet}&body=${jsonData.message}`}>
+                    <button>Répondre</button>
+                </a>
+
             </div>
             {/* nom, prenom, sujet, email, message */}
             {/* btn rpondre */}
