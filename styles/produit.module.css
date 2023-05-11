@@ -73,6 +73,12 @@
     text-align: center;
 }
 
+.indicateur_stock {
+    line-height: 0;
+    font-size: 0.8em;
+    padding-bottom: 50px;
+}
+
 /* === VUE SPECIFIQUE ORDINATEUR === */
 @media only screen and (min-width: 601px) {
     .page_produit_grid {
