@@ -1,5 +1,5 @@
 "use client";
-
+import '../app/global.css'
 import styles from '../styles/ajouter_au_panier.module.css'
 import { useCookies } from "react-cookie";
 import Link from 'next/link';
@@ -42,9 +42,9 @@ export default function AjouterAuPanier(item) {
     }
 
     return (
-        <div>
+        <div className={styles.body}>
             <a href="/panier" onClick={() => ajouterItemAuPanier(item)}>
-                <button>Ajouter au panier</button>
+                <button className='btn-acheter'>Ajouter au panier</button>
             </a>
         </div>
     )
