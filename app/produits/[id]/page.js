@@ -12,7 +12,7 @@ export default async function Produit({ params }) {
     const data = await getInfosProduit(params.id);
 
     return (
-        <div className={styles.page_produit}>
+        <div className={styles.body}>
 
             <div className={styles.page_produit_grid}>
 

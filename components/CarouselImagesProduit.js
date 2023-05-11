@@ -21,18 +21,18 @@ export default async function CarouselImageProduit(id) {
         return (
             <div>
                 {/* Section Images */}
-                <div className={`${styles.page_produit_grid_item} ${styles.page_produit_grid_item_images}`}>
+                <div className={`${styles.carousel} ${styles.page_produit_grid_item_images}`}>
                     {/* Code pris et modifié de: https://css-tricks.com/can-get-pretty-far-making-slider-just-html-css/ */}
                     {/* Remplacer cela par une boucle quand nous avons de vraies images */}
 
-                    <div className={styles.page_produit_grid_item_images_slider}>
+                    <div className={styles.carousel_slider}>
                         {
                             jsonImages.map((urlImage) => (
-                                <div className={styles.page_produit_grid_item_images_slider_item} id="slide_1">
+                                <div className={styles.carousel_slider_item} id="slide_1">
                                     <Suspense fallback={<p>Chargement...</p>}>
                                         <Image
                                             id={`image_${++numeroImage}`}
-                                            className={styles.img}
+                                            className={styles.carousel_image}
                                             key={urlImage["url"]}
                                             src={urlImage["url"]}
                                             width={1000}
@@ -61,8 +61,8 @@ export default async function CarouselImageProduit(id) {
     return (
         <div>
             <div className={`${styles.page_produit_grid_item} ${styles.page_produit_grid_item_images}`}>
-                <div className={styles.page_produit_grid_item_images_slider}>
-                    <div className={styles.page_produit_grid_item_images_slider_item} id="slide_1">
+                <div className={styles.carousel_slider}>
+                    <div className={styles.carousel_slider_item} id="slide_1">
                         <Image
                             id={styles.img}
                             src={img_not_found}
