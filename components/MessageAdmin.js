@@ -8,23 +8,23 @@ export default function MessageAdmin(data) {
     return (
         <div className={styles.message}>
             <div className={styles.nom}>
-                <h3>Nom :</h3>
-                <p>{jsonData.nom}</p>
+                <h3 className={styles.inline_child}>Nom: </h3>
+                <p className={styles.inline_child} id={styles.inline_child_content}>{jsonData.nom}</p>
             </div>
             <div className={styles.prenom}>
-                <h3>Prénom: </h3>
-                <p>{jsonData.prenom}</p>
+                <h3 className={styles.inline_child}>Prénom: </h3>
+                <p className={styles.inline_child} id={styles.inline_child_content}>{jsonData.prenom}</p>
             </div>
             <div className={styles.email}>
-                <h3>Courriel:</h3>
+                <h3>Courriel: </h3>
                 <p>{jsonData.email}</p>
             </div>
             <div className={styles.sujet}>
-                <h3>Sujet:</h3>
+                <h3>Sujet: </h3>
                 <p>{jsonData.sujet}</p>
             </div>
             <div className={styles.contenu}>
-                <h3>Message:</h3>
+                <h3>Message: </h3>
                 <p>{jsonData.message}</p>
             </div>
             <div className={styles.boutonMailTo}>

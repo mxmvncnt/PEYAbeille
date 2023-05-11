@@ -21,8 +21,16 @@
     align-items: center;
 }
 
+/* .inline_child {
+    display: inline-block;
+}
+.inline_child_content {
+    padding-left: 10px;
+} */
+
 .contenu {
     white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 /* Dark Mode */
