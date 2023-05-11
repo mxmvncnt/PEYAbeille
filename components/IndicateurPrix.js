@@ -11,14 +11,14 @@ export default function IndicateurPrix({
     // si le prix suggere nest pas le meme que celui fixe/regulier
     if (prix_regulier != prix_suggere) {
         return (
-            <div className="indicateur-prix indicateur-prix-different">
-                <strike>{prix_regulier}$ </strike>
-                <h2>{prix_suggere} $</h2>
+            <div className={`${styles.indicateur_prix} ${styles.indicateur_prix_different}`}>
+                <strike className={styles.prix_inline}>{prix_regulier}$ </strike>
+                <h2 className={styles.prix_inline}>{prix_suggere} $</h2>
             </div>
         );
     } else {
         return (
-            <div className="indicateur-prix indicateur-prix-egal">
+            <div className={`${styles.indicateur_prix} ${styles.indicateur_prix_egal}`}>
                 <br></br>
                 <h2>{prix_suggere} $</h2>
             </div>
