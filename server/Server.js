@@ -1041,6 +1041,89 @@ async function run() {
 
     }
   })
+
+  /*********************************\
+  * ============================= *
+  *  POST PASSER UNE COMMANDE  *
+  * ============================= *
+  \*********************************/
+  app.post('/api/passer_commande', async function (req, res) {
+    // Activer le CORS
+    res.set('Access-Control-Allow-Origin', '*');
+
+    let token = req.body.token;
+
+    let items = req.body.items;
+    let adresse = req.body.adresse;
+
+    console.log(items)
+
+    items = JSON.parse(items)
+
+    let date = moment().format('YYYY-MM-DD hh:mm:ss')
+
+    if (await isSessionOuverte(token)) {
+
+      let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+      userID = userID["rows"][0]["UTILISATEUR_ID"];
+
+      let id_commande = await con.execute("select SEQ_COMMANDE.nextval from dual", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+      id_commande = id_commande['rows'][0]["NEXTVAL"]
+
+      await con.execute(
+        `INSERT INTO commande (id_commande,
+          adresse,
+          date_commande,
+          statut_envoye,
+          utilisateur_id_utilisateur,
+          paiement_id_paiement)
+        VALUES (
+          :id_commande,
+          :adresse,
+          TO_DATE(:date_commande, 'YYYY-MM-DD HH.MI.SS'),
+          'F',
+          :id_utilisateur,
+          1)`,
+        [id_commande, adresse, date, userID],
+        { autoCommit: true }
+      );
+
+      for (const item of items) {
+        await con.execute(
+          `INSERT INTO item__commande (
+            id_item_comm,
+            quantite,
+            prix,
+            commande_id_commande,
+            id_produit)
+          VALUES (
+            seq_item_commande.NEXTVAL,
+            :quantite,
+            :prix_unitaire,
+            :id_commande,
+            :id_produit)`,
+            [
+              item["quantite"],
+              item["prix_suggere_unite"],
+              id_commande,
+              item["item"]
+            ], { autoCommit: true })
+      }
+
+      res.status(201).json({
+        "succes": "Commmande enregistrée avec succès."
+      }).end();
+
+    } else {
+
+      res.status(403).json({
+        "erreur": "Vous devez être connecté pour faire cela."
+      }).end();
+
+    }
+  }
+  );
+
   /**
    * Retourne TRUE ou FALSE selon le statut de connexion de lutilisateur. (true = connecte)
    */
@@ -1074,7 +1157,6 @@ async function run() {
     }
     else return false;
   }
-
 
   const server = app.listen(process.env.SERVER_PORT, function () {
     console.log("Serveur en marche...");
