@@ -2,6 +2,7 @@ import React from "react";
 import { cookies } from 'next/headers';
 import styles from '../../styles/panier.module.css';
 import ItemPanier from "../../components/ItemPanier";
+import PasserCommande from '../../components/PasserCommande'
 import '../global.css'
 
 const getItemsPanier = () => {
@@ -85,30 +86,36 @@ export default async function Panier() {
                                 </div>
                             </div>
                             <div className={styles.infos_total}>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className={styles.total_label}><b>Sous-total: </b></td>
-                                            <td className={styles.total_prix}>{sousTotal} $</td>
-                                        </tr>
-                                        <tr>
-                                            <td className={styles.total_label}><b>Taxes: </b></td>
-                                            <td className={styles.total_prix}>{taxesTotal} $</td>
-                                        </tr>
-                                        <tr>
-                                            <td className={`${styles.total_label} ${styles.details_taxes}`}>TPS: </td>
-                                            <td className={styles.total_prix}>{taxesTPS} $</td>
-                                        </tr>
-                                        <tr>
-                                            <td className={`${styles.total_label} ${styles.details_taxes}`}>TVQ: </td>
-                                            <td className={styles.total_prix}>{taxesTVQ} $</td>
-                                        </tr>
-                                        <tr>
-                                            <td className={styles.total_label}><b>Total: </b></td>
-                                            <td className={styles.total_prix}>{prixTotal} $</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div className={styles.infos_total_child}>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td className={styles.total_label}><b>Sous-total: </b></td>
+                                                <td className={styles.total_prix}>{sousTotal} $</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={styles.total_label}><b>Taxes: </b></td>
+                                                <td className={styles.total_prix}>{taxesTotal} $</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={`${styles.total_label} ${styles.details_taxes}`}>TPS: </td>
+                                                <td className={styles.total_prix}>{taxesTPS} $</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={`${styles.total_label} ${styles.details_taxes}`}>TVQ: </td>
+                                                <td className={styles.total_prix}>{taxesTVQ} $</td>
+                                            </tr>
+                                            <tr>
+                                                <td className={styles.total_label}><b>Total: </b></td>
+                                                <td className={styles.total_prix}>{prixTotal} $</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div className={styles.infos_total_child}>
+                                    <PasserCommande/>
+                                </div>
                             </div>
                         </div>
                     </div>
