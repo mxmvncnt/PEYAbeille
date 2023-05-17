@@ -63,7 +63,7 @@ export default function ProduitInventaire(
                     <details className={styles.contenu}>
                         <summary className={styles.contenu_titre}>
 
-                            Nom du produit
+                            {data["NOM"]}
 
                         </summary>
                         <div className={styles.form}>
