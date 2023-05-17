@@ -139,7 +139,45 @@ async function run() {
     }
     else {
 
-      res.status(403).json({
+      res.status(401).json({
+        "erreur": "Vous devez être connecté pour faire cette action."
+      }).end();
+
+    }
+  });
+
+  /***************************\
+  * ======================= *
+  *  GET VERIFIER SESSION ADMIN   *
+  * ======================= *
+ \***************************/
+  app.get('/api/verifier_session_admin/:token', async function (req, res) {
+    // Activer le CORS
+    res.set('Access-Control-Allow-Origin', '*');
+
+    // prendre les parametres de l'url (token)
+    let params = req.params;
+    let token = params['token'];
+
+    if (await isSessionOuverte(token)) {
+
+      if (await verifierPermsAdmin(token)) {
+
+        res.status(200).json({
+          "succes": "Le jeton de session est valide."
+        }).end();
+
+      } else {
+
+        res.status(403).json({
+          "erreur": "Vous n'avez pas la permission de voir cela."
+        }).end();
+
+      }
+    }
+    else {
+
+      res.status(401).json({
         "erreur": "Vous devez être connecté pour faire cette action."
       }).end();
 

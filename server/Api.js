@@ -8,8 +8,21 @@ const url = `http://${hostname}:${port}`
 export async function verifierSession(token) {
     let response = await fetch(url + '/api/verifier_session/' + token, { cache: "no-cache" });
 
-    let jsonData = await response.json();
-    return jsonData;
+    if (response.status == 200) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+export async function verifierSessionAdmin(token) {
+    let response = await fetch(url + '/api/verifier_session_admin/' + token, { cache: "no-cache" });
+
+    if (response.status == 200) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 export async function getProduits(typeTri) {
