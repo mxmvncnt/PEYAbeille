@@ -52,9 +52,9 @@ export default function ItemPanier(
 
     return (
         <div className={styles.container}>
-            <button onClick={retirer}>-</button>
-            <span>{quantite}</span>
-            <button onClick={ajouter}>+</button>
+            <button id={styles.btn_retirer} className={styles.bouton_increment} onClick={retirer}>-</button>
+            <span className={styles.quantite}>{quantite}</span>
+            <button id={styles.btn_ajouter} className={styles.bouton_increment} onClick={ajouter}>+</button>
         </div>
     );
     // }

@@ -1,0 +1,51 @@
+.container {
+    width: fit-content;
+}
+
+.bouton_increment {
+    border: none;
+    width: 44px;
+    height: 44px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#btn_retirer {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-size: 1.5em;
+    transform: translateY(2px);
+}
+
+#btn_ajouter {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 1.2em;
+}
+
+.quantite {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .bouton_increment {
+        background-color: #2e2e2e;
+        color: white;
+    }
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+    .bouton_increment {
+        background-color: #dadada;
+        color: black;
+    }
+}
+
+/* === VUE SPECIFIQUE ORDINATEUR === */
+@media only screen and (min-width: 601px) {}
+
+/* === VUE SPECIFIQUE MOBILE === */
+@media only screen and (max-width: 600px) {}
