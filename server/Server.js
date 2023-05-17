@@ -1056,8 +1056,6 @@ async function run() {
     let items = req.body.items;
     let adresse = req.body.adresse;
 
-    console.log(items)
-
     items = JSON.parse(items)
 
     let date = moment().format('YYYY-MM-DD hh:mm:ss')
@@ -1070,6 +1068,7 @@ async function run() {
       let id_commande = await con.execute("select SEQ_COMMANDE.nextval from dual", [], { outFormat: oracledb.OUT_FORMAT_OBJECT });
       id_commande = id_commande['rows'][0]["NEXTVAL"]
 
+      // ajouter lentree a la table Commande
       await con.execute(
         `INSERT INTO commande (id_commande,
           adresse,
@@ -1088,6 +1087,7 @@ async function run() {
         { autoCommit: true }
       );
 
+      // Ajouter les items a la commande
       for (const item of items) {
         await con.execute(
           `INSERT INTO item__commande (
@@ -1102,12 +1102,12 @@ async function run() {
             :prix_unitaire,
             :id_commande,
             :id_produit)`,
-            [
-              item["quantite"],
-              item["prix_suggere_unite"],
-              id_commande,
-              item["item"]
-            ], { autoCommit: true })
+          [
+            item["quantite"],
+            item["prix_suggere_unite"],
+            id_commande,
+            item["item"]
+          ], { autoCommit: true })
       }
 
       res.status(201).json({
