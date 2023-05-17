@@ -3,13 +3,14 @@
 import styles from '../styles/item_panier.module.css'
 import { useRouter } from 'next/navigation';
 import { useCookies } from "react-cookie";
-import Incrementeur from './Incrementeur';
 
 
 
-export default function ItemPanier(
+export default function Incrementeur(
     data = "Aucune donnee"
 ) {
+
+    console.log(data)
     const [cookies, setCookie] = useCookies(['panier'])
     const router = useRouter();
     
@@ -29,18 +30,6 @@ export default function ItemPanier(
         return (
             <div className={styles.container}>
                 <h2>Aucune donnée</h2>
-            </div>
-        );
-    } else {
-        data = data["data"]
-
-        return (
-            <div className={styles.item_panier}>
-                <h2>{data.nom_produit}</h2>
-                <Incrementeur quantite={data.quantite}/>
-                {/* <input className={styles.input_quantite} type="number" defaultValue={data.quantite}></input> */}
-                <p>{data.prix_suggere_unite * data.quantite}</p>
-                <button onClick={() => supprimerItem(data.item)}>Supprimer</button>
             </div>
         );
     }
