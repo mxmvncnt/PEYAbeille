@@ -11,8 +11,6 @@ function getToken() {
     // pris de https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
     const [cookies, setCookie] = useCookies(['token']);
 
-    console.log(cookies.token)
-
     return cookies.token;
 }
 
