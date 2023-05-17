@@ -1,7 +1,14 @@
 import React from "react";
+import { cookies } from 'next/headers';
 import styles from '../../../styles/inventaire.module.css';
 import ProduitInventaire from "../../../components/ProduitInventaire";
 import { getProduits } from "../../../server/Api";
+
+const getToken = () => {
+    const nextCookies = cookies(); // Get cookies object
+    const token = nextCookies.get('token') // Find cookie
+    return token
+}
 
 export default async function inventaire() {
     const data = await getProduits();
