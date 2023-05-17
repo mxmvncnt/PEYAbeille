@@ -38,8 +38,7 @@ export default function ItemPanier(
             <div className={styles.item_panier}>
                 <h2>{data.nom_produit}</h2>
                 <Incrementeur data={data}/>
-                {/* <input className={styles.input_quantite} type="number" defaultValue={data.quantite}></input> */}
-                <p>{data.prix_suggere_unite * data.quantite}</p>
+                <p><b>{data.prix_suggere_unite * data.quantite}$ </b> ({data.quantite} x {data.prix_suggere_unite}$ = {data.prix_suggere_unite * data.quantite}$)</p>
                 <button onClick={() => supprimerItem(data.item)}>Supprimer</button>
             </div>
         );

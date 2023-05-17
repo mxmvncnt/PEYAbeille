@@ -4,7 +4,7 @@ import styles from '../styles/incrementeur.module.css'
 import { useRouter } from 'next/navigation';
 import { useCookies } from "react-cookie";
 
-export default function ItemPanier(
+export default function Incrementeur(
     data = "Aucune donnee"
 ) {
     const quantite = data["data"]["quantite"]
