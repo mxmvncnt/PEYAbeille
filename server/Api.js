@@ -132,3 +132,13 @@ export async function getMessagesContact(token) {
 
     return jsonData;
 }
+
+export async function passerCommande(token, adresse, items) {
+    let response = await fetch(url + '/api/passer_commande', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, adresse, items }),
+    });
+    let jsonData = await response.json();
+    return jsonData[0];
+}
