@@ -60,8 +60,6 @@
 }
 
 .btn_fullwidth {
-    background-color: black;
-    color: rgb(255, 230, 0);
     font-size: 1.2rem;
     padding: 10px 20px;
     border: none;
@@ -84,6 +82,11 @@
 @media (prefers-color-scheme: light) {
     .card {
         background-color: rgb(255, 255, 255);
+    }
+
+    .btn_fullwidth {
+        background-color: black;
+        color: rgb(255, 230, 0);
     }
 }
 
