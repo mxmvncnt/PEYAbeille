@@ -15,7 +15,7 @@ const { hostname } = require('os');
 const { Console } = require('console');
 const { MongoClient } = require('mongodb');
 const { config } = require('dotenv');
-
+const moment = require("moment")
 
 let mongoClient;
 
@@ -250,18 +250,25 @@ async function run() {
       if (mdpValide) {
         let token = crypto.randomBytes(64).toString('hex');
 
+        let date = moment().format('YYYY-MM-DD hh:mm:ss')
+
         // ajouter une ligne a la table_session avec le token
         await con.execute(
           `INSERT INTO 
               table_session ( 
                   id_table_session, 
                   jettons, 
-                  utilisateur_id)
+                  utilisateur_id,
+                  date_expiration)
               VALUES (
                   seq_table_session.NEXTVAL, 
                   :token, 
-                  :userID)`,
-          [token, parseInt(userID["ID_UTILISATEUR"])],
+                  :userID,
+                  TO_DATE(:date_expiration, 'YYYY-MM-DD HH.MI.SS'))`,
+          [
+            token,
+            parseInt(userID["ID_UTILISATEUR"]),
+            date],
           { autoCommit: true }
         );
 
