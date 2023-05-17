@@ -1,36 +1,61 @@
 "use client";
 
-import styles from '../styles/item_panier.module.css'
+import styles from '../styles/incrementeur.module.css'
 import { useRouter } from 'next/navigation';
 import { useCookies } from "react-cookie";
 
-
-
-export default function Incrementeur(
+export default function ItemPanier(
     data = "Aucune donnee"
 ) {
+    const quantite = data["data"]["quantite"]
+    const id_produit = data["data"]["item"]
 
-    console.log(data)
     const [cookies, setCookie] = useCookies(['panier'])
     const router = useRouter();
+
+    const ajouter = () => {
+        let itemsPanier = cookies["panier"]["items_panier"];
     
-    function supprimerItem(idItem) {
+        for (let i = 0; i < itemsPanier.length; i++) {
+            if (itemsPanier[i].item == id_produit) {
+                // itemsPanier.splice(i, 1);
+                itemsPanier[i].quantite++;
+                setCookie('panier', { "items_panier": itemsPanier }, { sameSite: true, path: "/" });
+                router.refresh();
+            }
+        }
+    }
+    
+    const retirer = () => {
         let itemsPanier = cookies["panier"]["items_panier"];
 
+        // Supprimer l'item du panier si la quantite tombe a 0
+        if (quantite == parseInt(1)) {
+            for (let i = 0; i < itemsPanier.length; i++) {
+                if (itemsPanier[i].item == id_produit) {
+                    itemsPanier.splice(i, 1);
+                    setCookie('panier', { "items_panier": itemsPanier }, { sameSite: true, path: "/" });
+                    router.refresh();
+                }
+            }
+        }
+    
         for (let i = 0; i < itemsPanier.length; i++) {
-            if (itemsPanier[i].item == idItem) {
-                itemsPanier.splice(i, 1);
+            if (itemsPanier[i].item == id_produit) {
+                // itemsPanier.splice(i, 1);
+                itemsPanier[i].quantite--;
                 setCookie('panier', { "items_panier": itemsPanier }, { sameSite: true, path: "/" });
                 router.refresh();
             }
         }
     }
 
-    if (data["data"] == "Aucune donnee") {
-        return (
-            <div className={styles.container}>
-                <h2>Aucune donnée</h2>
-            </div>
-        );
-    }
+    return (
+        <div className={styles.container}>
+            <button onClick={retirer}>-</button>
+            <span>{quantite}</span>
+            <button onClick={ajouter}>+</button>
+        </div>
+    );
+    // }
 }

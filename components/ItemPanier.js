@@ -37,7 +37,7 @@ export default function ItemPanier(
         return (
             <div className={styles.item_panier}>
                 <h2>{data.nom_produit}</h2>
-                <Incrementeur quantite={data.quantite}/>
+                <Incrementeur data={data}/>
                 {/* <input className={styles.input_quantite} type="number" defaultValue={data.quantite}></input> */}
                 <p>{data.prix_suggere_unite * data.quantite}</p>
                 <button onClick={() => supprimerItem(data.item)}>Supprimer</button>
