@@ -142,3 +142,13 @@ export async function passerCommande(token, adresse, items) {
     let jsonData = await response.json();
     return jsonData[0];
 }
+
+export async function updateInformations(token, nom, prenom, email, password) {
+    let response = await fetch(url + '/api/compte/informations/', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, nom, prenom, email, password }),
+    });
+    let jsonData = await response.json();
+    return jsonData[0];
+}

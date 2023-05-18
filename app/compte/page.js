@@ -39,7 +39,7 @@ export default async function Compte() {
                          </div>
 
                     </div>
-                    <Informations />
+                    <Informations token={token["value"]}/>
                     <div className={styles.containerCommandes}>
                         <h2>Mes commandes</h2>
                         <div className={styles.containerCommande}>

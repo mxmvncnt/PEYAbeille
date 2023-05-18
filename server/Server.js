@@ -1006,32 +1006,6 @@ async function run() {
 
         commandesJson["commandes"].push(commandeElement);
       });
-      // commandes.forEach(element => {
-      //   let commandeElement;
-
-
-      //   commandesJson["commandes"].forEach(elementCommandeJson => {
-      //       commandeElement = {
-      //         id: element["ID_COMMANDE"],
-      //         adresse: element["ADRESSE"],
-      //         date: Date.toString(element["DATE_COMMANDE"]),
-      //         statut: element["STATUT_ENVOYE"],
-      //         prix_sous_total: element["PRIX"],
-      //         items: [
-      //           {
-      //             id: element["ID_PRODUIT"],
-      //             nom: element["NOM_1"],
-      //             prix_unite: element["PRIX_SUGGERE"],
-      //             quantite: element["QUANTITE"]
-      //           }
-      //         ]
-      //       }
-
-      //       commandesJson["commandes"].push(commandeElement);
-
-      //   });
-      // });
-
       res.status(201).json(commandesJson).end();
     } else {
 
@@ -1124,6 +1098,54 @@ async function run() {
   }
   );
 
+
+  app.put('/api/compte/informations/', async function (req, res) {
+
+    res.set('Access-Control-Allow-Origin', '*');
+
+    let token = req.body.token;
+    if (isSessionOuverte(token)) {
+
+      let nom = req.body.nom;
+      let prenom = req.body.prenom;
+      let email = req.body.email;
+      let password = req.body.password;
+
+      console.log(nom)
+      console.log(prenom)
+      console.log(email)
+      console.log(password)
+
+      let userID = await con.execute("SELECT utilisateur_id FROM table_session WHERE jettons = :token", [token], { outFormat: oracledb.OUT_FORMAT_OBJECT });
+      console.log(userID);
+      userID = userID["rows"][0]["UTILISATEUR_ID"];
+
+      let hash = await bcrypt.hash(password, 16);
+
+
+      let y = await con.execute(
+        `UPDATE utilisateur SET 
+          nom = :nom,
+          prenom = :prenom,
+          email = :email,
+          mot_de_passe = :hash
+        WHERE id_utilisateur = :userID`,
+        [nom, prenom, email, hash, userID], { autoCommit: true });
+
+        console.log(y)
+
+      res.status(201).json({
+        "succes": "Informations mis a jour avec succès."
+      }).end();
+
+
+    } else {
+      res.status(403).json({
+        "erreur": "Vous devez être connecté pour faire cela."
+      }).end();
+    }
+
+  })
   /**
    * Retourne TRUE ou FALSE selon le statut de connexion de lutilisateur. (true = connecte)
    */
