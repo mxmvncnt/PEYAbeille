@@ -2,6 +2,7 @@ import React from "react";
 import { cookies } from 'next/headers';
 import styles from '../../../styles/inventaire.module.css';
 import ProduitInventaire from "../../../components/ProduitInventaire";
+import AjouterProduitInventaire from "../../../components/AjouterProduitInventaire";
 import { getProduits, verifierSessionAdmin } from "../../../server/Api";
 
 
@@ -23,7 +24,8 @@ export default async function inventaire() {
             return (
                 <div style={{ minHeight: "100vh" }}>
                     <h1> Inventaire</h1>
-                    <button>Ajouter produit</button>
+
+                    <AjouterProduitInventaire />
 
                     {data.map((produit) => (
                         <div key={produit["ID_PRODUIT"]} className={styles.produit}>

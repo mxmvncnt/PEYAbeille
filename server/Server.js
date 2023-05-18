@@ -390,7 +390,7 @@ async function run() {
    *  PUT ADMIN AJOUTER PRODUIT  *
    * =========================== *
   \*******************************/
-  app.put('/api/admin/ajouter_produit', async function (req, res) {
+  app.post('/api/admin/ajouter_produit', async function (req, res) {
     // Activer le CORS
     res.set('Access-Control-Allow-Origin', '*');
 
