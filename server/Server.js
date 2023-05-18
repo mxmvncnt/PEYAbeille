@@ -16,10 +16,11 @@ const { Console } = require('console');
 const { MongoClient } = require('mongodb');
 const { config } = require('dotenv');
 const moment = require("moment")
+const cors = require('cors');
+
+app.use(cors());
 
 let mongoClient;
-
-
 
 let libPath;
 if (process.platform === "win32") {
@@ -1085,7 +1086,8 @@ async function run() {
       }
 
       res.status(201).json({
-        "succes": "Commmande enregistrée avec succès."
+        "succes": "Commmande enregistrée avec succès.",
+        "id_commande": id_commande
       }).end();
 
     } else {
