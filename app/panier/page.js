@@ -114,7 +114,7 @@ export default async function Panier() {
                                 </div>
 
                                 <div className={styles.infos_total_child}>
-                                    <PasserCommande/>
+                                    <PasserCommande items={itemsPanierJson} />
                                 </div>
                             </div>
                         </div>
