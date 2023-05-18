@@ -42,7 +42,12 @@ export default function PasserCommande(items) {
         fetch("http://localhost:4003/api/passer_commande", requestOptions)
             .then(response => response.json())
             .then(json => {
-                alert('Commande enregistrée. Consultez votre profil pour voir le contenu.');
+                if (json["id_commande"] != undefined) {
+                    alert('Commande enregistrée. Consultez votre profil pour voir le contenu.');
+                }
+                else {
+                    alert('Vous devez être connecté pour faire cela.');
+                }
             })
             .catch(error => console.log('error', error)
             );
