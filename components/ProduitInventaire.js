@@ -4,6 +4,7 @@ import React from "react";
 import styles from '../styles/produit_inventaire.module.css';
 import '../app/global.css'
 import { useCookies } from "react-cookie";
+import { useRouter } from 'next/navigation';
 
 // import { postModifierProduit } from "../server/Api";
 
@@ -18,6 +19,8 @@ export default function ProduitInventaire(
     jsonData
 ) {
     let data = jsonData["jsonData"];
+
+    const router = useRouter();
 
     let parsedToken = getToken();
 
@@ -51,7 +54,10 @@ export default function ProduitInventaire(
         fetch("http://localhost:4003/api/admin/modifier_produit", requestOptions)
             .then(response => response.text())
             .then(result => alert("Les modifications ont été sauvegardées."))
-            .catch(error => console.log('error', error));
+            .catch(error => console.log('error', error)
+        );
+
+        router.refresh();
     };
 
     const handleDeleteProduct = () => {
