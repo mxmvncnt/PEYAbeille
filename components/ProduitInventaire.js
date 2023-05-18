@@ -54,6 +54,31 @@ export default function ProduitInventaire(
             .catch(error => console.log('error', error));
     };
 
+    const handleDeleteProduct = () => {
+
+        if (confirm(`Confirmer la suppression du produit?`) == true) {
+            var formdata = new FormData();
+
+            formdata.append("token", parsedToken);
+            formdata.append("id_produit", data["ID_PRODUIT"]);
+    
+            var requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: formdata,
+                mode: "no-cors"
+            };
+    
+            fetch("http://localhost:4003/api/admin/supprimer_produit", requestOptions)
+                .then(response => response.text())
+                .then(result => alert(`Le produit à été supprimé.`))
+                .catch(error => console.log('error', error)
+            );
+        }        
+    }
+
     if (jsonData != null) {
         return (
             <div>
@@ -93,7 +118,7 @@ export default function ProduitInventaire(
                         </form>
 
                         <div>
-                            <button className={styles.bttnSupprimer}>Supprimer produit</button>
+                            <button className={styles.bttnSupprimer} onClick={handleDeleteProduct}>Supprimer produit</button>
                             {/* <button className={styles.bttnConfirmer}>Confirmer</button> */}
                         </div>
                     </details>
