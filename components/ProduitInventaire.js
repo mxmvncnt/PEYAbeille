@@ -82,6 +82,8 @@ export default function ProduitInventaire(
                 .then(result => alert(`Le produit à été supprimé.`))
                 .catch(error => console.log('error', error)
             );
+            
+            router.refresh();
         }        
     }
 
