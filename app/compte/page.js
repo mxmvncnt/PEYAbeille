@@ -21,7 +21,7 @@ export default async function Compte() {
 
     if(token != null){
          let data = await getCommandeCompte(token["value"]);
-         console.log(data)
+        //  console.log(data)
             return (
                 <div>
                     <div className={styles.container}>

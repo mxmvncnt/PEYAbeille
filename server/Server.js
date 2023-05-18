@@ -980,7 +980,7 @@ async function run() {
             inner join PRODUIT P on IC.ID_PRODUIT = P.ID_PRODUIT
        WHERE U.ID_UTILISATEUR = :userID`, [userID], { outFormat: oracledb.OUT_FORMAT_OBJECT });
       commandes = commandes["rows"]
-      console.log(commandes);
+      // console.log(commandes);
 
       let commandesJson = {
         "commandes": [
