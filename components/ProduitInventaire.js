@@ -50,7 +50,7 @@ export default function ProduitInventaire(
 
         fetch("http://localhost:4003/api/admin/modifier_produit", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => alert("Les modifications ont été sauvegardées."))
             .catch(error => console.log('error', error));
     };
 
